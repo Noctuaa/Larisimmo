@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import homeImage from '../../assets/images/home-unsplash.jpg';
+import SearchBar from './SearchBar.vue';
+---
+
+<section class="relative mx-auto md:mt-(--nav-height) md:mb-[1.5vw] w-full md:w-[97%]">
+  <!-- Halos décoratifs : débordent du cadre, doivent rester en dehors du overflow-hidden -->
+  <!--<div class="absolute -left-16 top-1/3 hidden h-72 w-72 rounded-full bg-accent-secondary/40 blur-3xl md:block"></div>
+  <div class="absolute -bottom-16 -right-25 hidden h-96 w-96 rounded-full bg-accent/50 blur-3xl md:block"></div>-->
+
+  <div class="relative overflow-hidden md:rounded-3xl">
+    <Image
+      src={homeImage}
+      alt="Maison en bois moderne"
+      class="h-svh w-full object-cover md:h-[calc(100svh-var(--nav-height)-1.5vw)]"
+      widths={[640, 1024, 1600, 2000]}
+      loading="eager"
+    />
+
+    <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/20 to-transparent"></div>
+
+    <div class="container absolute inset-0 flex flex-col justify-center text-white">
+      <h1 class="max-w-lg text-6xl font-bold">Trouvez le bien qui vous ressemble</h1>
+      <p class="mt-4 text-lg max-w-md">Achat et location, tous types de biens, partout en France.</p>
+    </div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-30 px-6 md:px-12">
+    <SearchBar client:load />
+  </div>
+</section>

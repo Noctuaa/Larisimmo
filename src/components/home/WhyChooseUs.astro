@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import homeImage from '../../assets/images/home-unsplash.jpg';
+
+const points = [
+  'Un large choix de biens, partout en France',
+  'Achat ou location, en quelques clics',
+  'Des recommandations qui vous correspondent',
+  'Un comparateur pour décider en toute confiance',
+];
+---
+
+<section class="container grid gap-10 py-24 md:grid-cols-2 md:items-center md:gap-16">
+  <div>
+    <p class="text-sm font-semibold text-primary">Pourquoi Larisimmo</p>
+    <h2 class="mt-2 text-3xl font-bold text-gray-900">Bien plus qu'un simple bien</h2>
+    <p class="mt-4 text-gray-600">
+      On vous accompagne pour trouver un bien qui correspond vraiment à votre vie, pas juste à une liste d'annonces.
+    </p>
+
+    <ul class="mt-6 flex flex-col gap-3">
+      {
+        points.map((point) => (
+          <li class="flex items-start gap-3 text-gray-700">
+            <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+            {point}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <Image
+    src={homeImage}
+    alt="Intérieur chaleureux d'une maison"
+    class="w-full rounded-2xl object-cover"
+    widths={[480, 768, 1024]}
+    sizes="(min-width: 768px) 50vw, 100vw"
+    loading="lazy"
+  />
+</section>

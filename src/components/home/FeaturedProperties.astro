@@ -1,0 +1,21 @@
+---
+import PropertyCard from '../cards/PropertyCard.astro';
+import properties from '../../data/biens.json';
+import type { Property } from '../../types/property';
+
+const featured = (properties as Property[]).filter((p) => p.etiquettes.includes('Nouveau')).slice(0, 4);
+---
+
+<section class="container py-24">
+  <div class="flex items-end justify-between">
+    <div>
+      <p class="text-sm font-semibold text-primary">À la une</p>
+      <h2 class="mt-2 text-3xl font-bold text-gray-900">Derniers biens ajoutés</h2>
+    </div>
+    <a href="/biens" class="hidden text-sm font-semibold text-primary hover:underline md:block">Voir tous les biens →</a>
+  </div>
+
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {featured.map((property) => <PropertyCard property={property} />)}
+  </div>
+</section>

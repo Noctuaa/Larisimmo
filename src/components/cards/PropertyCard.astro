@@ -1,0 +1,45 @@
+---
+import type { Property } from '../../types/property';
+
+interface Props {
+  property: Property;
+}
+
+const { property } = Astro.props;
+
+const tagStyles: Record<string, string> = {
+  Nouveau: 'bg-primary text-white',
+  'Bon plan': 'bg-emerald-500 text-white',
+  'Coup de cœur': 'bg-rose-500 text-white',
+};
+
+const price =
+  property.transaction === 'location' ? `${property.prix.toLocaleString('fr-FR')} € / mois` : `${property.prix.toLocaleString('fr-FR')} €`;
+---
+
+<a href={`/biens/${property.id}`} class="group block overflow-hidden rounded-2xl bg-white shadow-md transition hover:shadow-xl">
+  <div class="relative tt h-70 overflow-hidden">
+    <img
+      src={property.photos[0].compacte}
+      alt={property.titre}
+      loading="lazy"
+      class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+    />
+
+    <div class="absolute left-3 top-3 flex gap-2">
+      {property.etiquettes.map((tag) => <span class={`rounded-full px-3 py-1 text-xs font-semibold ${tagStyles[tag]}`}>{tag}</span>)}
+    </div>
+  </div>
+
+  <div class="relative -mt-10 bg-white rounded-tr-4xl p-8">
+    <p class="text-sm text-gray-500">{property.ville}</p>
+    <h3 class="mt-1 truncate font-semibold text-gray-900">{property.titre}</h3>
+    <p class="mt-2 text-lg font-bold text-primary">{price}</p>
+
+    <div class="mt-3 flex gap-4 text-sm text-gray-500">
+      <span>{property.surface} m²</span>
+      <span>{property.pieces} pièces</span>
+      <span>{property.chambres} ch.</span>
+    </div>
+  </div>
+</a>

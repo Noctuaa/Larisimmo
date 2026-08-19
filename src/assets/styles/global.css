@@ -1,1 +1,30 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --nav-height: 5rem;
+  --color-accent: #4f46e5;
+  --color-accent-secondary: #a78bfa;
+  --color-primary: #2e57ed;
+  --color-background: #fbf9fa;
+  --font-sans: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+}
+
+@layer components {
+  .container {
+    @apply max-w-350 mx-auto px-[clamp(1rem,4vw,3rem)];
+  }
+
+  .tt:before {
+    content: '';
+    position: absolute;
+    bottom: 40.2px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: white;
+    transform: translateZ(0);
+    -webkit-mask-image: radial-gradient(circle at top right, transparent 40px, black 41px);
+    mask-image: radial-gradient(circle at top right, transparent 40px, black 41px);
+    z-index: 10;
+  }
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "1",
+    "titre": "Appartement lumineux avec balcon",
+    "type": "Appartement",
+    "transaction": "vente",
+    "prix": 285000,
+    "ville": "Paris",
+    "adresse": "12 rue des Tilleuls",
+    "surface": 62,
+    "pieces": 3,
+    "chambres": 2,
+    "sallesDeBain": 1,
+    "description": "Bel appartement traversant avec balcon, proche des commerces et transports.",
+    "photos": [
+      { "compacte": "https://picsum.photos/seed/larisimmo-1/600/400", "grande": "https://picsum.photos/seed/larisimmo-1/1200/800" }
+    ],
+    "equipements": ["Balcon", "Ascenseur", "Cave"],
+    "dpe": "C",
+    "etiquettes": ["Nouveau"],
+    "statut": "disponible"
+  },
+  {
+    "id": "2",
+    "titre": "Maison familiale avec jardin",
+    "type": "Maison",
+    "transaction": "vente",
+    "prix": 420000,
+    "ville": "Lyon",
+    "adresse": "5 allée des Cerisiers",
+    "surface": 130,
+    "pieces": 5,
+    "chambres": 4,
+    "sallesDeBain": 2,
+    "description": "Maison familiale spacieuse avec jardin arboré et garage double.",
+    "photos": [
+      { "compacte": "https://picsum.photos/seed/larisimmo-2/600/400", "grande": "https://picsum.photos/seed/larisimmo-2/1200/800" }
+    ],
+    "equipements": ["Jardin", "Garage", "Terrasse"],
+    "dpe": "D",
+    "etiquettes": ["Nouveau", "Coup de cœur"],
+    "statut": "disponible"
+  },
+  {
+    "id": "3",
+    "titre": "Chalet cosy avec vue montagne",
+    "type": "Chalet",
+    "transaction": "location",
+    "prix": 1450,
+    "ville": "Annecy",
+    "adresse": "8 chemin des Sapins",
+    "surface": 85,
+    "pieces": 4,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "description": "Chalet chaleureux avec poêle à bois et vue dégagée sur les montagnes.",
+    "photos": [
+      { "compacte": "https://picsum.photos/seed/larisimmo-3/600/400", "grande": "https://picsum.photos/seed/larisimmo-3/1200/800" }
+    ],
+    "equipements": ["Poêle à bois", "Terrasse", "Parking"],
+    "dpe": "E",
+    "etiquettes": ["Bon plan"],
+    "statut": "disponible"
+  },
+  {
+    "id": "4",
+    "titre": "Studio rénové proche centre-ville",
+    "type": "Appartement",
+    "transaction": "location",
+    "prix": 620,
+    "ville": "Lyon",
+    "adresse": "22 rue de la Paix",
+    "surface": 28,
+    "pieces": 1,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "description": "Studio entièrement rénové, idéal étudiant ou jeune actif.",
+    "photos": [
+      { "compacte": "https://picsum.photos/seed/larisimmo-4/600/400", "grande": "https://picsum.photos/seed/larisimmo-4/1200/800" }
+    ],
+    "equipements": ["Ascenseur"],
+    "dpe": "B",
+    "etiquettes": ["Nouveau"],
+    "statut": "disponible"
+  },
+  {
+    "id": "5",
+    "titre": "Maison contemporaine avec piscine",
+    "type": "Maison",
+    "transaction": "vente",
+    "prix": 590000,
+    "ville": "Annecy",
+    "adresse": "3 impasse du Lac",
+    "surface": 165,
+    "pieces": 6,
+    "chambres": 4,
+    "sallesDeBain": 3,
+    "description": "Maison contemporaine avec piscine chauffée et vue lac.",
+    "photos": [
+      { "compacte": "https://picsum.photos/seed/larisimmo-5/600/400", "grande": "https://picsum.photos/seed/larisimmo-5/1200/800" }
+    ],
+    "equipements": ["Piscine", "Garage", "Jardin"],
+    "dpe": "B",
+    "etiquettes": ["Coup de cœur"],
+    "statut": "disponible"
+  },
+  {
+    "id": "6",
+    "titre": "Appartement 2 pièces avec parking",
+    "type": "Appartement",
+    "transaction": "location",
+    "prix": 780,
+    "ville": "Paris",
+    "adresse": "40 boulevard des Fleurs",
+    "surface": 45,
+    "pieces": 2,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "description": "Appartement calme avec place de parking incluse.",
+    "photos": [
+      { "compacte": "https://picsum.photos/seed/larisimmo-6/600/400", "grande": "https://picsum.photos/seed/larisimmo-6/1200/800" }
+    ],
+    "equipements": ["Parking", "Ascenseur"],
+    "dpe": "C",
+    "etiquettes": ["Nouveau"],
+    "statut": "disponible"
+  }
+]
