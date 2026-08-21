@@ -18,7 +18,7 @@ const price =
 ---
 
 <a href={`/biens/${property.id}`} class="group block overflow-hidden rounded-2xl bg-white shadow-md transition hover:shadow-xl">
-  <div class="relative tt h-70 overflow-hidden">
+  <div class="card-notch relative h-70 overflow-hidden before:content-[''] before:absolute before:z-10 before:bg-white">
     <img
       src={property.photos[0].compacte}
       alt={property.titre}

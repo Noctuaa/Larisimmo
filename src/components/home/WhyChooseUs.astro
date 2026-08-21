@@ -8,34 +8,81 @@ const points = [
   'Des recommandations qui vous correspondent',
   'Un comparateur pour décider en toute confiance',
 ];
+
+// TODO: remplacer les icônes restantes (placeholder) par leur SVG Lucide une fois récupérées
+const shieldCheckIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`;
+const searchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>`;
+const gitCompareIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg>`;
+const placeholderIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`;
+
+const badges = [
+  {
+    icon: shieldCheckIcon,
+    bg: 'bg-emerald-50 text-emerald-600',
+    title: 'Biens vérifiés',
+    text: 'Chaque annonce est vérifiée avant publication, pour votre tranquillité.',
+  },
+  {
+    icon: searchIcon,
+    bg: 'bg-blue-50 text-blue-600',
+    title: 'Recherche rapide',
+    text: 'Des filtres précis pour trouver le bien qui vous correspond, en quelques secondes.',
+  },
+  {
+    icon: gitCompareIcon,
+    bg: 'bg-violet-50 text-violet-600',
+    title: 'Favoris & comparateur',
+    text: 'Enregistrez vos coups de cœur et comparez-les facilement, côte à côte.',
+  },
+  {
+    icon: placeholderIcon,
+    bg: 'bg-amber-50 text-amber-600',
+    title: 'Disponible 6/7',
+    text: 'Une équipe à votre écoute presque tous les jours, par écrit.',
+  },
+];
 ---
 
-<section class="container grid gap-10 py-24 md:grid-cols-2 md:items-center md:gap-16">
-  <div>
-    <p class="text-sm font-semibold text-primary">Pourquoi Larisimmo</p>
-    <h2 class="mt-2 text-3xl font-bold text-gray-900">Bien plus qu'un simple bien</h2>
-    <p class="mt-4 text-gray-600">
-      On vous accompagne pour trouver un bien qui correspond vraiment à votre vie, pas juste à une liste d'annonces.
-    </p>
-
-    <ul class="mt-6 flex flex-col gap-3">
-      {
-        points.map((point) => (
-          <li class="flex items-start gap-3 text-gray-700">
-            <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-            {point}
-          </li>
-        ))
-      }
-    </ul>
+<section class="container py-24">
+  <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+    {
+      badges.map((badge) => (
+        <div class="flex flex-col gap-3 rounded-2xl bg-white p-5 shadow-sm">
+          <div class="flex items-center gap-3">
+            <div class={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${badge.bg}`} set:html={badge.icon} />
+            <p class="font-semibold text-gray-900">{badge.title}</p>
+          </div>
+          <p class="text-sm text-gray-500">{badge.text}</p>
+        </div>
+      ))
+    }
   </div>
 
-  <Image
-    src={homeImage}
-    alt="Intérieur chaleureux d'une maison"
-    class="w-full rounded-2xl object-cover"
-    widths={[480, 768, 1024]}
-    sizes="(min-width: 768px) 50vw, 100vw"
-    loading="lazy"
-  />
+  <div class="mt-16 grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
+    <div>
+      <p class="text-sm font-semibold text-primary">Pourquoi Larisimmo</p>
+      <h2 class="mt-2 text-3xl font-bold text-gray-900">Bien plus qu'un simple bien</h2>
+      <p class="mt-4 text-gray-600">On vous accompagne pour trouver un bien qui correspond vraiment à votre vie, pas juste à une liste d'annonces.</p>
+
+      <ul class="mt-6 flex flex-col gap-3">
+        {
+          points.map((point) => (
+            <li class="flex items-start gap-3 text-gray-700">
+              <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+              {point}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <Image
+      src={homeImage}
+      alt="Intérieur chaleureux d'une maison"
+      class="w-full rounded-2xl object-cover"
+      widths={[480, 768, 1024]}
+      sizes="(min-width: 768px) 50vw, 100vw"
+      loading="lazy"
+    />
+  </div>
 </section>

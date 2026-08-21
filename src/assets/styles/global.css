@@ -14,17 +14,13 @@
     @apply max-w-350 mx-auto px-[clamp(1rem,4vw,3rem)];
   }
 
-  .tt:before {
-    content: '';
-    position: absolute;
-    bottom: 40.2px;
+  .card-notch:before {
+    bottom: 40px;
     left: 0;
     width: 40px;
     height: 40px;
-    background: white;
     transform: translateZ(0);
     -webkit-mask-image: radial-gradient(circle at top right, transparent 40px, black 41px);
     mask-image: radial-gradient(circle at top right, transparent 40px, black 41px);
-    z-index: 10;
   }
 }

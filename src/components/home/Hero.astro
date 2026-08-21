@@ -9,13 +9,14 @@ import SearchBar from './SearchBar.vue';
   <!--<div class="absolute -left-16 top-1/3 hidden h-72 w-72 rounded-full bg-accent-secondary/40 blur-3xl md:block"></div>
   <div class="absolute -bottom-16 -right-25 hidden h-96 w-96 rounded-full bg-accent/50 blur-3xl md:block"></div>-->
 
-  <div class="relative overflow-hidden md:rounded-3xl">
+  <div class="relative overflow-hidden bg-slate-900 md:rounded-3xl">
     <Image
       src={homeImage}
       alt="Maison en bois moderne"
       class="h-svh w-full object-cover md:h-[calc(100svh-var(--nav-height)-1.5vw)]"
       widths={[640, 1024, 1600, 2000]}
       loading="eager"
+      fetchpriority="high"
     />
 
     <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/20 to-transparent"></div>
