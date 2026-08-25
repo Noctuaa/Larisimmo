@@ -2,17 +2,17 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-gray-100 bg-white">
-  <div class="container flex flex-col items-center gap-4 py-8 text-sm text-gray-500 md:flex-row md:justify-between">
+<footer class="border-t border-gray-400 bg-primary">
+  <div class="container flex flex-col items-center gap-4 py-4 text-sm text-gray-500 md:flex-row md:justify-between">
     <a href="https://nocdev.fr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center rounded-full bg-gray-900 p-2">
       <img src="/logo.svg" alt="Nocdev logo" width="24" height="24" />
     </a>
 
-    <div class="flex items-center gap-6">
-      <a href="/admin" class="hover:text-primary">Voir l'admin démo</a>
-      <a href="/mentions-legales" class="hover:text-primary">Mentions légales</a>
+    <div class="flex items-center gap-6 text-white">
+      <a href="/admin" class="hover:text-accent-secondary">Voir l'admin démo</a>
+      <a href="/mentions-legales" class="hover:text-accent-secondary">Mentions légales</a>
     </div>
 
-    <p>© {year} Nocdev</p>
+    <p class="text-white">© {year} Nocdev</p>
   </div>
 </footer>
