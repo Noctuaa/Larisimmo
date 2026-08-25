@@ -1,21 +1,22 @@
 ---
 import '@fontsource-variable/plus-jakarta-sans';
 import '../assets/styles/global.css';
+import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Larisimmo — Trouvez le bien qui vous ressemble</title>
 	</head>
 	<body class="flex min-h-screen flex-col bg-background font-sans">
-		<header></header>
+		<Header />
 		<main class="flex-1">
 			<slot />
 		</main>

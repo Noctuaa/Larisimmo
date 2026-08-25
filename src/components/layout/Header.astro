@@ -1,0 +1,115 @@
+---
+const links = [
+  { label: 'Accueil', href: '/' },
+  { label: 'Acheter', href: '/biens?type=vente' },
+  { label: 'Louer', href: '/biens?type=location' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 h-(--nav-height) border-b border-gray-100 bg-white backdrop-blur transition-transform duration-300"
+>
+  <div class="container flex h-full items-center justify-between">
+    <a href="/" class="text-xl font-bold text-primary">Larisimmo</a>
+
+    <nav
+      id="nav-menu"
+      class="fixed inset-y-0 right-0 z-50 flex w-72 max-w-[50vw] mt-(--nav-height) h-svh translate-x-full flex-col gap-1 divide-y divide-gray-100 bg-white px-6 py-6 shadow-xl transition-transform duration-300
+      md:relative md:gap-8 md:flex md:flex-row md:items-center md:w-auto md:h-auto md:translate-x-0 md:mt-0 md:divide-y-0 md:bg-transparent md:shadow-none"
+    >
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'rounded-lg px-3 py-3 text-base font-semibold transition hover:bg-gray-50 text-center hover:text-accent md:rounded-none md:p-0 md:text-sm md:hover:bg-transparent',
+              currentPath === link.href ? 'text-accent' : 'text-gray-700',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="group flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 md:hidden"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line
+          x1="4"
+          y1="6"
+          x2="20"
+          y2="6"
+          class="origin-center transition duration-300 [transform-box:fill-box] group-aria-expanded:translate-y-1.5 group-aria-expanded:rotate-45"
+        >
+        </line>
+        <line x1="4" y1="12" x2="20" y2="12" class="origin-center transition duration-300 group-aria-expanded:opacity-0"></line>
+        <line
+          x1="4"
+          y1="18"
+          x2="20"
+          y2="18"
+          class="origin-center transition duration-300 [transform-box:fill-box] group-aria-expanded:-translate-y-1.5 group-aria-expanded:-rotate-45"
+        >
+        </line>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('nav-menu');
+  const header = document.getElementById('site-header');
+
+  // Ouvre/ferme le tiroir mobile + bloque le scroll de la page pendant que le menu est ouvert
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('translate-x-full') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('overflow-hidden', isOpen);
+  });
+
+  // Cache le header au scroll vers le bas, le réaffiche au scroll vers le haut
+  // (jamais caché tout en haut de page ; pas de scroll possible pendant que le menu est ouvert)
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  const updateHeaderVisibility = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY < 80 || currentScrollY < lastScrollY) {
+      header?.classList.remove('-translate-y-full');
+    } else {
+      header?.classList.add('-translate-y-full');
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateHeaderVisibility);
+      ticking = true;
+    }
+  });
+</script>
