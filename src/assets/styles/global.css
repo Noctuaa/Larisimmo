@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @theme {
   --nav-height: 5rem;
   --color-accent: #4f46e5;

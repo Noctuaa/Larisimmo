@@ -1,0 +1,46 @@
+---
+
+---
+
+<a
+  id="back-to-top"
+  href="#"
+  aria-label="Retour en haut de page"
+  class="fixed bottom-6 right-6 z-40 flex h-12 w-12 translate-y-2 items-center justify-center rounded-full bg-white text-primary border-gray-300 opacity-0 shadow-lg cursor-pointer pointer-events-none transition duration-300 hover:opacity-90"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M12 19V5"></path>
+    <path d="m5 12 7-7 7 7"></path>
+  </svg>
+</a>
+
+<script>
+  const link = document.getElementById('back-to-top');
+  let ticking = false;
+
+  // Affiche le bouton une fois le Hero dépassé, le cache sinon
+  const updateVisibility = () => {
+    const isVisible = window.scrollY > window.innerHeight;
+    const hiddenClasses = ['opacity-0', 'pointer-events-none', 'translate-y-2'];
+    link?.classList[isVisible ? 'remove' : 'add'](...hiddenClasses);
+    ticking = false;
+  };
+
+  // Au max une mise à jour par frame plutôt qu'à chaque event scroll (des dizaines/sec)
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateVisibility);
+      ticking = true;
+    }
+  });
+</script>
