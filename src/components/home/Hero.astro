@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import homeImage from '../../assets/images/home-unsplash.jpg';
-import SearchBar from './SearchBar.vue';
+import SearchBar from './SearchBar.astro';
 ---
 
 <section class="relative mx-auto md:mt-(--nav-height) md:mb-[1.5vw] w-full md:w-[97%]">
@@ -28,6 +28,6 @@ import SearchBar from './SearchBar.vue';
   </div>
 
   <div class="absolute inset-x-0 bottom-30 px-6 md:px-12">
-    <SearchBar client:load />
+    <SearchBar />
   </div>
 </section>

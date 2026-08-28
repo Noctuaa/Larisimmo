@@ -1,0 +1,108 @@
+---
+import SearchFields from './SearchFields.astro';
+---
+
+<!-- Mobile : bouton compact qui ouvre la recherche -->
+<button
+  id="search-trigger"
+  type="button"
+  class="mx-auto flex w-full max-w-sm items-center gap-3 rounded-full bg-white px-5 py-3.5 text-left shadow-xl lg:hidden"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="shrink-0 text-primary"
+  >
+    <path d="m21 21-4.34-4.34"></path>
+    <circle cx="11" cy="11" r="8"></circle>
+  </svg>
+  <span class="text-sm text-gray-500">Rechercher un bien...</span>
+</button>
+
+<!-- Panneau : glisse depuis le haut + plein écran en mobile (état géré en CSS), inline toujours visible en desktop -->
+<!-- Responsabilité de ce div : uniquement l'affichage (position, fond, animation) -->
+<div
+  id="search-panel"
+  class="fixed inset-0 z-100 flex -translate-y-full flex-col bg-white pointer-events-none transition duration-300
+  lg:static lg:z-auto lg:mx-auto lg:w-fit lg:translate-y-0 lg:flex-row lg:items-end lg:gap-4 lg:rounded-2xl lg:p-5 lg:px-8 lg:py-6 lg:opacity-100 lg:pointer-events-auto lg:shadow-xl"
+>
+  <!-- Barre de titre : mobile uniquement -->
+  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-4 lg:hidden">
+    <span class="text-lg font-bold text-primary">Rechercher</span>
+    <button
+      id="search-close"
+      type="button"
+      class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100"
+      aria-label="Fermer la recherche"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 6 6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Responsabilité de ce form : uniquement les données (champs + soumission) -->
+  <form id="search-form" action="/biens" method="get" class="flex flex-1 flex-col lg:contents">
+    <!-- lg:contents : ces wrappers disparaissent du flex en desktop, leur contenu devient enfant direct du panneau -->
+    <div class="flex flex-1 flex-col gap-4 overflow-y-auto px-6 py-6 lg:contents">
+      <SearchFields />
+    </div>
+
+    <div class="px-6 pb-6 lg:contents">
+      <button
+        type="submit"
+        class="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 lg:w-auto lg:py-2.5"
+      >
+        Rechercher
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const trigger = document.getElementById('search-trigger');
+  const closeBtn = document.getElementById('search-close');
+  const panel = document.getElementById('search-panel');
+
+  // getElementById renvoie un HTMLElement générique — on précise le vrai type
+  // ici car new FormData() plus bas exige spécifiquement un HTMLFormElement
+  const form = document.getElementById('search-form') as HTMLFormElement;
+
+  const hiddenClasses = ['-translate-y-full', 'pointer-events-none'];
+
+  const toggleSearch = () => {
+    const isHidden = panel?.classList.contains('-translate-y-full');
+    panel?.classList[isHidden ? 'remove' : 'add'](...hiddenClasses);
+    document.body.classList.toggle('overflow-hidden');
+  };
+
+  trigger?.addEventListener('click', toggleSearch);
+  closeBtn?.addEventListener('click', toggleSearch);
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const params = new URLSearchParams();
+    for (const [key, value] of data.entries()) {
+      if (value) params.set(key, String(value));
+    }
+    window.location.href = `/biens?${params.toString()}`;
+  });
+</script>
