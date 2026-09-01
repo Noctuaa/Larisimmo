@@ -1,21 +1,19 @@
 ---
 import PropertyCard from '../cards/PropertyCard.astro';
+import SectionTitle from '../ui/SectionTitle.astro';
 import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 
-const featured = (properties as Property[]).filter((p) => p.etiquettes.includes('Nouveau')).slice(0, 4);
+const featured = (properties as Property[]).filter((p) => p.etiquettes.includes('Nouveau')).slice(0, 3);
 ---
 
 <section class="container py-24">
   <div class="flex items-end justify-between">
-    <div>
-      <p class="text-sm font-semibold text-accent">À la une</p>
-      <h2 class="mt-2 text-3xl font-bold text-gray-900">Derniers biens ajoutés</h2>
-    </div>
-    <a href="/biens" class="hidden text-sm font-semibold text-accent hover:underline md:block">Voir tous les biens →</a>
+    <SectionTitle eyebrow="À la une" title="Derniers biens ajoutés" align="left" />
+    <a href="/biens" class="hidden text-sm font-semibold text-accent md:block">Voir tous les biens →</a>
   </div>
 
-  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-    {featured.map((property) => <PropertyCard property={property} />)}
+  <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {featured.map((property, i) => <PropertyCard property={property} class={i === 0 ? 'md:col-span-3 lg:col-span-1' : ''} />)}
   </div>
 </section>

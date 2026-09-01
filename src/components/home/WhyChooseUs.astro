@@ -1,42 +1,45 @@
 ---
 import { Image } from 'astro:assets';
 import homeImage from '../../assets/images/modern-house-evening-unsplash.jpg';
+import SectionTitle from '../ui/SectionTitle.astro';
 
 const points = [
   'Un large choix de biens, partout en France',
   'Achat ou location, en quelques clics',
   'Des recommandations qui vous correspondent',
-  'Un comparateur pour décider en toute confiance',
+  'Aucun frais caché, une transparence totale',
 ];
 
+const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+
 // TODO: remplacer les icônes restantes (placeholder) par leur SVG Lucide une fois récupérées
-const shieldCheckIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`;
-const searchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>`;
-const gitCompareIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg>`;
-const placeholderIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`;
+const shieldCheckIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`;
+const searchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>`;
+const gitCompareIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg>`;
+const placeholderIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`;
 
 const badges = [
   {
     icon: shieldCheckIcon,
-    bg: 'bg-emerald-50 text-emerald-600',
+    bg: 'bg-primary/10 text-primary',
     title: 'Biens vérifiés',
     text: 'Chaque annonce est vérifiée avant publication, pour votre tranquillité.',
   },
   {
     icon: searchIcon,
-    bg: 'bg-blue-50 text-blue-600',
+    bg: 'bg-primary/10 text-primary',
     title: 'Recherche rapide',
     text: 'Des filtres précis pour trouver le bien qui vous correspond, en quelques secondes.',
   },
   {
     icon: gitCompareIcon,
-    bg: 'bg-violet-50 text-violet-600',
+    bg: 'bg-primary/10 text-primary',
     title: 'Favoris & comparateur',
     text: 'Enregistrez vos coups de cœur et comparez-les facilement, côte à côte.',
   },
   {
     icon: placeholderIcon,
-    bg: 'bg-amber-50 text-amber-600',
+    bg: 'bg-primary/10 text-primary',
     title: 'Disponible 6/7',
     text: 'Une équipe à votre écoute presque tous les jours, par écrit.',
   },
@@ -44,12 +47,21 @@ const badges = [
 ---
 
 <section class="container py-24">
-  <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+  <div class="mb-16">
+    <SectionTitle
+      eyebrow="Pourquoi Larisimmo"
+      title="Bien plus qu'un simple bien"
+      subtitle="Des outils et des agents disponibles pour vous."
+      align="center"
+    />
+  </div>
+
+  <div class="grid grid-cols-1 gap-3 md:gap-6 text-center md:grid-cols-4">
     {
       badges.map((badge) => (
-        <div class="flex flex-col gap-3 rounded-2xl bg-white p-5 shadow-sm">
-          <div class="flex items-center gap-3">
-            <div class={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${badge.bg}`} set:html={badge.icon} />
+        <div class="flex flex-col gap-3 rounded-2xl bg-white py-6 px-8 shadow-sm">
+          <div class="flex flex-col items-center gap-2">
+            <div class={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full ${badge.bg}`} set:html={badge.icon} />
             <p class="font-semibold text-gray-900">{badge.title}</p>
           </div>
           <p class="text-sm text-gray-500">{badge.text}</p>
@@ -60,15 +72,14 @@ const badges = [
 
   <div class="mt-16 grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
     <div>
-      <p class="text-sm font-semibold text-accent">Pourquoi Larisimmo</p>
-      <h2 class="mt-2 text-3xl font-bold text-gray-900">Bien plus qu'un simple bien</h2>
-      <p class="mt-4 text-gray-600">On vous accompagne pour trouver un bien qui correspond vraiment à votre vie, pas juste à une liste d'annonces.</p>
+      <h3 class="text-2xl font-bold text-gray-900">Un accompagnement sur mesure</h3>
+      <p class="mt-2 text-gray-600">Chaque profil est différent, notre approche aussi.</p>
 
       <ul class="mt-6 flex flex-col gap-3">
         {
           points.map((point) => (
-            <li class="flex items-start gap-3 text-gray-700">
-              <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+            <li class="flex items-center gap-3 text-gray-700">
+              <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary" set:html={checkIcon} />
               {point}
             </li>
           ))
@@ -79,7 +90,7 @@ const badges = [
     <Image
       src={homeImage}
       alt="Intérieur chaleureux d'une maison"
-      class="w-full rounded-2xl object-cover"
+      class="h-72 w-full rounded-2xl object-cover md:h-96"
       widths={[480, 768, 1024]}
       sizes="(min-width: 768px) 50vw, 100vw"
       loading="lazy"

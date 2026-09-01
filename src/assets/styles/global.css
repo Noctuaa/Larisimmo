@@ -6,6 +6,12 @@
   }
 }
 
+@layer base {
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 @theme {
   --nav-height: 5rem;
   --color-accent: #4f46e5;
@@ -13,13 +19,29 @@
   --color-primary: #15224e;
   --color-background: #fbf9fa;
   --font-sans: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  --container-8xl: 96rem; /*1536px*/
+  --container-padding: clamp(1rem, 4vw, 3rem);
+}
+
+@utility container {
+  max-width: var(--container-7xl);
+  @apply mx-auto;
+  padding-inline: var(--container-padding);
+}
+
+@utility container-wide {
+  max-width: var(--container-8xl);
+  @apply mx-auto;
+  padding-inline: var(--container-padding);
+}
+
+/* Colonnes qui s'ajustent automatiquement au nombre de cartes qui tiennent,
+   jamais plus étroites que 21.375rem (largeur naturelle d'une PropertyCard) */
+@utility grid-fill {
+  grid-template-columns: repeat(auto-fit, minmax(21.375rem, 1fr));
 }
 
 @layer components {
-  .container {
-    @apply max-w-350 mx-auto px-[clamp(1rem,4vw,3rem)];
-  }
-
   .card-notch:before {
     bottom: 40px;
     left: 0;

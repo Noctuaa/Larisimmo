@@ -13,11 +13,20 @@
     "sallesDeBain": 1,
     "description": "Bel appartement traversant avec balcon, proche des commerces et transports.",
     "photos": [
-      { "compacte": "https://picsum.photos/seed/larisimmo-1/600/400", "grande": "https://picsum.photos/seed/larisimmo-1/1200/800" }
+      {
+        "compacte": "/images/biens/bien-1.jpg",
+        "grande": "/images/biens/bien-1.jpg"
+      }
     ],
-    "equipements": ["Balcon", "Ascenseur", "Cave"],
+    "equipements": [
+      "Balcon",
+      "Ascenseur",
+      "Cave"
+    ],
     "dpe": "C",
-    "etiquettes": ["Nouveau"],
+    "etiquettes": [
+      "Nouveau"
+    ],
     "statut": "disponible"
   },
   {
@@ -34,11 +43,21 @@
     "sallesDeBain": 2,
     "description": "Maison familiale spacieuse avec jardin arboré et garage double.",
     "photos": [
-      { "compacte": "https://picsum.photos/seed/larisimmo-2/600/400", "grande": "https://picsum.photos/seed/larisimmo-2/1200/800" }
+      {
+        "compacte": "/images/biens/bien-2.jpg",
+        "grande": "/images/biens/bien-2.jpg"
+      }
     ],
-    "equipements": ["Jardin", "Garage", "Terrasse"],
+    "equipements": [
+      "Jardin",
+      "Garage",
+      "Terrasse"
+    ],
     "dpe": "D",
-    "etiquettes": ["Nouveau", "Coup de cœur"],
+    "etiquettes": [
+      "Nouveau",
+      "Coup de cœur"
+    ],
     "statut": "disponible"
   },
   {
@@ -55,11 +74,20 @@
     "sallesDeBain": 1,
     "description": "Chalet chaleureux avec poêle à bois et vue dégagée sur les montagnes.",
     "photos": [
-      { "compacte": "https://picsum.photos/seed/larisimmo-3/600/400", "grande": "https://picsum.photos/seed/larisimmo-3/1200/800" }
+      {
+        "compacte": "/images/biens/bien-3.jpg",
+        "grande": "/images/biens/bien-3.jpg"
+      }
     ],
-    "equipements": ["Poêle à bois", "Terrasse", "Parking"],
+    "equipements": [
+      "Poêle à bois",
+      "Terrasse",
+      "Parking"
+    ],
     "dpe": "E",
-    "etiquettes": ["Bon plan"],
+    "etiquettes": [
+      "Bon plan"
+    ],
     "statut": "disponible"
   },
   {
@@ -76,11 +104,18 @@
     "sallesDeBain": 1,
     "description": "Studio entièrement rénové, idéal étudiant ou jeune actif.",
     "photos": [
-      { "compacte": "https://picsum.photos/seed/larisimmo-4/600/400", "grande": "https://picsum.photos/seed/larisimmo-4/1200/800" }
+      {
+        "compacte": "/images/biens/bien-4.jpg",
+        "grande": "/images/biens/bien-4.jpg"
+      }
     ],
-    "equipements": ["Ascenseur"],
+    "equipements": [
+      "Ascenseur"
+    ],
     "dpe": "B",
-    "etiquettes": ["Nouveau"],
+    "etiquettes": [
+      "Nouveau"
+    ],
     "statut": "disponible"
   },
   {
@@ -97,11 +132,20 @@
     "sallesDeBain": 3,
     "description": "Maison contemporaine avec piscine chauffée et vue lac.",
     "photos": [
-      { "compacte": "https://picsum.photos/seed/larisimmo-5/600/400", "grande": "https://picsum.photos/seed/larisimmo-5/1200/800" }
+      {
+        "compacte": "/images/biens/bien-5.jpg",
+        "grande": "/images/biens/bien-5.jpg"
+      }
     ],
-    "equipements": ["Piscine", "Garage", "Jardin"],
+    "equipements": [
+      "Piscine",
+      "Garage",
+      "Jardin"
+    ],
     "dpe": "B",
-    "etiquettes": ["Coup de cœur"],
+    "etiquettes": [
+      "Coup de cœur"
+    ],
     "statut": "disponible"
   },
   {
@@ -118,11 +162,19 @@
     "sallesDeBain": 1,
     "description": "Appartement calme avec place de parking incluse.",
     "photos": [
-      { "compacte": "https://picsum.photos/seed/larisimmo-6/600/400", "grande": "https://picsum.photos/seed/larisimmo-6/1200/800" }
+      {
+        "compacte": "/images/biens/bien-6.jpg",
+        "grande": "/images/biens/bien-6.jpg"
+      }
     ],
-    "equipements": ["Parking", "Ascenseur"],
+    "equipements": [
+      "Parking",
+      "Ascenseur"
+    ],
     "dpe": "C",
-    "etiquettes": ["Nouveau"],
+    "etiquettes": [
+      "Nouveau"
+    ],
     "statut": "disponible"
   }
 ]

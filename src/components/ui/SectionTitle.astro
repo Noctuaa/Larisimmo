@@ -1,0 +1,25 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+}
+
+const { eyebrow, title, subtitle, align = 'left' } = Astro.props;
+const isCenter = align === 'center';
+---
+
+<div class:list={['flex flex-col gap-2', isCenter ? 'items-center text-center' : 'items-start text-left']}>
+  <p class="text-sm uppercase font-bold text-accent">{eyebrow}</p>
+  <h2
+    class:list={[
+      'relative pb-5 text-3xl font-bold text-gray-900',
+      "before:absolute before:content-[''] before:h-1 before:w-16 before:bottom-0 before:bg-accent",
+      isCenter ? 'before:left-1/2 before:-translate-x-1/2' : 'before:left-0',
+    ]}
+  >
+    {title}
+  </h2>
+  {subtitle && <p class="text-gray-600">{subtitle}</p>}
+</div>
