@@ -6,6 +6,11 @@
   }
 }
 
+html {
+  /* Permet à height: auto de participer aux transitions (utilisé par l'accordéon FAQ) */
+  interpolate-size: allow-keywords;
+}
+
 @layer base {
   button:not(:disabled) {
     cursor: pointer;
