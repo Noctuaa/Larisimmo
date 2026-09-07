@@ -1,0 +1,88 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import PropertyCard from '../../components/cards/PropertyCard.astro';
+import SearchForm from '../../components/ui/SearchForm.astro';
+import properties from '../../data/biens.json';
+import type { Property } from '../../types/property';
+
+const params = Astro.url.searchParams;
+
+const ville = params.get('ville') ?? '';
+const type = params.get('type') ?? '';
+const transaction = params.get('transaction') ?? '';
+const prix = params.get('prix') ?? '';
+const chambresMin = params.get('chambres') ?? '';
+const surfaceMin = params.get('surface') ?? '';
+
+const filtered = (properties as Property[]).filter((p) => {
+  if (ville && p.ville !== ville) return false;
+  if (type && p.type !== type) return false;
+  if (transaction && p.transaction !== transaction) return false;
+  if (prix) {
+    const [min, max] = prix.split('-');
+    if (min && p.prix < Number(min)) return false;
+    if (max && p.prix > Number(max)) return false;
+  }
+  if (chambresMin && p.chambres < Number(chambresMin)) return false;
+  if (surfaceMin && p.surface < Number(surfaceMin)) return false;
+  return true;
+});
+
+const perPage = 12;
+const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+const currentPage = Math.min(Math.max(1, Number(params.get('page')) || 1), totalPages);
+const paginated = filtered.slice((currentPage - 1) * perPage, currentPage * perPage);
+
+// Construit un lien vers /biens en conservant les filtres actuels, avec un param en plus/écrasé
+const pageLink = (page: number) => {
+  const p = new URLSearchParams(params);
+  p.set('page', String(page));
+  return `/biens?${p.toString()}`;
+};
+---
+
+<Layout>
+  <div class="sticky top-0 z-60 mt-(--nav-height) border-b border-t border-gray-100 bg-background shadow-md">
+    <SearchForm ville={ville} type={type} prix={prix} chambresMin={chambresMin} surfaceMin={surfaceMin} autoSubmit />
+  </div>
+
+  <main class="container py-12">
+    <div class="mb-8">
+      <p class="text-sm font-semibold text-accent">À la une</p>
+      <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
+      <p class="mt-2 text-gray-600">{filtered.length} bien{filtered.length > 1 ? 's' : ''} trouvé{filtered.length > 1 ? 's' : ''}</p>
+    </div>
+
+    {
+      paginated.length > 0 ? (
+        <div class="grid grid-fill gap-8">
+          {paginated.map((property) => (
+            <PropertyCard property={property} />
+          ))}
+        </div>
+      ) : (
+        <p class="text-center text-gray-500">Aucun bien ne correspond à votre recherche.</p>
+      )
+    }
+
+    {
+      totalPages > 1 && (
+        <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Pagination">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <a
+              href={pageLink(page)}
+              class:list={[
+                'flex h-10 w-10 items-center justify-center rounded-lg text-sm font-semibold transition',
+                page === currentPage ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100',
+              ]}
+            >
+              {page}
+            </a>
+          ))}
+        </nav>
+      )
+    }
+  </main>
+</Layout>
