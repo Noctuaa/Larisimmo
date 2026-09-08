@@ -44,9 +44,7 @@ const pageLink = (page: number) => {
 ---
 
 <Layout>
-  <div class="sticky top-0 z-60 mt-(--nav-height) border-b border-t border-gray-100 bg-background shadow-md">
-    <SearchForm ville={ville} type={type} prix={prix} chambresMin={chambresMin} surfaceMin={surfaceMin} autoSubmit />
-  </div>
+  <SearchForm ville={ville} type={type} prix={prix} chambresMin={chambresMin} surfaceMin={surfaceMin} sticky />
 
   <main class="container py-12">
     <div class="mb-8">

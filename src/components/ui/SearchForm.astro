@@ -7,60 +7,97 @@ interface Props {
   prix?: string;
   chambresMin?: string;
   surfaceMin?: string;
-  /** Soumet le formulaire dès qu'un filtre change, sans passer par le bouton (utilisé sur /biens) */
-  autoSubmit?: boolean;
+  /** Barre collée sous le header, fond/ombre portés par le composant (/biens) au lieu du panel flottant façon carte (homepage) */
+  sticky?: boolean;
 }
 
-const { ville = '', type = '', prix = '', chambresMin = '', surfaceMin = '', autoSubmit = false } = Astro.props;
+const { ville = '', type = '', prix = '', chambresMin = '', surfaceMin = '', sticky = false } = Astro.props;
 const filtersOpen = !!chambresMin || !!surfaceMin;
+
+// Homepage : panel desktop en carte flottante avec son propre fond/ombre
+const standaloneClasses = 'fixed -translate-y-full bg-white  pointer-events-none';
+// /biens : barre collée sous le header sur toute la largeur, fond/ombre/bordures propres au
+// composant (plus besoin de wrapper dans la page qui l'utilise)
+const stickyClasses = 'lg:sticky lg:top-0 lg:mt-(--nav-height) lg:w-full lg:border-b lg:border-t lg:border-gray-100 lg:bg-background';
 ---
 
-<form method="get" class="search-form container flex flex-col gap-4 py-4" data-auto-submit={autoSubmit}>
-  <div class="flex flex-wrap items-end gap-4">
-    <SearchFields ville={ville} type={type} prix={prix} />
+<!-- Mobile : bouton compact qui ouvre la recherche -->
+<button
+  id="search-trigger"
+  type="button"
+  class="mx-auto flex w-full max-w-sm items-center gap-3 rounded-full bg-white px-5 py-3.5 text-left shadow-xl lg:hidden"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="shrink-0 text-primary"
+  >
+    <path d="m21 21-4.34-4.34"></path>
+    <circle cx="11" cy="11" r="8"></circle>
+  </svg>
+  <span class="text-sm text-gray-500">Rechercher un bien...</span>
+</button>
 
-    <button
-      type="button"
-      class="toggle-more-filters flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50"
-      aria-expanded={filtersOpen}
-    >
-      Plus de filtres
-    </button>
+<!-- Panneau : glisse depuis le haut + plein écran en mobile (état géré en CSS), inline toujours visible en desktop -->
+<!-- Responsabilité de ce div : uniquement l'affichage (position, fond, animation) -->
+<div
+  id="search-panel"
+  class:list={[
+    'flex flex-col z-100 shadow-md inset-0 transition duration-300',
+    'lg:mx-auto lg:w-fit lg:rounded-2xl lg:bg-white lg:p-5 lg:px-8 lg:py-6 lg:static lg:z-auto lg:translate-y-0 lg:flex-row lg:items-end lg:gap-4 lg:opacity-100 lg:pointer-events-auto ' +
+    sticky
+      ? stickyClasses
+      : standaloneClasses,
+  ]}
+>
+  <form method="get" class="search-form container flex flex-col gap-4 py-4">
+    <div class="flex flex-wrap items-end gap-4">
+      <SearchFields ville={ville} type={type} prix={prix} />
 
-    {
-      !autoSubmit && (
-        <button type="submit" class="ml-auto rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90">
-          Rechercher
-        </button>
-      )
-    }
-  </div>
+      <button
+        type="button"
+        class="toggle-more-filters flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+        aria-expanded={filtersOpen}
+      >
+        Plus de filtres
+      </button>
 
-  <div class:list={['more-filters flex flex-wrap gap-4 border-t border-gray-100 pt-4', { hidden: !filtersOpen }]}>
-    <div class="flex flex-col gap-1">
-      <label for="filter-chambres" class="text-xs font-semibold text-gray-500">Chambres min.</label>
-      <input
-        type="number"
-        id="filter-chambres"
-        name="chambres"
-        min="0"
-        value={chambresMin}
-        class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
-      />
+      <button type="submit" class="ml-auto rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90">Rechercher</button>
     </div>
-    <div class="flex flex-col gap-1">
-      <label for="filter-surface" class="text-xs font-semibold text-gray-500">Surface min. (m²)</label>
-      <input
-        type="number"
-        id="filter-surface"
-        name="surface"
-        min="0"
-        value={surfaceMin}
-        class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
-      />
+
+    <div class:list={['more-filters flex flex-wrap gap-4 border-t border-gray-100 pt-4', { hidden: !filtersOpen }]}>
+      <div class="flex flex-col gap-1">
+        <label for="filter-chambres" class="text-xs font-semibold text-gray-500">Chambres min.</label>
+        <input
+          type="number"
+          id="filter-chambres"
+          name="chambres"
+          min="0"
+          value={chambresMin}
+          class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
+        />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="filter-surface" class="text-xs font-semibold text-gray-500">Surface min. (m²)</label>
+        <input
+          type="number"
+          id="filter-surface"
+          name="surface"
+          min="0"
+          value={surfaceMin}
+          class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
+        />
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
 
 <script>
   // Délégation sur document plutôt que des références capturées une fois : avec
@@ -73,12 +110,5 @@ const filtersOpen = !!chambresMin || !!surfaceMin;
     const panel = toggle.closest('.search-form')?.querySelector('.more-filters');
     const isHidden = panel?.classList.toggle('hidden') ?? false;
     toggle.setAttribute('aria-expanded', String(!isHidden));
-  });
-
-  document.addEventListener('change', (e) => {
-    const form = (e.target as HTMLElement).closest<HTMLFormElement>('.search-form');
-    if (form?.dataset.autoSubmit === 'true') {
-      form.requestSubmit();
-    }
   });
 </script>
