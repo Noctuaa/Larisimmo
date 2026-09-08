@@ -63,19 +63,22 @@ const filtersOpen = !!chambresMin || !!surfaceMin;
 </form>
 
 <script>
-  // Un seul script pour tous les <SearchForm> de la page (peu probable qu'il y en ait
-  // plusieurs, mais querySelectorAll couvre le cas sans dupliquer les écouteurs)
-  document.querySelectorAll<HTMLFormElement>('.search-form').forEach((form) => {
-    const toggle = form.querySelector<HTMLButtonElement>('.toggle-more-filters');
-    const panel = form.querySelector<HTMLElement>('.more-filters');
+  // Délégation sur document plutôt que des références capturées une fois : avec
+  // <ClientRouter /> ce script ne s'exécute qu'une fois pour tout le site, alors que
+  // le form/toggle/panel sont remplacés par de nouveaux éléments à chaque navigation.
+  document.addEventListener('click', (e) => {
+    const toggle = (e.target as HTMLElement).closest<HTMLButtonElement>('.toggle-more-filters');
+    if (!toggle) return;
 
-    toggle?.addEventListener('click', () => {
-      const isHidden = panel?.classList.toggle('hidden') ?? false;
-      toggle.setAttribute('aria-expanded', String(!isHidden));
-    });
+    const panel = toggle.closest('.search-form')?.querySelector('.more-filters');
+    const isHidden = panel?.classList.toggle('hidden') ?? false;
+    toggle.setAttribute('aria-expanded', String(!isHidden));
+  });
 
-    if (form.dataset.autoSubmit === 'true') {
-      form.addEventListener('change', () => form.requestSubmit());
+  document.addEventListener('change', (e) => {
+    const form = (e.target as HTMLElement).closest<HTMLFormElement>('.search-form');
+    if (form?.dataset.autoSubmit === 'true') {
+      form.requestSubmit();
     }
   });
 </script>

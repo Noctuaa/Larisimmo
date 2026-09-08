@@ -78,26 +78,30 @@ import SearchFields from './SearchFields.astro';
 </div>
 
 <script>
-  const trigger = document.getElementById('search-trigger');
-  const closeBtn = document.getElementById('search-close');
-  const panel = document.getElementById('search-panel');
-
-  // getElementById renvoie un HTMLElement générique — on précise le vrai type
-  // ici car new FormData() plus bas exige spécifiquement un HTMLFormElement
-  const form = document.getElementById('search-form') as HTMLFormElement;
-
+  // Délégation sur document plutôt que des références capturées une fois : avec
+  // <ClientRouter /> ce script ne s'exécute qu'une fois pour tout le site, alors que
+  // trigger/closeBtn/panel/form sont remplacés par de nouveaux éléments à chaque
+  // navigation qui revient sur une page contenant ce composant.
   const hiddenClasses = ['-translate-y-full', 'pointer-events-none'];
 
   const toggleSearch = () => {
+    const panel = document.getElementById('search-panel');
     const isHidden = panel?.classList.contains('-translate-y-full');
     panel?.classList[isHidden ? 'remove' : 'add'](...hiddenClasses);
     document.body.classList.toggle('overflow-hidden');
   };
 
-  trigger?.addEventListener('click', toggleSearch);
-  closeBtn?.addEventListener('click', toggleSearch);
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('#search-trigger, #search-close');
+    if (target) toggleSearch();
+  });
 
-  form?.addEventListener('submit', (e) => {
+  document.addEventListener('submit', (e) => {
+    // getElementById renvoie un HTMLElement générique — on précise le vrai type
+    // ici car new FormData() plus bas exige spécifiquement un HTMLFormElement
+    const form = e.target as HTMLFormElement;
+    if (form.id !== 'search-form') return;
+
     e.preventDefault();
     const data = new FormData(form);
     const params = new URLSearchParams();

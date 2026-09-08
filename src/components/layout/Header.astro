@@ -77,12 +77,18 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('nav-menu');
-  const header = document.getElementById('site-header');
+  // Avec les View Transitions (<ClientRouter />), ce script ne s'exécute qu'une seule
+  // fois pour tout le site — header/menu/toggle sont remplacés par de nouveaux éléments
+  // à chaque navigation, donc on ne les capture jamais une fois pour toutes : on délègue
+  // l'écoute des clics à `document` (qui ne change jamais) et on recherche l'élément à
+  // jour à chaque scroll, plutôt que de garder une référence qui devient obsolète.
 
   // Ouvre/ferme le tiroir mobile + bloque le scroll de la page pendant que le menu est ouvert
-  toggle?.addEventListener('click', () => {
+  document.addEventListener('click', (e) => {
+    const toggle = (e.target as HTMLElement).closest('#menu-toggle');
+    if (!toggle) return;
+
+    const menu = document.getElementById('nav-menu');
     const isOpen = menu?.classList.toggle('translate-x-full') === false;
     toggle.setAttribute('aria-expanded', String(isOpen));
     document.body.classList.toggle('overflow-hidden', isOpen);
@@ -94,6 +100,7 @@ const currentPath = Astro.url.pathname;
   let ticking = false;
 
   const updateHeaderVisibility = () => {
+    const header = document.getElementById('site-header');
     const currentScrollY = window.scrollY;
 
     if (currentScrollY < 80 || currentScrollY < lastScrollY) {
@@ -111,5 +118,11 @@ const currentPath = Astro.url.pathname;
       requestAnimationFrame(updateHeaderVisibility);
       ticking = true;
     }
+  });
+
+  // Repart d'un scroll à 0 à chaque nouvelle page, sinon le premier tick après une
+  // navigation compare à la position de la page précédente
+  document.addEventListener('astro:page-load', () => {
+    lastScrollY = window.scrollY;
   });
 </script>
