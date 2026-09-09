@@ -7,72 +7,86 @@ interface Props {
   prix?: string;
   chambresMin?: string;
   surfaceMin?: string;
-  /** Barre collée sous le header, fond/ombre portés par le composant (/biens) au lieu du panel flottant façon carte (homepage) */
-  sticky?: boolean;
 }
 
-const { ville = '', type = '', prix = '', chambresMin = '', surfaceMin = '', sticky = false } = Astro.props;
+const { ville = '', type = '', prix = '', chambresMin = '', surfaceMin = '' } = Astro.props;
 const filtersOpen = !!chambresMin || !!surfaceMin;
-
-// Homepage : panel desktop en carte flottante avec son propre fond/ombre
-const standaloneClasses = 'fixed -translate-y-full bg-white  pointer-events-none';
-// /biens : barre collée sous le header sur toute la largeur, fond/ombre/bordures propres au
-// composant (plus besoin de wrapper dans la page qui l'utilise)
-const stickyClasses = 'lg:sticky lg:top-0 lg:mt-(--nav-height) lg:w-full lg:border-b lg:border-t lg:border-gray-100 lg:bg-background';
 ---
 
-<!-- Mobile : bouton compact qui ouvre la recherche -->
-<button
-  id="search-trigger"
-  type="button"
-  class="mx-auto flex w-full max-w-sm items-center gap-3 rounded-full bg-white px-5 py-3.5 text-left shadow-xl lg:hidden"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    class="shrink-0 text-primary"
-  >
-    <path d="m21 21-4.34-4.34"></path>
-    <circle cx="11" cy="11" r="8"></circle>
-  </svg>
-  <span class="text-sm text-gray-500">Rechercher un bien...</span>
-</button>
+<!-- Mobile : barre pleine largeur qui ouvre la recherche, intégrée à la page plutôt que
+     flottante (contrairement à la pill de la homepage qui repose sur la photo du Hero).
+     mt-(--nav-height) : contrairement à la homepage, rien ici ne compense la hauteur du header fixe -->
+<div class="sticky top-0 z-60 mt-(--nav-height) border-b border-gray-100 bg-background px-5 py-4 lg:hidden">
+  <button id="search-trigger" type="button" class="flex w-full items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-left">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="shrink-0 text-primary"
+    >
+      <path d="m21 21-4.34-4.34"></path>
+      <circle cx="11" cy="11" r="8"></circle>
+    </svg>
+    <span class="text-sm text-gray-500">Rechercher un bien...</span>
+  </button>
+</div>
 
-<!-- Panneau : glisse depuis le haut + plein écran en mobile (état géré en CSS), inline toujours visible en desktop -->
-<!-- Responsabilité de ce div : uniquement l'affichage (position, fond, animation) -->
+<!-- Panneau : glisse depuis le haut + plein écran en mobile (état géré en CSS), barre collée
+     sous le header en desktop (contrairement à la homepage, pas de carte flottante ici) -->
 <div
   id="search-panel"
-  class:list={[
-    'flex flex-col z-100 shadow-md inset-0 transition duration-300',
-    'lg:mx-auto lg:w-fit lg:rounded-2xl lg:bg-white lg:p-5 lg:px-8 lg:py-6 lg:static lg:z-auto lg:translate-y-0 lg:flex-row lg:items-end lg:gap-4 lg:opacity-100 lg:pointer-events-auto ' +
-    sticky
-      ? stickyClasses
-      : standaloneClasses,
-  ]}
+  class="fixed inset-0 z-100 flex -translate-y-full flex-col bg-white pointer-events-none transition duration-300
+  lg:sticky lg:top-0 lg:z-60 lg:mt-(--nav-height) lg:w-full lg:translate-y-0 lg:flex-row lg:items-end lg:gap-4 lg:border-b lg:border-t lg:border-gray-100 lg:bg-background lg:opacity-100 lg:pointer-events-auto lg:shadow-md"
 >
+  <!-- Barre de titre : mobile uniquement -->
+  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-4 lg:hidden">
+    <span class="text-lg font-bold text-primary">Rechercher</span>
+    <button
+      id="search-close"
+      type="button"
+      class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100"
+      aria-label="Fermer la recherche"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 6 6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
   <form method="get" class="search-form container flex flex-col gap-4 py-4">
     <div class="flex flex-wrap items-end gap-4">
       <SearchFields ville={ville} type={type} prix={prix} />
 
       <button
         type="button"
-        class="toggle-more-filters flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+        class="toggle-more-filters hidden items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 lg:flex"
         aria-expanded={filtersOpen}
       >
-        Plus de filtres
+        Filtres
       </button>
 
       <button type="submit" class="ml-auto rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90">Rechercher</button>
     </div>
 
-    <div class:list={['more-filters flex flex-wrap gap-4 border-t border-gray-100 pt-4', { hidden: !filtersOpen }]}>
+    <!-- Sur mobile (dans le panel plein écran) tous les filtres restent visibles ; en desktop le
+         toggle "Plus de filtres" ci-dessus les masque/affiche via la classe lg:hidden -->
+    <div class:list={['more-filters flex flex-wrap gap-4 border-t border-gray-100 pt-4', { 'lg:hidden': !filtersOpen }]}>
       <div class="flex flex-col gap-1">
         <label for="filter-chambres" class="text-xs font-semibold text-gray-500">Chambres min.</label>
         <input
@@ -100,15 +114,18 @@ const stickyClasses = 'lg:sticky lg:top-0 lg:mt-(--nav-height) lg:w-full lg:bord
 </div>
 
 <script>
+  import '../../utils/searchPanelToggle';
+  import '../../utils/searchFormSubmit';
+
   // Délégation sur document plutôt que des références capturées une fois : avec
   // <ClientRouter /> ce script ne s'exécute qu'une fois pour tout le site, alors que
-  // le form/toggle/panel sont remplacés par de nouveaux éléments à chaque navigation.
+  // form/toggle sont remplacés par de nouveaux éléments à chaque navigation.
   document.addEventListener('click', (e) => {
     const toggle = (e.target as HTMLElement).closest<HTMLButtonElement>('.toggle-more-filters');
     if (!toggle) return;
 
     const panel = toggle.closest('.search-form')?.querySelector('.more-filters');
-    const isHidden = panel?.classList.toggle('hidden') ?? false;
+    const isHidden = panel?.classList.toggle('lg:hidden') ?? false;
     toggle.setAttribute('aria-expanded', String(!isHidden));
   });
 </script>
