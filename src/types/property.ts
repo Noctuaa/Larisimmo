@@ -15,6 +15,7 @@ export interface Property {
   pieces: number;
   chambres: number;
   sallesDeBain: number;
+  meuble: boolean;
   description: string;
   photos: { compacte: string; grande: string }[];
   equipements: string[];

@@ -14,7 +14,14 @@ const type = params.get('type') ?? '';
 const transaction = params.get('transaction') ?? '';
 const prix = params.get('prix') ?? '';
 const chambresMin = params.get('chambres') ?? '';
+const piecesMin = params.get('pieces') ?? '';
 const surfaceMin = params.get('surface') ?? '';
+const dpeMax = params.get('dpe') ?? '';
+const meuble = params.get('meuble') ?? '';
+// Équipements : coché = plusieurs `equipements=` dans l'URL, le bien doit tous les avoir
+const equipements = params.getAll('equipements');
+
+const dpeOrder = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
 const filtered = (properties as Property[]).filter((p) => {
   if (ville && p.ville !== ville) return false;
@@ -26,7 +33,11 @@ const filtered = (properties as Property[]).filter((p) => {
     if (max && p.prix > Number(max)) return false;
   }
   if (chambresMin && p.chambres < Number(chambresMin)) return false;
+  if (piecesMin && p.pieces < Number(piecesMin)) return false;
   if (surfaceMin && p.surface < Number(surfaceMin)) return false;
+  if (dpeMax && dpeOrder.indexOf(p.dpe) > dpeOrder.indexOf(dpeMax)) return false;
+  if (meuble && String(p.meuble) !== meuble) return false;
+  if (equipements.length && !equipements.every((e) => p.equipements.includes(e))) return false;
   return true;
 });
 
@@ -44,7 +55,18 @@ const pageLink = (page: number) => {
 ---
 
 <Layout>
-  <SearchForm ville={ville} type={type} prix={prix} chambresMin={chambresMin} surfaceMin={surfaceMin} />
+  <SearchForm
+    transaction={transaction}
+    ville={ville}
+    type={type}
+    prix={prix}
+    chambresMin={chambresMin}
+    piecesMin={piecesMin}
+    surfaceMin={surfaceMin}
+    dpeMax={dpeMax}
+    meuble={meuble}
+    equipements={equipements}
+  />
 
   <main class="container py-12">
     <div class="mb-8">

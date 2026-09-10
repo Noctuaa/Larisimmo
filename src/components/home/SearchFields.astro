@@ -3,12 +3,18 @@ import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 
 interface Props {
+  transaction?: string;
   ville?: string;
   type?: string;
   prix?: string;
 }
 
-const { ville = '', type = '', prix = '' } = Astro.props;
+const { transaction = '', ville = '', type = '', prix = '' } = Astro.props;
+
+const transactions = [
+  { label: 'Achat', value: 'vente' },
+  { label: 'Location', value: 'location' },
+];
 
 const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort();
 const propertyTypes = ['Appartement', 'Maison'];
@@ -19,6 +25,24 @@ const priceRanges = [
   { label: 'Plus de 600 000 €', value: '600000-' },
 ];
 ---
+
+<div class="flex flex-col gap-1">
+  <label for="search-transaction" class="text-xs font-semibold text-gray-500">Achat ou location</label>
+  <select
+    id="search-transaction"
+    name="transaction"
+    class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary lg:w-40"
+  >
+    <option value="">Peu importe</option>
+    {
+      transactions.map((t) => (
+        <option value={t.value} selected={t.value === transaction}>
+          {t.label}
+        </option>
+      ))
+    }
+  </select>
+</div>
 
 <div class="flex flex-col gap-1">
   <label for="search-city" class="text-xs font-semibold text-gray-500">Choisir la localisation</label>
