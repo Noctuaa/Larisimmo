@@ -10,7 +10,13 @@ interface Props {
 }
 
 const { ville = '', type = '', prix = '', chambresMin = '', surfaceMin = '' } = Astro.props;
-const filtersOpen = !!chambresMin || !!surfaceMin;
+
+// Filtres repliés derrière le bouton "Filtres" : on compte ceux qui sont actifs pour le badge.
+// Ajouter les nouveaux filtres avancés ici quand on en ajoute.
+// Le panneau reste fermé au chargement en desktop même si des filtres sont actifs : le badge
+// suffit à le signaler, on clique "Filtres" pour les voir/modifier.
+const advancedFilters = [chambresMin, surfaceMin];
+const activeCount = advancedFilters.filter(Boolean).length;
 ---
 
 <!-- Mobile : barre pleine largeur qui ouvre la recherche, intégrée à la page plutôt que
@@ -69,47 +75,62 @@ const filtersOpen = !!chambresMin || !!surfaceMin;
     </button>
   </div>
 
-  <form method="get" class="search-form container flex flex-col gap-4 py-4">
-    <div class="flex flex-wrap items-end gap-4">
-      <SearchFields ville={ville} type={type} prix={prix} />
+  <!-- Un seul conteneur flex : en mobile tout s'empile dans l'ordre du DOM (champs → filtres
+       avancés → Rechercher), en desktop `lg:order-last` renvoie le bloc avancé en 2e ligne et
+       `lg:ml-auto` garde Rechercher à droite de la 1re -->
+  <form method="get" class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
+    <SearchFields ville={ville} type={type} prix={prix} />
 
-      <button
-        type="button"
-        class="toggle-more-filters hidden items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 lg:flex"
-        aria-expanded={filtersOpen}
-      >
-        Filtres
-      </button>
+    <button
+      type="button"
+      class="toggle-more-filters hidden items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 lg:flex"
+      aria-expanded="false"
+    >
+      Filtres
+      {
+        activeCount > 0 && (
+          <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">
+            {activeCount}
+          </span>
+        )
+      }
+    </button>
 
-      <button type="submit" class="ml-auto rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90">Rechercher</button>
+    <!-- Sur mobile (panel plein écran) tous les filtres restent visibles ; en desktop ce bloc est
+         replié par défaut et le toggle "Filtres" ajoute/retire `.is-open` (animation dans <style>).
+         lg:order-last : renvoie ce bloc pleine largeur en 2e ligne, après le bouton Rechercher.
+         Le div interne .more-filters-panel porte le contenu : en desktop il est la "piste" que
+         grid-template-rows fait passer de 0fr à 1fr. -->
+    <div class="more-filters w-full lg:order-last">
+      <div class="more-filters-panel flex flex-wrap gap-4 border-t border-gray-100 pt-4">
+        <div class="flex flex-col gap-1">
+          <label for="filter-chambres" class="text-xs font-semibold text-gray-500">Chambres min.</label>
+          <input
+            type="number"
+            id="filter-chambres"
+            name="chambres"
+            min="0"
+            value={chambresMin}
+            class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
+          />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label for="filter-surface" class="text-xs font-semibold text-gray-500">Surface min. (m²)</label>
+          <input
+            type="number"
+            id="filter-surface"
+            name="surface"
+            min="0"
+            value={surfaceMin}
+            class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
+          />
+        </div>
+      </div>
     </div>
 
-    <!-- Sur mobile (dans le panel plein écran) tous les filtres restent visibles ; en desktop le
-         toggle "Plus de filtres" ci-dessus les masque/affiche via la classe lg:hidden -->
-    <div class:list={['more-filters flex flex-wrap gap-4 border-t border-gray-100 pt-4', { 'lg:hidden': !filtersOpen }]}>
-      <div class="flex flex-col gap-1">
-        <label for="filter-chambres" class="text-xs font-semibold text-gray-500">Chambres min.</label>
-        <input
-          type="number"
-          id="filter-chambres"
-          name="chambres"
-          min="0"
-          value={chambresMin}
-          class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
-        />
-      </div>
-      <div class="flex flex-col gap-1">
-        <label for="filter-surface" class="text-xs font-semibold text-gray-500">Surface min. (m²)</label>
-        <input
-          type="number"
-          id="filter-surface"
-          name="surface"
-          min="0"
-          value={surfaceMin}
-          class="w-28 rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary"
-        />
-      </div>
-    </div>
+    <button type="submit" class="rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 lg:ml-auto">
+      Rechercher
+    </button>
   </form>
 </div>
 
@@ -125,7 +146,30 @@ const filtersOpen = !!chambresMin || !!surfaceMin;
     if (!toggle) return;
 
     const panel = toggle.closest('.search-form')?.querySelector('.more-filters');
-    const isHidden = panel?.classList.toggle('lg:hidden') ?? false;
-    toggle.setAttribute('aria-expanded', String(!isHidden));
+    const isOpen = panel?.classList.toggle('is-open') ?? false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
   });
 </script>
+
+<style>
+  /* Repli/dépli animé du panneau filtres — desktop uniquement (mobile : toujours visible).
+     Technique grid-template-rows 0fr → 1fr : les unités fr s'interpolent proprement,
+     contrairement à height: auto qui saccade avec du contenu flex. */
+  @media (min-width: 1024px) {
+    .more-filters {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 300ms ease;
+    }
+
+    .more-filters.is-open {
+      grid-template-rows: 1fr;
+    }
+
+    .more-filters-panel {
+      overflow: hidden;
+      /* sans ça, min-height: auto (défaut des items grid) empêche la piste de descendre sous 0fr */
+      min-height: 0;
+    }
+  }
+</style>
