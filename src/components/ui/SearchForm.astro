@@ -1,6 +1,6 @@
 ---
-import SearchFields from '../home/SearchFields.astro';
-import AdvancedFilters from './AdvancedFilters.astro';
+import properties from '../../data/biens.json';
+import type { Property } from '../../types/property';
 
 interface Props {
   transaction?: string;
@@ -28,6 +28,27 @@ const {
   equipements = [],
 } = Astro.props;
 
+// Champs principaux (toujours visibles)
+const transactions = [
+  { label: 'Achat', value: 'vente' },
+  { label: 'Location', value: 'location' },
+];
+const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort();
+const propertyTypes = ['Appartement', 'Maison'];
+const priceRanges = [
+  { label: "Jusqu'à 200 000 €", value: '0-200000' },
+  { label: '200 000 € - 400 000 €', value: '200000-400000' },
+  { label: '400 000 € - 600 000 €', value: '400000-600000' },
+  { label: 'Plus de 600 000 €', value: '600000-' },
+];
+
+// Champs avancés (repliés derrière le bouton "Filtres")
+const allEquipements = [...new Set((properties as Property[]).flatMap((p) => p.equipements))].sort();
+const dpeClasses = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+const fieldClass = 'rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary';
+const labelClass = 'text-xs font-semibold text-gray-500';
+
 // Filtres repliés derrière le bouton "Filtres" : on compte ceux qui sont actifs pour le badge.
 // Le panneau reste fermé au chargement en desktop même si des filtres sont actifs : le badge
 // suffit à le signaler, on clique "Filtres" pour les voir/modifier.
@@ -35,117 +56,177 @@ const advancedFilters = [chambresMin, piecesMin, surfaceMin, dpeMax, meuble];
 const activeCount = advancedFilters.filter(Boolean).length + (equipements.length ? 1 : 0);
 ---
 
-<!-- Mobile : barre pleine largeur qui ouvre la recherche, intégrée à la page plutôt que
-     flottante (contrairement à la pill de la homepage qui repose sur la photo du Hero).
-     mt-(--nav-height) : contrairement à la homepage, rien ici ne compense la hauteur du header fixe -->
-<div class="sticky top-0 z-60 mt-(--nav-height) border-b border-gray-100 bg-background px-5 py-4 lg:hidden">
-  <button id="search-trigger" type="button" class="flex w-full items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-left">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="shrink-0 text-primary"
-    >
-      <path d="m21 21-4.34-4.34"></path>
-      <circle cx="11" cy="11" r="8"></circle>
-    </svg>
-    <span class="text-sm text-gray-500">Rechercher un bien...</span>
-  </button>
-</div>
-
-<!-- Panneau : glisse depuis le haut + plein écran en mobile (état géré en CSS), barre collée
-     sous le header en desktop (contrairement à la homepage, pas de carte flottante ici).
-     transition:persist : garde ce noeud DOM à travers les swaps ClientRouter pour ne pas perdre
-     l'état du panneau "Filtres" ni le focus quand la liste se met à jour en direct. -->
-<div
-  id="search-panel"
-  transition:persist="search-panel"
-  class="fixed inset-0 z-100 flex -translate-y-full flex-col bg-white pointer-events-none transition duration-300
-  lg:sticky lg:top-0 lg:z-60 lg:mt-(--nav-height) lg:w-full lg:translate-y-0 lg:flex-row lg:items-end lg:gap-4 lg:border-b lg:border-t lg:border-gray-100 lg:bg-background lg:opacity-100 lg:pointer-events-auto lg:shadow-md"
->
-  <!-- Barre de titre : mobile uniquement -->
-  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-4 lg:hidden">
-    <span class="text-lg font-bold text-primary">Rechercher</span>
-    <button
-      id="search-close"
-      type="button"
-      class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100"
-      aria-label="Fermer la recherche"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M18 6 6 18M6 6l12 12"></path>
-      </svg>
-    </button>
+<form method="get" data-live class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
+  <!-- Champs principaux -->
+  <div class="flex flex-col gap-1">
+    <label for="search-transaction" class={labelClass}>Achat ou location</label>
+    <select id="search-transaction" name="transaction" class:list={[fieldClass, 'w-full lg:w-40']}>
+      <option value="">Peu importe</option>
+      {
+        transactions.map((t) => (
+          <option value={t.value} selected={t.value === transaction}>
+            {t.label}
+          </option>
+        ))
+      }
+    </select>
   </div>
 
-  <!-- Un seul conteneur flex : en mobile tout s'empile dans l'ordre du DOM (champs → filtres
-       avancés → Rechercher), en desktop `lg:order-last` renvoie le bloc avancé en 2e ligne et
-       `lg:ml-auto` garde Rechercher à droite de la 1re -->
-  <form method="get" data-live class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
-    <SearchFields transaction={transaction} ville={ville} type={type} prix={prix} />
-
-    <button
-      type="button"
-      class="toggle-more-filters hidden items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 lg:flex"
-      aria-expanded="false"
-    >
-      Filtres
+  <div class="flex flex-col gap-1">
+    <label for="search-city" class={labelClass}>Choisir la localisation</label>
+    <select id="search-city" name="ville" class:list={[fieldClass, 'w-full lg:w-56']}>
+      <option value="">Toutes les localisations</option>
       {
-        activeCount > 0 && (
-          <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">
-            {activeCount}
-          </span>
-        )
+        cities.map((c) => (
+          <option value={c} selected={c === ville}>
+            {c}
+          </option>
+        ))
       }
-    </button>
+    </select>
+  </div>
 
-    <!-- Sur mobile (panel plein écran) tous les filtres restent visibles ; en desktop ce bloc est
-         replié par défaut et le toggle "Filtres" ajoute/retire `.is-open` (animation dans <style>).
-         lg:order-last : renvoie ce bloc pleine largeur en 2e ligne, après le bouton Rechercher.
-         Le div interne .more-filters-panel porte le contenu : en desktop il est la "piste" que
-         grid-template-rows fait passer de 0fr à 1fr. -->
-    <div class="more-filters w-full lg:order-last">
-      <div class="more-filters-panel flex flex-wrap items-end gap-4 border-t border-gray-100 pt-4">
-        <AdvancedFilters
-          chambresMin={chambresMin}
-          piecesMin={piecesMin}
-          surfaceMin={surfaceMin}
-          dpeMax={dpeMax}
-          meuble={meuble}
-          equipements={equipements}
-        />
+  <div class="flex flex-col gap-1">
+    <label for="search-type" class={labelClass}>Type de bien</label>
+    <select id="search-type" name="type" class:list={[fieldClass, 'w-full lg:w-40']}>
+      <option value="">Tout type</option>
+      {
+        propertyTypes.map((t) => (
+          <option value={t} selected={t === type}>
+            {t}
+          </option>
+        ))
+      }
+    </select>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="search-price" class={labelClass}>Budget</label>
+    <select id="search-price" name="prix" class:list={[fieldClass, 'w-full lg:w-52']}>
+      <option value="">Tous les prix</option>
+      {
+        priceRanges.map((r) => (
+          <option value={r.value} selected={r.value === prix}>
+            {r.label}
+          </option>
+        ))
+      }
+    </select>
+  </div>
+
+  <button
+    type="button"
+    class="toggle-more-filters hidden items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 lg:flex"
+    aria-expanded="false"
+  >
+    Filtres
+    {
+      activeCount > 0 && (
+        <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">{activeCount}</span>
+      )
+    }
+  </button>
+
+  <!-- Champs avancés -->
+  <div class="more-filters w-full lg:order-last">
+    <div class="more-filters-panel flex flex-wrap items-end gap-4 border-t border-gray-100 pt-4">
+      <div class="flex flex-col gap-1">
+        <label for="filter-chambres" class={labelClass}>Chambres min.</label>
+        <input type="number" id="filter-chambres" name="chambres" min="0" value={chambresMin} class:list={[fieldClass, 'w-28']} />
       </div>
-    </div>
 
-    <button type="submit" class="rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 lg:ml-auto">
-      Rechercher
-    </button>
-  </form>
-</div>
+      <div class="flex flex-col gap-1">
+        <label for="filter-pieces" class={labelClass}>Pièces min.</label>
+        <input type="number" id="filter-pieces" name="pieces" min="0" value={piecesMin} class:list={[fieldClass, 'w-28']} />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="filter-surface" class={labelClass}>Surface min. (m²)</label>
+        <input type="number" id="filter-surface" name="surface" min="0" value={surfaceMin} class:list={[fieldClass, 'w-28']} />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="filter-dpe" class={labelClass}>DPE max.</label>
+        <select id="filter-dpe" name="dpe" class:list={[fieldClass, 'w-40']}>
+          <option value="">Indifférent</option>
+          {
+            dpeClasses.map((c) => (
+              <option value={c} selected={c === dpeMax}>
+                {c} ou mieux
+              </option>
+            ))
+          }
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="filter-meuble" class={labelClass}>Meublé</label>
+        <select id="filter-meuble" name="meuble" class:list={[fieldClass, 'w-40']}>
+          <option value="">Indifférent</option>
+          <option value="true" selected={meuble === 'true'}>Meublé</option>
+          <option value="false" selected={meuble === 'false'}>Non meublé</option>
+        </select>
+      </div>
+
+      <fieldset class="flex w-full flex-col gap-2">
+        <legend class={labelClass}>Équipements</legend>
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
+          {
+            allEquipements.map((eq) => (
+              <label class="flex items-center gap-2 text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  name="equipements"
+                  value={eq}
+                  checked={equipements.includes(eq)}
+                  class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                />
+                {eq}
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <button type="submit" class="rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 lg:ml-auto">Rechercher</button>
+</form>
 
 <script>
-  import '../../utils/searchPanelToggle';
-  import '../../utils/searchFormSubmit';
+  import { navigate } from 'astro:transitions/client';
+  import { LAST_SEARCH_KEY } from '../../utils/lastSearch';
 
-  // Délégation sur document plutôt que des références capturées une fois : avec
-  // <ClientRouter /> ce script ne s'exécute qu'une fois pour tout le site, alors que
-  // form/toggle sont remplacés par de nouveaux éléments à chaque navigation.
+  // Construit /biens?... à partir des champs remplis, en ignorant les champs vides
+  const searchUrl = (form: HTMLFormElement): string => {
+    const params = new URLSearchParams();
+    for (const [key, value] of new FormData(form)) {
+      if (value) params.append(key, String(value));
+    }
+
+    const qs = params.toString();
+    return qs ? `/biens?${qs}` : '/biens';
+  };
+
+  // Relance la recherche (changement de filtre ou clic "Rechercher") : URL propre,
+  // sauvegarde locale, retour en haut, navigation sans rechargement
+  const updateSearch = (e: Event) => {
+    const form = (e.target as HTMLElement).closest<HTMLFormElement>('.search-form');
+    if (!form) return;
+    e.preventDefault();
+
+    const url = searchUrl(form);
+    document.addEventListener('astro:page-load', () => window.scrollTo({ top: 0, behavior: 'instant' }), { once: true });
+
+    localStorage.setItem(LAST_SEARCH_KEY, url);
+
+    navigate(url, { history: 'replace' });
+  };
+
+  document.addEventListener('change', updateSearch);
+  document.addEventListener('submit', updateSearch);
+
+  // Ouvre/ferme le panneau "Filtres" au clic sur le bouton.
   document.addEventListener('click', (e) => {
     const toggle = (e.target as HTMLElement).closest<HTMLButtonElement>('.toggle-more-filters');
     if (!toggle) return;
@@ -157,9 +238,6 @@ const activeCount = advancedFilters.filter(Boolean).length + (equipements.length
 </script>
 
 <style>
-  /* Repli/dépli animé du panneau filtres — desktop uniquement (mobile : toujours visible).
-     Technique grid-template-rows 0fr → 1fr : les unités fr s'interpolent proprement,
-     contrairement à height: auto qui saccade avec du contenu flex. */
   @media (min-width: 1024px) {
     .more-filters {
       display: grid;

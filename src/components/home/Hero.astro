@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import homeImage from '../../assets/images/home-unsplash.jpg';
-import SearchBar from './SearchBar.astro';
 ---
 
 <section class="relative mx-auto h-svh w-full md:mt-(--nav-height) md:mb-[1.5vw] md:h-[calc(100svh-var(--nav-height)-1.5vw)] md:w-[97%]">
@@ -33,9 +32,28 @@ import SearchBar from './SearchBar.astro';
       On vous accompagne dans l'achat ou la location, pour tous types de biens, partout en France.
     </p>
 
-    <!-- Mobile : suit le texte dans le flux centré. Desktop : redevient flottante près du bas, comme avant -->
-    <div class="mt-8 md:absolute md:inset-x-0 md:bottom-30 md:mt-0 md:px-12">
-      <SearchBar />
+    <!-- Mobile : suit le texte dans le flux centré. Desktop : redevient flottant près du bas, comme avant.
+         "Continuer la recherche" : caché par défaut (hidden), affiché par lastSearch.ts s'il y a
+         une recherche en mémoire dans localStorage (pas de compte utilisateur sur ce projet). -->
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row md:absolute md:inset-x-0 md:bottom-30 md:mt-0 md:justify-center md:px-12">
+      <a
+        id="continue-search"
+        href="/biens"
+        hidden
+        class="rounded-lg border border-white/40 bg-white/10 px-6 py-3 text-center text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+      >
+        Continuer ma recherche
+      </a>
+      <a
+        href="/biens"
+        class="rounded-lg bg-primary px-6 py-3 text-center text-sm font-semibold text-white transition hover:opacity-90"
+      >
+        Nouvelle recherche
+      </a>
     </div>
   </div>
 </section>
+
+<script>
+  import '../../utils/lastSearch';
+</script>
