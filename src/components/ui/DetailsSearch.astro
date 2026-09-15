@@ -1,0 +1,46 @@
+---
+// #region - frontmatter
+interface Props {
+  // Préfixe utilisé pour construire les name/id des champs : "chambres" -> "chambresMin"/"chambresMax"
+  name: string;
+  // Texte affiché tant qu'aucune valeur n'est saisie, ex: "Budget", "Chambres"
+  label: string;
+  min?: string;
+  max?: string;
+  // Suffixe affiché après la plage une fois remplie, ex: "€", "m²"
+  unit?: string;
+  fieldClass: string;
+  labelClass: string;
+  width?: string;
+}
+
+const { name, label, min = '', max = '', unit = '', fieldClass, labelClass, width = 'lg:w-44' } = Astro.props;
+
+const suffix = unit ? ` ${unit}` : '';
+const displayLabel = min || max ? `${min || '0'}${suffix} - ${max || '∞'}${suffix}` : label;
+// #endregion
+---
+
+<details class="details-search relative flex flex-col" data-name={name} data-label={label} data-unit={unit} name="filter">
+  <summary class:list={[fieldClass, 'w-full cursor-pointer', width]}>{displayLabel}</summary>
+  <div class="absolute top-full left-0 z-10 mt-2 flex gap-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md">
+    <div class="flex flex-col gap-1">
+      <label for={`${name}-min`} class={labelClass}>Min</label>
+      <input type="number" id={`${name}-min`} name={`${name}Min`} min="0" value={min} class:list={[fieldClass, 'w-28']} />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for={`${name}-max`} class={labelClass}>Max</label>
+      <input type="number" id={`${name}-max`} name={`${name}Max`} min="0" value={max} class:list={[fieldClass, 'w-28']} />
+    </div>
+  </div>
+</details>
+
+<style>
+  /* Cache le triangle natif de <summary> (Chrome/Safari + Firefox) */
+  .details-search summary {
+    list-style: none;
+  }
+  .details-search summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

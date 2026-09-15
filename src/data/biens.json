@@ -22,7 +22,8 @@
     "equipements": [
       "Balcon",
       "Ascenseur",
-      "Cave"
+      "Cave",
+      "Chauffage au sol"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -53,7 +54,8 @@
     "equipements": [
       "Jardin",
       "Garage",
-      "Terrasse"
+      "Terrasse",
+      "Grenier"
     ],
     "dpe": "D",
     "etiquettes": [
@@ -85,7 +87,8 @@
     "equipements": [
       "Poêle à bois",
       "Terrasse",
-      "Parking"
+      "Parking",
+      "Cuisine équipée"
     ],
     "dpe": "E",
     "etiquettes": [
@@ -145,7 +148,8 @@
     "equipements": [
       "Piscine",
       "Garage",
-      "Jardin"
+      "Jardin",
+      "Grenier"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -175,7 +179,8 @@
     ],
     "equipements": [
       "Parking",
-      "Ascenseur"
+      "Ascenseur",
+      "Chauffage au sol"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -207,7 +212,8 @@
       "Cheminée",
       "Garage",
       "Jardin",
-      "Ascenseur"
+      "Ascenseur",
+      "Cuisine équipée"
     ],
     "dpe": "F",
     "etiquettes": [
@@ -326,7 +332,9 @@
     "equipements": [
       "Terrasse",
       "Garage",
-      "Cheminée"
+      "Cheminée",
+      "Chauffage au sol",
+      "Cuisine équipée"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -354,7 +362,8 @@
     ],
     "equipements": [
       "Garage",
-      "Poêle à bois"
+      "Poêle à bois",
+      "Grenier"
     ],
     "dpe": "B",
     "etiquettes": [],
@@ -444,7 +453,9 @@
     ],
     "equipements": [
       "Piscine",
-      "Climatisation"
+      "Climatisation",
+      "Grenier",
+      "Cuisine équipée"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -472,7 +483,8 @@
     ],
     "equipements": [
       "Garage",
-      "Balcon"
+      "Balcon",
+      "Chauffage au sol"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -502,7 +514,8 @@
       "Terrasse",
       "Garage",
       "Cheminée",
-      "Interphone"
+      "Interphone",
+      "Grenier"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -559,7 +572,8 @@
     ],
     "equipements": [
       "Cave",
-      "Cheminée"
+      "Cheminée",
+      "Cuisine équipée"
     ],
     "dpe": "A",
     "etiquettes": [
@@ -590,7 +604,8 @@
     "equipements": [
       "Balcon",
       "Ascenseur",
-      "Cave"
+      "Cave",
+      "Grenier"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -620,7 +635,8 @@
       "Parking",
       "Digicode",
       "Ascenseur",
-      "Cheminée"
+      "Cheminée",
+      "Chauffage au sol"
     ],
     "dpe": "A",
     "etiquettes": [],
@@ -680,7 +696,8 @@
       "Climatisation",
       "Poêle à bois",
       "Garage",
-      "Ascenseur"
+      "Ascenseur",
+      "Cuisine équipée"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -768,7 +785,9 @@
     ],
     "equipements": [
       "Terrasse",
-      "Jardin"
+      "Jardin",
+      "Grenier",
+      "Chauffage au sol"
     ],
     "dpe": "E",
     "etiquettes": [
@@ -800,7 +819,8 @@
       "Poêle à bois",
       "Garage",
       "Cheminée",
-      "Local vélo"
+      "Local vélo",
+      "Cuisine équipée"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -920,7 +940,9 @@
     ],
     "equipements": [
       "Terrasse",
-      "Poêle à bois"
+      "Poêle à bois",
+      "Chauffage au sol",
+      "Cuisine équipée"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -950,7 +972,8 @@
       "Garage",
       "Jardin",
       "Parking",
-      "Ascenseur"
+      "Ascenseur",
+      "Grenier"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -1036,7 +1059,9 @@
     "equipements": [
       "Climatisation",
       "Cheminée",
-      "Jardin"
+      "Jardin",
+      "Grenier",
+      "Cuisine équipée"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1064,7 +1089,8 @@
     ],
     "equipements": [
       "Cave",
-      "Digicode"
+      "Digicode",
+      "Chauffage au sol"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1156,7 +1182,9 @@
       "Terrasse",
       "Local vélo",
       "Poêle à bois",
-      "Cave"
+      "Cave",
+      "Grenier",
+      "Cuisine équipée"
     ],
     "dpe": "C",
     "etiquettes": [
