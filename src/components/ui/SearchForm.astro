@@ -1,8 +1,9 @@
 ---
 // #region - frontmatter
 import properties from '../../data/biens.json';
-import { DPE_CLASSES, type Property } from '../../types/property';
+import type { Property } from '../../types/property';
 import DetailsSearch from './DetailsSearch.astro';
+import MoreFilter from './MoreFilter.astro';
 
 interface Props {
   transaction?: string;
@@ -38,57 +39,15 @@ const {
   equipements = [],
 } = Astro.props;
 
-// Champs principaux (toujours visibles)
-const transactions = [
-  { label: 'Achat', value: 'vente' },
-  { label: 'Location', value: 'location' },
-];
 const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort();
-const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
-
-// Champs avancés (repliés derrière le bouton "Filtres")
-// Liste fixe plutôt que dérivée des données : on choisit ici ce qui apparaît et dans quel ordre
-const allEquipements = [
-  'Parking',
-  'Terrasse',
-  'Jardin',
-  'Piscine',
-  'Ascenseur',
-  'Cave',
-  'Grenier',
-  'Climatisation',
-  'Cheminée',
-  'Chauffage au sol',
-  'Cuisine équipée',
-];
 
 const fieldClass = 'rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-primary';
 const labelClass = 'mb-2 text-xs font-semibold text-gray-500';
-
-// Filtres repliés derrière le bouton "Filtres" : on compte ceux qui sont actifs pour le badge.
-// Le panneau reste fermé au chargement en desktop même si des filtres sont actifs : le badge
-// suffit à le signaler, on clique "Filtres" pour les voir/modifier.
-const advancedFilters = [chambresMin || chambresMax, piecesMin || piecesMax, surfaceMin || surfaceMax, dpeMax, meuble];
-const activeCount = advancedFilters.filter(Boolean).length + (equipements.length ? 1 : 0);
 // #endregion
 ---
 
 <form method="get" data-live class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
   <!-- Champs principaux -->
-  <div class="flex flex-col gap-1">
-    <label for="search-transaction" class={labelClass}>Achat ou location</label>
-    <select id="search-transaction" name="transaction" class:list={[fieldClass, 'w-full lg:w-40']}>
-      <option value="">Peu importe</option>
-      {
-        transactions.map((t) => (
-          <option value={t.value} selected={t.value === transaction}>
-            {t.label}
-          </option>
-        ))
-      }
-    </select>
-  </div>
-
   <div class="flex flex-col gap-1">
     <label for="search-city" class={labelClass}>Choisir la localisation</label>
     <select id="search-city" name="ville" class:list={[fieldClass, 'w-full lg:w-56']}>
@@ -103,88 +62,23 @@ const activeCount = advancedFilters.filter(Boolean).length + (equipements.length
     </select>
   </div>
 
-  <div class="flex flex-col gap-1">
-    <label for="search-type" class={labelClass}>Type de bien</label>
-    <select id="search-type" name="type" class:list={[fieldClass, 'w-full lg:w-40']}>
-      <option value="">Tout type</option>
-      {
-        propertyTypes.map((t) => (
-          <option value={t} selected={t === type}>
-            {t}
-          </option>
-        ))
-      }
-    </select>
-  </div>
-
   <DetailsSearch name="prix" label="Budget" unit="€" width="lg:w-52" min={prixMin} max={prixMax} fieldClass={fieldClass} labelClass={labelClass} />
 
-  <button
-    type="button"
-    class="toggle-more-filters hidden items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 lg:flex"
-    aria-expanded="false"
-  >
-    Filtres
-    {
-      activeCount > 0 && (
-        <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">{activeCount}</span>
-      )
-    }
-  </button>
-
-  <!-- Champs avancés -->
-  <div class="more-filters w-full lg:order-last">
-    <div class="more-filters-panel flex flex-wrap items-end gap-4 border-t border-gray-100 pt-4">
-      <DetailsSearch name="chambres" label="Chambres" min={chambresMin} max={chambresMax} fieldClass={fieldClass} labelClass={labelClass} />
-
-      <DetailsSearch name="pieces" label="Pièces" min={piecesMin} max={piecesMax} fieldClass={fieldClass} labelClass={labelClass} />
-
-      <DetailsSearch name="surface" label="Surface" unit="m²" min={surfaceMin} max={surfaceMax} fieldClass={fieldClass} labelClass={labelClass} />
-
-      <div class="flex flex-col gap-1">
-        <label for="filter-dpe" class={labelClass}>DPE max.</label>
-        <select id="filter-dpe" name="dpe" class:list={[fieldClass, 'w-40']}>
-          <option value="">Indifférent</option>
-          {
-            DPE_CLASSES.map((c) => (
-              <option value={c} selected={c === dpeMax}>
-                {c}
-              </option>
-            ))
-          }
-        </select>
-      </div>
-
-      <div class="flex flex-col gap-1">
-        <label for="filter-meuble" class={labelClass}>Meublé</label>
-        <select id="filter-meuble" name="meuble" class:list={[fieldClass, 'w-40']}>
-          <option value="">Indifférent</option>
-          <option value="true" selected={meuble === 'true'}>Meublé</option>
-          <option value="false" selected={meuble === 'false'}>Non meublé</option>
-        </select>
-      </div>
-
-      <fieldset class="flex w-full flex-col gap-2">
-        <legend class={labelClass}>Équipements</legend>
-        <div class="flex flex-wrap gap-x-4 gap-y-2">
-          {
-            allEquipements.map((eq) => (
-              <label class="flex items-center gap-2 text-sm text-gray-700">
-                <input
-                  type="checkbox"
-                  name="equipements"
-                  value={eq}
-                  checked={equipements.includes(eq)}
-                  class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                />
-                {eq}
-              </label>
-            ))
-          }
-        </div>
-      </fieldset>
-    </div>
-  </div>
+  <MoreFilter
+    transaction={transaction}
+    type={type}
+    chambresMin={chambresMin}
+    chambresMax={chambresMax}
+    piecesMin={piecesMin}
+    piecesMax={piecesMax}
+    surfaceMin={surfaceMin}
+    surfaceMax={surfaceMax}
+    dpeMax={dpeMax}
+    meuble={meuble}
+    equipements={equipements}
+    fieldClass={fieldClass}
+    labelClass={labelClass}
+  />
 
   <button type="submit" class="rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 lg:ml-auto">Rechercher</button>
 </form>
@@ -236,48 +130,4 @@ const activeCount = advancedFilters.filter(Boolean).length + (equipements.length
 
   document.addEventListener('change', updateSearch);
   document.addEventListener('submit', updateSearch);
-
-  // Ouvre/ferme le panneau "Filtres" au clic sur le bouton.
-  document.addEventListener('click', (e) => {
-    const toggle = (e.target as HTMLElement).closest<HTMLButtonElement>('.toggle-more-filters');
-    if (!toggle) return;
-
-    const panel = toggle.closest('.search-form')?.querySelector<HTMLElement>('.more-filters');
-    if (!panel) return;
-    const isOpen = panel.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-
-    // Une fois l'animation d'ouverture finie, on autorise le débordement pour que les menus
-    // Min/Max (chambres, pièces, surface) ne soient plus coupés par l'overflow hidden du panneau
-    panel.classList.remove('overflow-visible');
-    if (isOpen) {
-      panel.addEventListener('transitionend', () => panel.classList.add('overflow-visible'), { once: true });
-    }
-  });
 </script>
-
-<style>
-  @media (min-width: 1024px) {
-    .more-filters {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 300ms ease;
-    }
-
-    .more-filters.is-open {
-      grid-template-rows: 1fr;
-    }
-
-    .more-filters-panel {
-      overflow: hidden;
-      /* sans ça, min-height: auto (défaut des items grid) empêche la piste de descendre sous 0fr */
-      min-height: 0;
-    }
-
-    /* Une fois l'ouverture terminée, on laisse déborder pour que les menus Min/Max
-       (chambres, pièces, surface) ne soient plus coupés par l'overflow hidden ci-dessus */
-    .more-filters.overflow-visible .more-filters-panel {
-      overflow: visible;
-    }
-  }
-</style>

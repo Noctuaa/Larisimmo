@@ -1,0 +1,242 @@
+---
+// #region - frontmatter
+import { DPE_CLASSES } from '../../types/property';
+
+interface Props {
+  transaction?: string;
+  type?: string;
+  chambresMin?: string;
+  chambresMax?: string;
+  piecesMin?: string;
+  piecesMax?: string;
+  surfaceMin?: string;
+  surfaceMax?: string;
+  dpeMax?: string;
+  meuble?: string;
+  equipements?: string[];
+  fieldClass: string;
+  labelClass: string;
+}
+
+const {
+  transaction = '',
+  type = '',
+  chambresMin = '',
+  chambresMax = '',
+  piecesMin = '',
+  piecesMax = '',
+  surfaceMin = '',
+  surfaceMax = '',
+  dpeMax = '',
+  meuble = '',
+  equipements = [],
+  fieldClass,
+  labelClass,
+} = Astro.props;
+
+const allEquipements = [
+  'Parking',
+  'Terrasse',
+  'Jardin',
+  'Piscine',
+  'Ascenseur',
+  'Cave',
+  'Grenier',
+  'Climatisation',
+  'Cheminée',
+  'Chauffage au sol',
+  'Cuisine équipée',
+];
+
+// TODO (Noc) : ajouter pieces/surface/dpe/meuble dans ce calcul, comme dans l'ancien SearchForm.astro
+const activeFilters = [chambresMin || chambresMax];
+const activeCount = activeFilters.filter(Boolean).length + (equipements.length ? 1 : 0);
+// #endregion
+---
+
+<button type="button" popovertarget="more-filters" class:list={[fieldClass, 'flex items-center gap-2 hover:bg-gray-50']}>
+  Filtres
+  {
+    activeCount > 0 && (
+      <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">{activeCount}</span>
+    )
+  }
+</button>
+
+<div popover id="more-filters" class="more-filters-popover">
+  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-3">
+    <span class="text-lg font-bold text-primary">Tous les filtres</span>
+    <button
+      type="button"
+      popovertarget="more-filters"
+      popovertargetaction="hide"
+      class="flex h-9 w-9 items-center justify-center rounded-full text-lg text-gray-700 hover:bg-gray-100"
+      aria-label="Fermer"
+    >
+      ✕
+    </button>
+  </div>
+
+  <section class="flex flex-col gap-4 overflow-y-auto p-6">
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <h3 class=""><!-- SVG icon lucide -->Achat ou location</h3>
+      <div class="flex justify-around gap-4">
+        <label for="achat" class="flex gap-2">
+          <input type="checkbox" id="achat" name="transaction" value="vente" checked={transaction === 'vente'} />
+          Achat
+        </label>
+        <label for="location" class="flex gap-2">
+          <input type="checkbox" id="location" name="transaction" value="location" checked={transaction === 'location'} />
+          Location
+        </label>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <h3 class=""><!-- SVG icon lucide -->Type de bien</h3>
+      <div class="flex justify-around gap-4">
+        <label for="maison" class="flex gap-2">
+          <input type="checkbox" id="maison" name="type" value="Maison" checked={type === 'Maison'} />
+          Maison
+        </label>
+        <label for="appartement" class="flex gap-2">
+          <input type="checkbox" id="appartement" name="type" value="Appartement" checked={type === 'Appartement'} />
+          Appartement
+        </label>
+        <label for="chalet" class="flex gap-2">
+          <input type="checkbox" id="chalet" name="type" value="Chalet" checked={type === 'Chalet'} />
+          Chalet
+        </label>
+      </div>
+    </section>
+    <!-- Chambres (chambresMin/chambresMax) -->
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <h3 class=""><!-- SVG icon lucide -->Chambres</h3>
+      <div class="flex gap-4">
+        <div class="flex flex-col">
+          <label for="filter-chambres-min" class={labelClass}>Min.</label>
+          <input type="number" id="filter-chambres-min" name="chambresMin" min="0" value={chambresMin} class={fieldClass} />
+        </div>
+        <div class="flex flex-col">
+          <label for="filter-chambres-max" class={labelClass}>Max.</label>
+          <input type="number" id="filter-chambres-max" name="chambresMax" min="0" value={chambresMax} class={fieldClass} />
+        </div>
+      </div>
+    </section>
+
+    <!-- Pièces (piecesMin/piecesMax) -->
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <h3 class=""><!-- SVG icon lucide -->Pieces</h3>
+      <div class="flex gap-4">
+        <div class="flex flex-col">
+          <label for="filter-pieces-min" class={labelClass}>Min.</label>
+          <input type="number" id="filter-pieces-min" name="piecesMin" min="0" value={piecesMin} class={fieldClass} />
+        </div>
+        <div class="flex flex-col">
+          <label for="filter-pieces-max" class={labelClass}>Max.</label>
+          <input type="number" id="filter-pieces-max" name="piecesMax" min="0" value={piecesMax} class={fieldClass} />
+        </div>
+      </div>
+    </section>
+
+    <!-- Surface (surfaceMin/surfaceMax) -->
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <h3 class=""><!-- SVG icon lucide -->Surface</h3>
+      <div class="flex gap-4">
+        <div class="flex flex-col">
+          <label for="filter-surface-min" class={labelClass}>Min.</label>
+          <input type="number" id="filter-surface-min" name="surfaceMin" min="0" value={surfaceMin} class={fieldClass} />
+        </div>
+        <div class="flex flex-col">
+          <label for="filter-surface-max" class={labelClass}>Max.</label>
+          <input type="number" id="filter-surface-max" name="surfaceMax" min="0" value={surfaceMax} class={fieldClass} />
+        </div>
+      </div>
+    </section>
+
+    <!-- Meuble (meuble) -->
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <h3 class=""><!-- SVG icon lucide -->Meublé / Non meublé</h3>
+      <div class="flex justify-around gap-4">
+        <label for="meuble" class="flex gap-2">
+          <input type="checkbox" id="meuble" name="meuble" value="true" checked={meuble === 'true'} />
+          Meublé
+        </label>
+        <label for="non-meuble" class="flex gap-2">
+          <input type="checkbox" id="non-meuble" name="meuble" value="false" checked={meuble === 'false'} />
+          Non meublé
+        </label>
+      </div>
+    </section>
+
+    <!-- DPE max -->
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <h3 class=""><!-- SVG icon lucide -->Classe énergie</h3>
+      <select name="dpe" class={fieldClass}>
+        <option value="">Indifférent</option>
+        {
+          DPE_CLASSES.map((dpe) => (
+            <option value={dpe} selected={dpe === dpeMax}>
+              {dpe}
+            </option>
+          ))
+        }
+      </select>
+    </section>
+
+    <!-- Equipements -->
+    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
+      <details>
+        <summary>Équipements</summary>
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
+          {
+            allEquipements.map((eq) => (
+              <label class="flex items-center gap-2 text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  name="equipements"
+                  value={eq}
+                  checked={equipements.includes(eq)}
+                  class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                />
+                {eq}
+              </label>
+            ))
+          }
+        </div>
+      </details>
+    </section>
+
+    <style>
+      .more-filters-popover {
+        width: min(480px, 92vw);
+        max-height: 80vh;
+        margin: auto;
+        border: none;
+        border-radius: 0.75rem;
+        padding: 0;
+        box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
+      }
+
+      .more-filters-popover::backdrop {
+        background: rgb(0 0 0 / 0.4);
+      }
+
+      /* TODO (Noc) : media query mobile pour passer en plein écran (width/height 100%, border-radius 0) */
+    </style>
+
+    <script>
+      // Les cases "meuble", "transaction" et "type" fonctionnent comme des radios : une seule
+      // cochée à la fois (mais on peut décocher pour revenir à "aucun filtre", contrairement à un radio).
+      const exclusiveGroups = ['meuble', 'transaction', 'type'];
+
+      document.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement;
+        if (!exclusiveGroups.includes(target.name) || !target.checked) return;
+        document.querySelectorAll<HTMLInputElement>(`input[name="${target.name}"]`).forEach((el) => {
+          if (el !== target) el.checked = false;
+        });
+      });
+    </script>
+  </section>
+</div>
