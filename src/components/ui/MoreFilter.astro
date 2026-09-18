@@ -2,6 +2,8 @@
 // #region - frontmatter
 import { DPE_CLASSES } from '../../types/property';
 
+import FilterRange from './FilterRange.astro';
+
 interface Props {
   transaction?: string;
   type?: string;
@@ -48,8 +50,16 @@ const allEquipements = [
   'Cuisine équipée',
 ];
 
-// TODO (Noc) : ajouter pieces/surface/dpe/meuble dans ce calcul, comme dans l'ancien SearchForm.astro
-const activeFilters = [chambresMin || chambresMax];
+// Un filtre compte pour 1 dès qu'il a une valeur (pour les plages : Min ou Max suffit)
+const activeFilters = [
+  transaction,
+  type,
+  chambresMin || chambresMax,
+  piecesMin || piecesMax,
+  surfaceMin || surfaceMax,
+  meuble,
+  dpeMax,
+];
 const activeCount = activeFilters.filter(Boolean).length + (equipements.length ? 1 : 0);
 // #endregion
 ---
@@ -109,35 +119,12 @@ const activeCount = activeFilters.filter(Boolean).length + (equipements.length ?
         </label>
       </div>
     </section>
+
     <!-- Chambres (chambresMin/chambresMax) -->
-    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
-      <h3 class=""><!-- SVG icon lucide -->Chambres</h3>
-      <div class="flex gap-4">
-        <div class="flex flex-col">
-          <label for="filter-chambres-min" class={labelClass}>Min.</label>
-          <input type="number" id="filter-chambres-min" name="chambresMin" min="0" value={chambresMin} class={fieldClass} />
-        </div>
-        <div class="flex flex-col">
-          <label for="filter-chambres-max" class={labelClass}>Max.</label>
-          <input type="number" id="filter-chambres-max" name="chambresMax" min="0" value={chambresMax} class={fieldClass} />
-        </div>
-      </div>
-    </section>
+    <FilterRange name="chambres" title="Chambres" min={chambresMin} max={chambresMax} />
 
     <!-- Pièces (piecesMin/piecesMax) -->
-    <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
-      <h3 class=""><!-- SVG icon lucide -->Pieces</h3>
-      <div class="flex gap-4">
-        <div class="flex flex-col">
-          <label for="filter-pieces-min" class={labelClass}>Min.</label>
-          <input type="number" id="filter-pieces-min" name="piecesMin" min="0" value={piecesMin} class={fieldClass} />
-        </div>
-        <div class="flex flex-col">
-          <label for="filter-pieces-max" class={labelClass}>Max.</label>
-          <input type="number" id="filter-pieces-max" name="piecesMax" min="0" value={piecesMax} class={fieldClass} />
-        </div>
-      </div>
-    </section>
+    <FilterRange name="pieces" title="Pièces" min={piecesMin} max={piecesMax} />
 
     <!-- Surface (surfaceMin/surfaceMax) -->
     <section class="flex flex-col gap-4 pb-6 border-b border-gray-300">
@@ -211,7 +198,9 @@ const activeCount = activeFilters.filter(Boolean).length + (equipements.length ?
       .more-filters-popover {
         width: min(480px, 92vw);
         max-height: 80vh;
-        margin: auto;
+        display: flex;
+        flex-direction: column;
+        /*margin: auto;*/
         border: none;
         border-radius: 0.75rem;
         padding: 0;
