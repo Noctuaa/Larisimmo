@@ -1,0 +1,85 @@
+---
+// #region - frontmatter
+interface Props {
+  // Préfixe des name : "chambres" -> "chambresMin" / "chambresMax"
+  name: string;
+  title: string;
+  min?: string;
+  max?: string;
+}
+
+const { name, title, min = '', max = '' } = Astro.props;
+
+const values = [1, 2, 3, 4, 5, 6, 7, 8];
+
+// Une pastille est "allumée" si sa valeur est dans la plage Min-Max actuelle
+const isActive = (n: number) => {
+  if (!min || !max) return false;
+  return n >= Number(min) && n <= Number(max);
+};
+
+const pillClass =
+  'flex h-10 min-w-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 px-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary';
+// #endregion
+---
+
+<section data-range={name} class="flex flex-col gap-2 pb-6 border-b border-gray-300">
+  <h3>{title}</h3>
+
+  <div class="flex flex-wrap gap-2">
+    {
+      values.map((n) => (
+        <button type="button" data-value={n} class:list={[pillClass, isActive(n) && ' bg-primary text-white']}>
+          {n === 8 ? '8+' : n}
+        </button>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  import { $filters, type Filters } from '../../stores/filters';
+
+  // Redessine les pastilles allumées d'après les valeurs actuelles de Min/Max
+  const renderRange = (section: HTMLElement) => {
+    const filters = $filters.get();
+    const min = Number(filters[`${section.dataset.range}Min` as keyof Filters]);
+    const max = Number(filters[`${section.dataset.range}Max` as keyof Filters]);
+
+    section.querySelectorAll<HTMLButtonElement>('button[data-value]').forEach((btn) => {
+      const v = Number(btn.dataset.value);
+      const active = !!min && v >= min && v <= max;
+      ['bg-primary', 'text-white'].forEach((cls) => btn.classList.toggle(cls, active));
+    });
+  };
+
+  $filters.subscribe(() => document.querySelectorAll<HTMLElement>('[data-range]').forEach(renderRange));
+
+  // Min et Max sont toujours les deux bornes d'une même plage (jamais l'un sans l'autre) :
+  // un premier clic les met tous les deux à la même valeur (ex: "exactement 3"), et chaque
+  // clic suivant soit agrandit la plage (Math.min/Math.max), soit la redéfinit entièrement.
+  const updateRange = (section: HTMLElement, clicked: number) => {
+    const filters = $filters.get();
+    const minKey = `${section.dataset.range}Min` as keyof Filters;
+    const maxKey = `${section.dataset.range}Max` as keyof Filters;
+    const currentMin = filters[minKey] ? Number(filters[minKey]) : null;
+    const currentMax = filters[maxKey] ? Number(filters[maxKey]) : null;
+
+    // Reclic sur une borne déjà choisie : rien ne change
+    if (clicked === currentMin || clicked === currentMax) return;
+
+    // En dehors de la plage actuelle (ou rien choisi) -> on agrandit ; sinon -> on repart à zéro
+    const extend = currentMin === null || clicked < currentMin || clicked > currentMax!;
+    const newMin = extend ? Math.min(currentMin ?? clicked, clicked) : clicked;
+    const newMax = extend ? Math.max(currentMax ?? clicked, clicked) : clicked;
+
+    $filters.set({ ...filters, [minKey]: String(newMin), [maxKey]: String(newMax) });
+  };
+
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-value]');
+    const section = btn?.closest<HTMLElement>('[data-range]');
+    if (!btn || !section) return;
+    updateRange(section, Number(btn.dataset.value));
+  });
+</script>
