@@ -1,0 +1,68 @@
+---
+// #region - frontmatter
+
+import type { Filters } from '../../stores/filters';
+import FilterSection from './FilterSection.astro';
+
+interface Props {
+  name: keyof Filters;
+  title: string;
+  options: { label: string; value: string }[];
+  selected?: string | string[];
+  multiple?: boolean;
+}
+
+const { name, title, options, selected = '', multiple = false } = Astro.props;
+
+const selectedList = [selected].flat();
+
+const pillClass =
+  'flex h-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 px-4 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary';
+
+// @endregion
+---
+
+<FilterSection title={title}>
+  <div class="flex flex-wrap gap-2" data-choice={name} data-multiple={multiple || undefined}>
+    {
+      options.map((option) => (
+        <button type="button" data-option={option.value} class:list={[pillClass, selectedList.includes(option.value) && 'bg-primary text-white']}>
+          {option.label}
+        </button>
+      ))
+    }
+  </div>
+</FilterSection>
+
+<script>
+  import { $filters, type Filters } from '../../stores/filters';
+
+  const renderChoice = (group: HTMLElement) => {
+    const value = $filters.get()[group.dataset.choice as keyof Filters];
+    const selected = [value].flat();
+
+    group.querySelectorAll<HTMLButtonElement>('button[data-option]').forEach((btn) => {
+      const active = selected.includes(btn.dataset.option!);
+      ['bg-primary', 'text-white'].forEach((cls) => btn.classList.toggle(cls, active));
+    });
+  };
+
+  $filters.subscribe(() => document.querySelectorAll<HTMLElement>('[data-choice]').forEach(renderChoice));
+
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-option]');
+    const group = btn?.closest<HTMLElement>('[data-choice]');
+    if (!btn || !group) return;
+
+    const key = group.dataset.choice as keyof Filters;
+    const option = btn.dataset.option!;
+    const current = $filters.get()[key];
+
+    if (group.hasAttribute('data-multiple')) {
+      const list = current as string[];
+      $filters.setKey(key, list.includes(option) ? list.filter((v) => v !== option) : [...list, option]);
+    } else {
+      $filters.setKey(key, current === option ? '' : option);
+    }
+  });
+</script>
