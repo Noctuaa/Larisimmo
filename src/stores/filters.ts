@@ -29,3 +29,10 @@ export const $filters = map<Filters>({
   meuble: '',
   equipements: [],
 });
+
+if (typeof window !== 'undefined') {
+  const params = new URLSearchParams(window.location.search);
+  for (const key of Object.keys($filters.get()) as (keyof Filters)[]) {
+    $filters.setKey(key, key === 'equipements' ? params.getAll(key) : (params.get(key) ?? ''));
+  }
+}
