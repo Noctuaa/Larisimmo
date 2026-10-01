@@ -3,7 +3,7 @@
 import { DPE_CLASSES } from '../../types/property';
 
 import FilterSection from './FilterSection.astro';
-import FilterRange from './FilterRange.astro';
+import FilterRange from './FilterRange.vue';
 import FilterChoice from './FilterChoice.vue';
 
 interface Props {
@@ -110,10 +110,14 @@ const activeCount = activeFilters.filter(Boolean).length + (equipements.length ?
     </FilterSection>
 
     <!-- Chambres (chambresMin/chambresMax) -->
-    <FilterRange name="chambres" title="Chambres" min={chambresMin} max={chambresMax} />
+    <FilterSection title="Chambres">
+      <FilterRange client:load name="chambres" min={chambresMin} max={chambresMax} />
+    </FilterSection>
 
     <!-- Pièces (piecesMin/piecesMax) -->
-    <FilterRange name="pieces" title="Pièces" min={piecesMin} max={piecesMax} />
+    <FilterSection title="Pièces">
+      <FilterRange client:load name="pieces" min={piecesMin} max={piecesMax} />
+    </FilterSection>
 
     <!-- Surface (surfaceMin/surfaceMax) -->
     <FilterSection title="Surface">
