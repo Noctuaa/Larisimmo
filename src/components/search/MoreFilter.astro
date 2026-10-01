@@ -4,7 +4,7 @@ import { DPE_CLASSES } from '../../types/property';
 
 import FilterSection from './FilterSection.astro';
 import FilterRange from './FilterRange.astro';
-import FilterChoice from './FilterChoice.astro';
+import FilterChoice from './FilterChoice.vue';
 
 interface Props {
   transaction?: string;
@@ -81,28 +81,33 @@ const activeCount = activeFilters.filter(Boolean).length + (equipements.length ?
     </button>
   </div>
 
-  <section class="flex flex-col gap-4 overflow-y-auto p-6">
+  <div class="flex flex-col gap-4 overflow-y-auto p-6">
     <!-- Transaction (achat/location) -->
-    <FilterChoice
-      name="transaction"
-      title="Achat ou location"
-      options={[
-        { label: 'Achat', value: 'vente' },
-        { label: 'Location', value: 'location' },
-      ]}
-      selected={transaction}
-    />
+    <FilterSection title="Achat ou location">
+      <FilterChoice
+        client:load
+        name="transaction"
+        options={[
+          { label: 'Achat', value: 'vente' },
+          { label: 'Location', value: 'location' },
+        ]}
+        selected={transaction}
+      />
+    </FilterSection>
+
     <!-- Type de bien (maison/appartement/chalet) -->
-    <FilterChoice
-      name="type"
-      title="Type de bien"
-      options={[
-        { label: 'Maison', value: 'Maison' },
-        { label: 'Appartement', value: 'Appartement' },
-        { label: 'Chalet', value: 'Chalet' },
-      ]}
-      selected={type}
-    />
+    <FilterSection title="Type de bien">
+      <FilterChoice
+        client:load
+        name="type"
+        options={[
+          { label: 'Maison', value: 'Maison' },
+          { label: 'Appartement', value: 'Appartement' },
+          { label: 'Chalet', value: 'Chalet' },
+        ]}
+        selected={type}
+      />
+    </FilterSection>
 
     <!-- Chambres (chambresMin/chambresMax) -->
     <FilterRange name="chambres" title="Chambres" min={chambresMin} max={chambresMax} />
@@ -125,15 +130,18 @@ const activeCount = activeFilters.filter(Boolean).length + (equipements.length ?
     </FilterSection>
 
     <!-- Meuble (meuble) -->
-    <FilterChoice
-      name="meuble"
-      title="Meublé / Non meublé"
-      options={[
-        { label: 'Meublé', value: 'true' },
-        { label: 'Non meublé', value: 'false' },
-      ]}
-      selected={meuble}
-    />
+    <FilterSection title="Meublé / Non meublé">
+      <FilterChoice
+        client:load
+        name="meuble"
+        options={[
+          { label: 'Meublé', value: 'true' },
+          { label: 'Non meublé', value: 'false' },
+        ]}
+        selected={meuble}
+      />
+    </FilterSection>
+
     <!-- DPE max -->
     <FilterSection title="Classe énergie">
       <select name="dpe" class={fieldClass}>
@@ -149,31 +157,28 @@ const activeCount = activeFilters.filter(Boolean).length + (equipements.length ?
     </FilterSection>
 
     <!-- Equipements -->
-    <FilterChoice
-      name="equipements"
-      title="Équipements"
-      options={allEquipements.map((eq) => ({ label: eq, value: eq }))}
-      selected={equipements}
-      multiple
-    />
-  </section>
+    <FilterSection title="Équipements">
+      <FilterChoice client:load name="equipements" options={allEquipements.map((eq) => ({ label: eq, value: eq }))} selected={equipements} multiple />
+    </FilterSection>
+  </div>
+
+  <style>
+    .more-filters-popover {
+      width: min(480px, 92vw);
+      max-height: 80vh;
+
+      flex-direction: column;
+      margin: auto;
+      border: none;
+      border-radius: 0.75rem;
+      padding: 0;
+      box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
+    }
+
+    .more-filters-popover::backdrop {
+      background: rgb(0 0 0 / 0.4);
+    }
+
+    /* TODO (Noc) : media query mobile pour passer en plein écran (width/height 100%, border-radius 0) */
+  </style>
 </div>
-<style>
-  .more-filters-popover {
-    width: min(480px, 92vw);
-    max-height: 80vh;
-
-    flex-direction: column;
-    margin: auto;
-    border: none;
-    border-radius: 0.75rem;
-    padding: 0;
-    box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
-  }
-
-  .more-filters-popover::backdrop {
-    background: rgb(0 0 0 / 0.4);
-  }
-
-  /* TODO (Noc) : media query mobile pour passer en plein écran (width/height 100%, border-radius 0) */
-</style>
