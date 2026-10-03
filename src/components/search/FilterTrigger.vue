@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import { useStore } from '@nanostores/vue';
-  import { $filters, type Filters } from '../../stores/filters';
+  import { $filters } from '../../stores/filters';
+  import { type Filters } from '../../types/filters';
 
   const props = defineProps<{
     name: keyof Filters;

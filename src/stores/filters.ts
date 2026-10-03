@@ -1,19 +1,8 @@
-import { map } from 'nanostores';
+import { computed, map } from 'nanostores';
+import type { Filters } from '../types/filters';
+import { countActiveFilters } from '../utils/countActiveFilters';
 
-export type Filters = {
-  transaction: string;
-  ville: string;
-  type: string;
-  chambresMin: string;
-  chambresMax: string;
-  piecesMin: string;
-  piecesMax: string;
-  surfaceMin: string;
-  surfaceMax: string;
-  dpe: string;
-  meuble: string;
-  equipements: string[];
-};
+
 
 export const $filters = map<Filters>({
   transaction: '',
@@ -30,9 +19,12 @@ export const $filters = map<Filters>({
   equipements: [],
 });
 
+
 if (typeof window !== 'undefined') {
   const params = new URLSearchParams(window.location.search);
   for (const key of Object.keys($filters.get()) as (keyof Filters)[]) {
     $filters.setKey(key, key === 'equipements' ? params.getAll(key) : (params.get(key) ?? ''));
   }
 }
+
+export const $activeFiltersCount = computed($filters, countActiveFilters);
