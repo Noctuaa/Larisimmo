@@ -111,6 +111,8 @@ const labelClass = 'mb-2 text-xs font-semibold text-gray-500';
     labelClass={labelClass}
   />
 
+  <FilterButton client:load initialCount={activeCount} fieldClass={fieldClass} />
+
   <!-- Filtres -->
   <MoreFilter
     transaction={transaction}

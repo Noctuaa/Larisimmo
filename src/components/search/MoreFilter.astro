@@ -5,7 +5,6 @@ import { DPE_CLASSES } from '../../types/property';
 import FilterSection from './FilterSection.astro';
 import FilterRange from './FilterRange.vue';
 import FilterChoice from './FilterChoice.vue';
-import FilterButton from './FilterButton.vue';
 
 interface Props {
   transaction?: string;
@@ -53,20 +52,8 @@ const allEquipements = [
   'Cuisine équipée',
 ];
 
-// Un filtre compte pour 1 dès qu'il a une valeur (pour les plages : Min ou Max suffit)
-const activeFilters = [transaction, type, chambresMin || chambresMax, piecesMin || piecesMax, surfaceMin || surfaceMax, meuble, dpeMax];
-const activeCount = activeFilters.filter(Boolean).length + (equipements.length ? 1 : 0);
 // #endregion
 ---
-
-<button type="button" popovertarget="more-filters" class:list={[fieldClass, 'flex items-center gap-2 hover:bg-gray-50']}>
-  Filtres
-  {
-    activeCount > 0 && (
-      <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">{activeCount}</span>
-    )
-  }
-</button>
 
 <div popover id="more-filters" class="more-filters-popover">
   <div class="flex items-center justify-between border-b border-gray-100 px-6 py-3">

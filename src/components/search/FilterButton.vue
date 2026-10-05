@@ -1,30 +1,17 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import { useStore } from '@nanostores/vue';
-  import { $filters } from '../../stores/filters';
+  import {  $activeFiltersCount } from '../../stores/filters';
 
   const props = defineProps<{
     initialCount: number;
     fieldClass: string;
   }>();
 
-  const filters = useStore($filters);
 
-  const count = computed(() => {
-    if (import.meta.env.SSR) return props.initialCount;
+  const activeCount = useStore($activeFiltersCount);
 
-    const f = filters.value;
-    return [
-      f.transaction,
-      f.type,
-      f.chambresMin || f.chambresMax,
-      f.piecesMin || f.piecesMax,
-      f.surfaceMin || f.surfaceMax,
-      f.meuble,
-      f.dpe,
-      f.equipements.length,
-    ].filter(Boolean).length;
-  });
+  const count = computed(() => (import.meta.env.SSR ? props.initialCount : activeCount.value));
 </script>
 
 <template>
