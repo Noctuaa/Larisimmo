@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { computed, onMounted } from 'vue';
+  import { computed} from 'vue';
   import { useStore } from '@nanostores/vue';
   import { $filters} from '../../stores/filters';
   import { type Filters } from '../../types/filters';
@@ -24,10 +24,6 @@
       $filters.setKey(props.name, value === option ? '' : option);
     }
   }
-
-  onMounted(() => {
-    console.log(import.meta.env.SSR)
-  });
 
   const pillClass = 'flex h-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 px-4 text-sm text-gray-700';
 </script>

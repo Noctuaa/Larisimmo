@@ -19,7 +19,7 @@ interface Props {
   piecesMax?: string;
   surfaceMin?: string;
   surfaceMax?: string;
-  dpeMax?: string;
+  dpe?: string;
   meuble?: string;
   equipements?: string[];
 }
@@ -36,7 +36,7 @@ const {
   piecesMax = '',
   surfaceMin = '',
   surfaceMax = '',
-  dpeMax = '',
+  dpe = '',
   meuble = '',
   equipements = [],
 } = Astro.props;
@@ -51,7 +51,7 @@ const activeCount = countActiveFilters({
   piecesMax,
   surfaceMin,
   surfaceMax,
-  dpe: dpeMax,
+  dpe: dpe,
   meuble,
   equipements,
 });
@@ -123,7 +123,7 @@ const labelClass = 'mb-2 text-xs font-semibold text-gray-500';
     piecesMax={piecesMax}
     surfaceMin={surfaceMin}
     surfaceMax={surfaceMax}
-    dpeMax={dpeMax}
+    dpe={dpe}
     meuble={meuble}
     equipements={equipements}
     fieldClass={fieldClass}
@@ -144,8 +144,6 @@ const labelClass = 'mb-2 text-xs font-semibold text-gray-500';
     if (!(target.name in $filters.get())) return;
     $filters.setKey(target.name as keyof Filters, target.value);
   });
-
-  //$filters.subscribe((filters) => console.log(filters));
 
   const searchUrl = (): string => {
     const urlParams = new URLSearchParams();

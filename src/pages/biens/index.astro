@@ -22,7 +22,7 @@ const filters = {
   piecesMax: params.get('piecesMax') ?? '',
   surfaceMin: params.get('surfaceMin') ?? '',
   surfaceMax: params.get('surfaceMax') ?? '',
-  dpeMax: params.get('dpe') ?? '',
+  dpe: params.get('dpe') ?? '',
   meuble: params.get('meuble') ?? '',
   // Équipements : coché = plusieurs `equipements=` dans l'URL, le bien doit tous les avoir
   equipements: params.getAll('equipements'),
@@ -43,7 +43,7 @@ const filtered = (properties as Property[]).filter((p) => {
   if (filters.piecesMax && filters.piecesMax !== '8' && p.pieces > Number(filters.piecesMax)) return false;
   if (filters.surfaceMin && p.surface < Number(filters.surfaceMin)) return false;
   if (filters.surfaceMax && p.surface > Number(filters.surfaceMax)) return false;
-  if (filters.dpeMax && DPE_CLASSES.indexOf(p.dpe) > DPE_CLASSES.indexOf(filters.dpeMax as (typeof DPE_CLASSES)[number])) return false;
+  if (filters.dpe && DPE_CLASSES.indexOf(p.dpe) > DPE_CLASSES.indexOf(filters.dpe as (typeof DPE_CLASSES)[number])) return false;
   if (filters.meuble && String(p.meuble) !== filters.meuble) return false;
   if (filters.equipements.length && !filters.equipements.every((e) => p.equipements.includes(e))) return false;
   return true;

@@ -15,7 +15,7 @@ interface Props {
   piecesMax?: string;
   surfaceMin?: string;
   surfaceMax?: string;
-  dpeMax?: string;
+  dpe?: string;
   meuble?: string;
   equipements?: string[];
   fieldClass: string;
@@ -31,7 +31,7 @@ const {
   piecesMax = '',
   surfaceMin = '',
   surfaceMax = '',
-  dpeMax = '',
+  dpe = '',
   meuble = '',
   equipements = [],
   fieldClass,
@@ -139,9 +139,9 @@ const allEquipements = [
       <select name="dpe" class={fieldClass}>
         <option value="">Indifférent</option>
         {
-          DPE_CLASSES.map((dpe) => (
-            <option value={dpe} selected={dpe === dpeMax}>
-              {dpe}
+          DPE_CLASSES.map((classe) => (
+            <option value={classe} selected={classe === dpe}>
+              {classe}
             </option>
           ))
         }
