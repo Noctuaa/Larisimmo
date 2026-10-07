@@ -134,18 +134,9 @@ const allEquipements = [
       />
     </FilterSection>
 
-    <!-- DPE max -->
+    <!-- DPE (classe minimale) -->
     <FilterSection title="Classe énergie">
-      <select name="dpe" class={fieldClass}>
-        <option value="">Indifférent</option>
-        {
-          DPE_CLASSES.map((classe) => (
-            <option value={classe} selected={classe === dpe}>
-              {classe}
-            </option>
-          ))
-        }
-      </select>
+      <FilterChoice client:load name="dpe" options={DPE_CLASSES.map((c) => ({ label: c, value: c }))} selected={dpe} />
     </FilterSection>
 
     <!-- Equipements -->
@@ -153,24 +144,33 @@ const allEquipements = [
       <FilterChoice client:load name="equipements" options={allEquipements.map((eq) => ({ label: eq, value: eq }))} selected={equipements} multiple />
     </FilterSection>
   </div>
-
-  <style>
-    .more-filters-popover {
-      width: min(480px, 92vw);
-      max-height: 80vh;
-
-      flex-direction: column;
-      margin: auto;
-      border: none;
-      border-radius: 0.75rem;
-      padding: 0;
-      box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
-    }
-
-    .more-filters-popover::backdrop {
-      background: rgb(0 0 0 / 0.4);
-    }
-
-    /* TODO (Noc) : media query mobile pour passer en plein écran (width/height 100%, border-radius 0) */
-  </style>
+  <button type="button" data-clear-filters class="text-sm font-semibold text-primary underline">Tout effacer</button>
 </div>
+
+<style>
+  .more-filters-popover {
+    width: min(480px, 92vw);
+    max-height: 80vh;
+
+    flex-direction: column;
+    margin: auto;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0;
+    box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
+  }
+
+  .more-filters-popover::backdrop {
+    background: rgb(0 0 0 / 0.4);
+  }
+
+  /* TODO (Noc) : media query mobile pour passer en plein écran (width/height 100%, border-radius 0) */
+</style>
+
+<script>
+  import { resetFilters } from '../../stores/filters';
+
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('[data-clear-filters]')) resetFilters();
+  });
+</script>
