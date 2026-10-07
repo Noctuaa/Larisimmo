@@ -5,6 +5,7 @@ import { DPE_CLASSES } from '../../types/property';
 import FilterSection from './FilterSection.astro';
 import FilterRange from './FilterRange.vue';
 import FilterChoice from './FilterChoice.vue';
+import FilterNumberRange from './FilterNumberRange.vue';
 
 interface Props {
   transaction?: string;
@@ -109,16 +110,7 @@ const allEquipements = [
 
     <!-- Surface (surfaceMin/surfaceMax) -->
     <FilterSection title="Surface">
-      <div class="flex gap-4">
-        <div class="flex flex-col">
-          <label for="filter-surface-min" class={labelClass}>Min.</label>
-          <input type="number" id="filter-surface-min" name="surfaceMin" min="0" value={surfaceMin} class={fieldClass} />
-        </div>
-        <div class="flex flex-col">
-          <label for="filter-surface-max" class={labelClass}>Max.</label>
-          <input type="number" id="filter-surface-max" name="surfaceMax" min="0" value={surfaceMax} class={fieldClass} />
-        </div>
-      </div>
+      <FilterNumberRange client:load name="surface" unit="m²" min={surfaceMin} max={surfaceMax} fieldClass={fieldClass} labelClass={labelClass} />
     </FilterSection>
 
     <!-- Meuble (meuble) -->
