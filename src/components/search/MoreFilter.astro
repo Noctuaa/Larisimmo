@@ -35,8 +35,6 @@ const {
   dpe = '',
   meuble = '',
   equipements = [],
-  fieldClass,
-  labelClass,
 } = Astro.props;
 
 const allEquipements = [
@@ -57,7 +55,7 @@ const allEquipements = [
 ---
 
 <div popover id="more-filters" class="more-filters-popover">
-  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-3">
+  <header class="flex items-center justify-between border-b border-gray-300 px-6 py-4">
     <span class="text-lg font-bold text-primary">Tous les filtres</span>
     <button
       type="button"
@@ -68,7 +66,7 @@ const allEquipements = [
     >
       ✕
     </button>
-  </div>
+  </header>
 
   <div class="flex flex-col gap-4 overflow-y-auto p-6">
     <!-- Transaction (achat/location) -->
@@ -110,7 +108,7 @@ const allEquipements = [
 
     <!-- Surface (surfaceMin/surfaceMax) -->
     <FilterSection title="Surface">
-      <FilterNumberRange client:load name="surface" unit="m²" min={surfaceMin} max={surfaceMax} fieldClass={fieldClass} labelClass={labelClass} />
+      <FilterNumberRange client:load name="surface" unit="m²" min={surfaceMin} max={surfaceMax} />
     </FilterSection>
 
     <!-- Meuble (meuble) -->
@@ -136,20 +134,32 @@ const allEquipements = [
       <FilterChoice client:load name="equipements" options={allEquipements.map((eq) => ({ label: eq, value: eq }))} selected={equipements} multiple />
     </FilterSection>
   </div>
-  <button type="button" data-clear-filters class="text-sm font-semibold text-primary underline">Tout effacer</button>
+  <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">
+    <button type="button" data-clear-filters class="btn-link">Tout effacer</button>
+    <button type="button" class="btn-primary">
+      Rechercher
+      <span class="mt-2 text-gray-600">N</span>
+    </button>
+  </footer>
 </div>
 
 <style>
   .more-filters-popover {
-    width: min(480px, 92vw);
-    max-height: 80vh;
-
-    flex-direction: column;
-    margin: auto;
+    inset: 0 0 0 auto;
+    margin: 0;
+    width: min(480px, 100vw);
+    height: 100dvh;
+    max-height: none;
     border: none;
-    border-radius: 0.75rem;
+    border-radius: 0;
     padding: 0;
+    overflow: hidden;
     box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
+  }
+
+  .more-filters-popover:popover-open {
+    display: flex;
+    flex-direction: column;
   }
 
   .more-filters-popover::backdrop {
