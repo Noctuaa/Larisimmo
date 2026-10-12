@@ -53,92 +53,101 @@ const allEquipements = [
 ---
 
 <div popover id="more-filters" class="more-filters-popover">
-  <header class="flex items-center justify-between border-b border-gray-300 px-6 py-4">
-    <span class="text-lg font-bold text-primary">Tous les filtres</span>
-    <button
-      type="button"
-      popovertarget="more-filters"
-      popovertargetaction="hide"
-      class="flex h-9 w-9 items-center justify-center rounded-full text-lg text-gray-700 hover:bg-gray-100"
-      aria-label="Fermer"
-    >
-      ✕
-    </button>
-  </header>
+  <div class="flex h-full flex-col">
+    <header class="flex items-center justify-between border-b border-gray-300 px-6 py-4">
+      <span class="text-lg font-bold text-primary">Tous les filtres</span>
+      <button
+        type="button"
+        popovertarget="more-filters"
+        popovertargetaction="hide"
+        class="flex h-9 w-9 items-center justify-center rounded-full text-lg text-gray-700 hover:bg-gray-100"
+        aria-label="Fermer"
+      >
+        ✕
+      </button>
+    </header>
 
-  <div class="flex flex-col gap-4 overflow-y-auto p-6">
-    <!-- Transaction (achat/location) -->
-    <FilterSection title="Achat ou location">
-      <FilterChoice
-        client:load
-        name="transaction"
-        options={[
-          { label: 'Achat', value: 'vente' },
-          { label: 'Location', value: 'location' },
-        ]}
-        selected={transaction}
-      />
-    </FilterSection>
+    <div class="flex flex-col gap-4 overflow-y-auto p-6">
+      <!-- Transaction (achat/location) -->
+      <FilterSection title="Achat ou location">
+        <FilterChoice
+          client:load
+          name="transaction"
+          options={[
+            { label: 'Achat', value: 'vente' },
+            { label: 'Location', value: 'location' },
+          ]}
+          selected={transaction}
+        />
+      </FilterSection>
 
-    <!-- Type de bien (maison/appartement/chalet) -->
-    <FilterSection title="Type de bien">
-      <FilterChoice
-        client:load
-        name="type"
-        options={[
-          { label: 'Maison', value: 'Maison' },
-          { label: 'Appartement', value: 'Appartement' },
-          { label: 'Chalet', value: 'Chalet' },
-        ]}
-        selected={type}
-      />
-    </FilterSection>
+      <!-- Type de bien (maison/appartement/chalet) -->
+      <FilterSection title="Type de bien">
+        <FilterChoice
+          client:load
+          name="type"
+          options={[
+            { label: 'Maison', value: 'Maison' },
+            { label: 'Appartement', value: 'Appartement' },
+            { label: 'Chalet', value: 'Chalet' },
+          ]}
+          selected={type}
+        />
+      </FilterSection>
 
-    <!-- Chambres (chambresMin/chambresMax) -->
-    <FilterSection title="Chambres">
-      <FilterRange client:load name="chambres" min={chambresMin} max={chambresMax} />
-    </FilterSection>
+      <!-- Chambres (chambresMin/chambresMax) -->
+      <FilterSection title="Chambres">
+        <FilterRange client:load name="chambres" min={chambresMin} max={chambresMax} />
+      </FilterSection>
 
-    <!-- Pièces (piecesMin/piecesMax) -->
-    <FilterSection title="Pièces">
-      <FilterRange client:load name="pieces" min={piecesMin} max={piecesMax} />
-    </FilterSection>
+      <!-- Pièces (piecesMin/piecesMax) -->
+      <FilterSection title="Pièces">
+        <FilterRange client:load name="pieces" min={piecesMin} max={piecesMax} />
+      </FilterSection>
 
-    <!-- Surface (surfaceMin/surfaceMax) -->
-    <FilterSection title="Surface">
-      <FilterNumberRange client:load name="surface" unit="m²" min={surfaceMin} max={surfaceMax} />
-    </FilterSection>
+      <!-- Surface (surfaceMin/surfaceMax) -->
+      <FilterSection title="Surface">
+        <FilterNumberRange client:load name="surface" unit="m²" min={surfaceMin} max={surfaceMax} />
+      </FilterSection>
 
-    <!-- Meuble (meuble) -->
-    <FilterSection title="Meublé / Non meublé">
-      <FilterChoice
-        client:load
-        name="meuble"
-        options={[
-          { label: 'Meublé', value: 'true' },
-          { label: 'Non meublé', value: 'false' },
-        ]}
-        selected={meuble}
-      />
-    </FilterSection>
+      <!-- Meuble (meuble) -->
+      <FilterSection title="Meublé / Non meublé">
+        <FilterChoice
+          client:load
+          name="meuble"
+          options={[
+            { label: 'Meublé', value: 'true' },
+            { label: 'Non meublé', value: 'false' },
+          ]}
+          selected={meuble}
+        />
+      </FilterSection>
 
-    <!-- DPE (classe minimale) -->
-    <FilterSection title="Classe énergie">
-      <FilterChoice client:load name="dpe" options={DPE_CLASSES.map((c) => ({ label: c, value: c }))} selected={dpe} />
-    </FilterSection>
+      <!-- DPE (classe minimale) -->
+      <FilterSection title="Classe énergie">
+        <FilterChoice client:load name="dpe" options={DPE_CLASSES.map((c) => ({ label: c, value: c }))} selected={dpe} />
+      </FilterSection>
 
-    <!-- Equipements -->
-    <FilterSection title="Équipements">
-      <FilterChoice client:load name="equipements" options={allEquipements.map((eq) => ({ label: eq, value: eq }))} selected={equipements} multiple />
-    </FilterSection>
+      <!-- Equipements -->
+      <FilterSection title="Équipements">
+        <FilterChoice
+          client:load
+          name="equipements"
+          options={allEquipements.map((eq) => ({ label: eq, value: eq }))}
+          selected={equipements}
+          multiple
+        />
+      </FilterSection>
+    </div>
+
+    <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">
+      <button type="button" data-clear-filters class="btn-link">Tout effacer</button>
+      <button type="button" class="btn-primary">
+        Rechercher
+        <span class="mt-2 text-gray-600">N</span>
+      </button>
+    </footer>
   </div>
-  <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">
-    <button type="button" data-clear-filters class="btn-link">Tout effacer</button>
-    <button type="button" class="btn-primary">
-      Rechercher
-      <span class="mt-2 text-gray-600">N</span>
-    </button>
-  </footer>
 </div>
 
 <style>
@@ -153,18 +162,34 @@ const allEquipements = [
     padding: 0;
     overflow: hidden;
     box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
+    transform: translateX(100%);
+    transition:
+      transform 0.25s ease-out,
+      display 0.25s allow-discrete,
+      overlay 0.25s allow-discrete;
   }
 
   .more-filters-popover:popover-open {
-    display: flex;
-    flex-direction: column;
+    transform: translateX(0);
+
+    @starting-style {
+      transform: translateX(100%);
+    }
   }
 
   .more-filters-popover::backdrop {
     background: rgb(0 0 0 / 0.4);
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
   }
 
-  /* TODO (Noc) : media query mobile pour passer en plein écran (width/height 100%, border-radius 0) */
+  .more-filters-popover:popover-open::backdrop {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
 </style>
 
 <script>
