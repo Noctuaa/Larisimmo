@@ -35,7 +35,7 @@
 
 <template>
   <div class="flex gap-2">
-    <div v-for="f in fields" :key="f.id" class="flex flex-col">
+    <div v-for="f in fields" :key="f.id" class="flex flex-col min-w-0 flex-1">
       <label :for="f.id" class="field-label">{{ f.label }}</label>
       <div class="relative">
         <input
@@ -43,7 +43,7 @@
           inputmode="numeric"
           :id="f.id"
           :value="f.value"
-          class="peer field"
+          class="peer field w-full pr-12"
           @input="update(f.key, $event)"
         />
         <span class="absolute right-0 inset-y-0 flex items-center px-3 text-sm text-primary border-l border-gray-200 rounded-r-lg peer-focus:border-primary">{{ unit }}</span>

@@ -2,6 +2,8 @@ export type Filters = {
   transaction: string;
   ville: string;
   type: string;
+  prixMin: string;
+  prixMax: string;
   chambresMin: string;
   chambresMax: string;
   piecesMin: string;

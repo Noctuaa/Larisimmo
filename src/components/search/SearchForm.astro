@@ -45,6 +45,8 @@ const activeCount = countActiveFilters({
   transaction,
   ville,
   type,
+  prixMin,
+  prixMax,
   chambresMin,
   chambresMax,
   piecesMin,
@@ -104,6 +106,8 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
   <MoreFilter
     transaction={transaction}
     type={type}
+    prixMin={prixMin}
+    prixMax={prixMax}
     chambresMin={chambresMin}
     chambresMax={chambresMax}
     piecesMin={piecesMin}

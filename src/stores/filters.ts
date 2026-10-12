@@ -6,6 +6,8 @@ const initialFilters: Filters = {
   transaction: '',
   ville: '',
   type: '',
+  prixMin: '',
+  prixMax: '',
   chambresMin: '',
   chambresMax: '',
   piecesMin: '',

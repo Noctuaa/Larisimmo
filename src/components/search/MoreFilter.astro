@@ -10,6 +10,8 @@ import FilterNumberRange from './FilterNumberRange.vue';
 interface Props {
   transaction?: string;
   type?: string;
+  prixMin?: string;
+  prixMax?: string;
   chambresMin?: string;
   chambresMax?: string;
   piecesMin?: string;
@@ -24,6 +26,8 @@ interface Props {
 const {
   transaction = '',
   type = '',
+  prixMin = '',
+  prixMax = '',
   chambresMin = '',
   chambresMax = '',
   piecesMin = '',
@@ -93,6 +97,11 @@ const allEquipements = [
           ]}
           selected={type}
         />
+      </FilterSection>
+
+      <!-- Prix (prixMin/prixMax) -->
+      <FilterSection title="Prix">
+        <FilterNumberRange client:load name="prix" unit="€" min={prixMin} max={prixMax} />
       </FilterSection>
 
       <!-- Chambres (chambresMin/chambresMax) -->
