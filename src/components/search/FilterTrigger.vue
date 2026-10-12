@@ -10,8 +10,6 @@
     placeholder: string;
     options: { label: string; value: string }[];
     selected: string | string[];
-    fieldClass: string;
-    labelClass: string;
   }>();
 
   const filters = useStore($filters);
@@ -31,8 +29,8 @@
 
 <template>
   <div class="flex flex-col gap-1">
-    <span :class="labelClass">{{ label }}</span>
-    <button type="button" popovertarget="more-filters" :class="[fieldClass, 'w-full text-left lg:w-40']">
+    <span class="field-label">{{ label }}</span>
+    <button type="button" popovertarget="more-filters" class='field w-full text-left lg:w-40'>
       {{ text }}
     </button>
   </div>

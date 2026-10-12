@@ -5,7 +5,6 @@
 
   const props = defineProps<{
     initialCount: number;
-    fieldClass: string;
   }>();
 
 
@@ -15,7 +14,7 @@
 </script>
 
 <template>
-  <button type="button" popovertarget="more-filters" :class="[fieldClass, 'flex items-center gap-2 hover:bg-gray-50']">
+  <button type="button" popovertarget="more-filters" class='field flex items-center gap-2 hover:bg-gray-50'>
     Filtres
     <span v-if="count > 0" class="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">
       {{ count }}
