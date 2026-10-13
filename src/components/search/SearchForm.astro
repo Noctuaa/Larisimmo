@@ -127,6 +127,7 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
   import { $filters } from '../../stores/filters';
   import { type Filters } from '../../types/filters';
   import { LAST_SEARCH_KEY } from '../../utils/lastSearch';
+  import { $results, $isLoading } from '../../stores/results';
 
   document.addEventListener('change', (e) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
@@ -152,7 +153,18 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
     navigate(url, { history: 'replace' });
   };
 
-  $filters.listen(runSearch);
+  const fetchResults = async () => {
+    $isLoading.set(true);
+    const url = searchUrl().replace('/biens', '/api/biens');
+    const response = await fetch(url);
+    $results.set(await response.json());
+    $isLoading.set(false);
+  };
+
+  $filters.listen(() => {
+    history.replaceState(null, '', searchUrl());
+    fetchResults();
+  });
 
   document.addEventListener('submit', (e) => {
     if (!(e.target as HTMLElement).closest('.search-form')) return;
