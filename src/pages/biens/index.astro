@@ -5,7 +5,8 @@ import Layout from '../../layouts/Layout.astro';
 import PropertyCard from '../../components/cards/PropertyCard.astro';
 import SearchForm from '../../components/search/SearchForm.astro';
 import properties from '../../data/biens.json';
-import { DPE_CLASSES, type Property } from '../../types/property';
+import type { Property } from '../../types/property';
+import { filterProperties } from '../../utils/filterProperties';
 
 const params = Astro.url.searchParams;
 
@@ -28,31 +29,12 @@ const filters = {
   equipements: params.getAll('equipements'),
 };
 
-/**Passe chaque bien en revue un par un (p) et le rejette (return false) dès qu'un critère
-  rempli par l'utilisateur ne correspond pas. S'il passe tous les tests, il est gardé (return true).**/
-const filtered = (properties as Property[]).filter((p) => {
-  if (filters.ville && p.ville !== filters.ville) return false;
-  if (filters.type && p.type !== filters.type) return false;
-  if (filters.transaction && p.transaction !== filters.transaction) return false;
-  if (filters.prixMin && p.prix < Number(filters.prixMin)) return false;
-  if (filters.prixMax && p.prix > Number(filters.prixMax)) return false;
-  if (filters.chambresMin && p.chambres < Number(filters.chambresMin)) return false;
-  // "8" en Max veut dire "8 et plus" (la pastille "8+" de FilterRange), donc pas de plafond réel
-  if (filters.chambresMax && filters.chambresMax !== '8' && p.chambres > Number(filters.chambresMax)) return false;
-  if (filters.piecesMin && p.pieces < Number(filters.piecesMin)) return false;
-  if (filters.piecesMax && filters.piecesMax !== '8' && p.pieces > Number(filters.piecesMax)) return false;
-  if (filters.surfaceMin && p.surface < Number(filters.surfaceMin)) return false;
-  if (filters.surfaceMax && p.surface > Number(filters.surfaceMax)) return false;
-  if (filters.dpe && DPE_CLASSES.indexOf(p.dpe) > DPE_CLASSES.indexOf(filters.dpe as (typeof DPE_CLASSES)[number])) return false;
-  if (filters.meuble && String(p.meuble) !== filters.meuble) return false;
-  if (filters.equipements.length && !filters.equipements.every((e) => p.equipements.includes(e))) return false;
-  return true;
-});
-
-const perPage = 12;
-const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
-const currentPage = Math.min(Math.max(1, Number(params.get('page')) || 1), totalPages);
-const paginated = filtered.slice((currentPage - 1) * perPage, currentPage * perPage);
+const {
+  items: paginated,
+  total,
+  page: currentPage,
+  totalPages,
+} = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
 
 // Construit un lien vers /biens en conservant les filtres actuels, avec un param en plus/écrasé
 const pageLink = (page: number) => {
@@ -122,7 +104,7 @@ const pageLink = (page: number) => {
     <div class="mb-8">
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
-      <p class="mt-2 text-gray-600">{filtered.length} bien{filtered.length > 1 ? 's' : ''} trouvé{filtered.length > 1 ? 's' : ''}</p>
+      <p class="mt-2 text-gray-600">{total} bien{total > 1 ? 's' : ''} trouvé{total > 1 ? 's' : ''}</p>
     </div>
 
     {
