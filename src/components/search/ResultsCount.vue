@@ -12,5 +12,5 @@
 </script>
 
 <template>
-  <p>{{ total }} biens</p>
+  <p class="mt-2 text-gray-600">{{ total }} bien{{ total > 1 ? 's' : '' }} trouvé{{ total > 1 ? 's' : '' }}</p>
 </template>

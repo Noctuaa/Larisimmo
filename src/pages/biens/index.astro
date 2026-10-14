@@ -2,7 +2,6 @@
 export const prerender = false;
 
 import Layout from '../../layouts/Layout.astro';
-import PropertyCard from '../../components/cards/PropertyCard.astro';
 import SearchForm from '../../components/search/SearchForm.astro';
 import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
@@ -33,7 +32,7 @@ const filters = {
 
 const initialResults = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
 
-const { items: paginated, total, page: currentPage, totalPages } = initialResults;
+const { total, page: currentPage, totalPages } = initialResults;
 
 // Construit un lien vers /biens en conservant les filtres actuels, avec un param en plus/écrasé
 const pageLink = (page: number) => {
@@ -103,22 +102,10 @@ const pageLink = (page: number) => {
     <div class="mb-8">
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
-      <p class="mt-2 text-gray-600">{total} bien{total > 1 ? 's' : ''} trouvé{total > 1 ? 's' : ''}</p>
       <ResultsCount client:load initialTotal={total} />
-      <PropertyList client:load initial={initialResults} />
     </div>
 
-    {
-      paginated.length > 0 ? (
-        <div class="grid grid-fill gap-8">
-          {paginated.map((property) => (
-            <PropertyCard property={property} />
-          ))}
-        </div>
-      ) : (
-        <p class="text-center text-gray-500">Aucun bien ne correspond à votre recherche.</p>
-      )
-    }
+    <PropertyList client:load initial={initialResults} />
 
     {
       totalPages > 1 && (
