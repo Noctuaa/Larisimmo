@@ -127,7 +127,6 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
   import { $filters } from '../../stores/filters';
   import { type Filters } from '../../types/filters';
   import { LAST_SEARCH_KEY } from '../../utils/lastSearch';
-  import { $searchResults, $isLoading } from '../../stores/searchResults';
 
   document.addEventListener('change', (e) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
@@ -153,17 +152,11 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
     navigate(url, { history: 'replace' });
   };
 
-  const fetchResults = async () => {
-    $isLoading.set(true);
-    const url = searchUrl().replace('/biens', '/api/biens');
-    const response = await fetch(url);
-    $searchResults.set(await response.json());
-    $isLoading.set(false);
-  };
-
+  // On attend 300 ms après le dernier changement : taper "250000" ne lance qu'une seule recherche
+  let searchTimer: number;
   $filters.listen(() => {
-    history.replaceState(null, '', searchUrl());
-    fetchResults();
+    clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(runSearch, 300);
   });
 
   document.addEventListener('submit', (e) => {

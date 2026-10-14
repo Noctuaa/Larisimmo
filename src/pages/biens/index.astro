@@ -6,7 +6,6 @@ import SearchForm from '../../components/search/SearchForm.astro';
 import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 import { filterProperties } from '../../utils/filterProperties';
-import ResultsCount from '../../components/search/ResultsCount.vue';
 import PropertyList from '../../components/search/PropertyList.vue';
 
 const params = Astro.url.searchParams;
@@ -30,9 +29,7 @@ const filters = {
   equipements: params.getAll('equipements'),
 };
 
-const initialResults = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
-
-const { total, page: currentPage, totalPages } = initialResults;
+const { items, total, page: currentPage, totalPages } = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
 
 // Construit un lien vers /biens en conservant les filtres actuels, avec un param en plus/écrasé
 const pageLink = (page: number) => {
@@ -98,14 +95,14 @@ const pageLink = (page: number) => {
     <SearchForm {...filters} />
   </div>
 
-  <main class="container py-12">
+  <main id="results" class="container py-12" data-count={total}>
     <div class="mb-8">
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
-      <ResultsCount client:load initialTotal={total} />
+      <p class="mt-2 text-gray-600">{total} bien{total > 1 ? 's' : ''} trouvé{total > 1 ? 's' : ''}</p>
     </div>
 
-    <PropertyList client:load initial={initialResults} />
+    <PropertyList client:load items={items} />
 
     {
       totalPages > 1 && (

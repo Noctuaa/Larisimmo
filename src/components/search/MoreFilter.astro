@@ -151,9 +151,8 @@ const allEquipements = [
 
     <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">
       <button type="button" data-clear-filters class="btn btn-secondary">Effacer</button>
-      <button type="button" class="btn btn-primary">
-        Rechercher
-        <span class="mt-2 text-gray-600">N</span>
+      <button type="button" popovertarget="more-filters" popovertargetaction="hide" class="btn btn-primary">
+        Rechercher <span data-results-count></span>
       </button>
     </footer>
   </div>
@@ -186,6 +185,12 @@ const allEquipements = [
     }
   }
 
+  /* Posé par le script pendant un changement de page : évite que l'animation se rejoue quand Astro déplace le panneau */
+  .more-filters-popover[data-no-anim],
+  .more-filters-popover[data-no-anim]::backdrop {
+    transition: none;
+  }
+
   .more-filters-popover::backdrop {
     background: rgb(0 0 0 / 0.4);
     opacity: 0;
@@ -206,5 +211,21 @@ const allEquipements = [
 
   document.addEventListener('click', (e) => {
     if ((e.target as HTMLElement).closest('[data-clear-filters]')) resetFilters();
+  });
+
+  // Pendant un changement de page, on coupe l'animation du panneau (Astro le déplace dans la nouvelle page)
+  document.addEventListener('astro:before-swap', () => {
+    document.getElementById('more-filters')?.setAttribute('data-no-anim', '');
+  });
+
+  // Une fois la page chargée : on met à jour le nombre de biens du bouton, puis on réactive l'animation
+  document.addEventListener('astro:page-load', () => {
+    const count = document.getElementById('results')?.dataset.count;
+    const label = document.querySelector('[data-results-count]');
+    if (label && count !== undefined) label.textContent = `(${count})`;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => document.getElementById('more-filters')?.removeAttribute('data-no-anim'));
+    });
   });
 </script>
