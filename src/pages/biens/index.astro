@@ -8,6 +8,7 @@ import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 import { filterProperties } from '../../utils/filterProperties';
 import ResultsCount from '../../components/search/ResultsCount.vue';
+import PropertyList from '../../components/search/PropertyList.vue';
 
 const params = Astro.url.searchParams;
 
@@ -30,12 +31,9 @@ const filters = {
   equipements: params.getAll('equipements'),
 };
 
-const {
-  items: paginated,
-  total,
-  page: currentPage,
-  totalPages,
-} = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
+const initialResults = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
+
+const { items: paginated, total, page: currentPage, totalPages } = initialResults;
 
 // Construit un lien vers /biens en conservant les filtres actuels, avec un param en plus/écrasé
 const pageLink = (page: number) => {
@@ -107,6 +105,7 @@ const pageLink = (page: number) => {
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
       <p class="mt-2 text-gray-600">{total} bien{total > 1 ? 's' : ''} trouvé{total > 1 ? 's' : ''}</p>
       <ResultsCount client:load initialTotal={total} />
+      <PropertyList client:load initial={initialResults} />
     </div>
 
     {
