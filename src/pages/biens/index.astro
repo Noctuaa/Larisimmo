@@ -7,6 +7,7 @@ import SearchForm from '../../components/search/SearchForm.astro';
 import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 import { filterProperties } from '../../utils/filterProperties';
+import ResultsCount from '../../components/search/ResultsCount.vue';
 
 const params = Astro.url.searchParams;
 
@@ -105,6 +106,7 @@ const pageLink = (page: number) => {
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
       <p class="mt-2 text-gray-600">{total} bien{total > 1 ? 's' : ''} trouvé{total > 1 ? 's' : ''}</p>
+      <ResultsCount client:load />
     </div>
 
     {

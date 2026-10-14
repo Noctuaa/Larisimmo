@@ -127,7 +127,7 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
   import { $filters } from '../../stores/filters';
   import { type Filters } from '../../types/filters';
   import { LAST_SEARCH_KEY } from '../../utils/lastSearch';
-  import { $results, $isLoading } from '../../stores/results';
+  import { $searchResults, $isLoading } from '../../stores/searchResults';
 
   document.addEventListener('change', (e) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
@@ -157,7 +157,7 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
     $isLoading.set(true);
     const url = searchUrl().replace('/biens', '/api/biens');
     const response = await fetch(url);
-    $results.set(await response.json());
+    $searchResults.set(await response.json());
     $isLoading.set(false);
   };
 

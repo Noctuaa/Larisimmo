@@ -1,7 +1,7 @@
 import { atom, map } from 'nanostores';
 import type { Property } from '../types/property';
 
-export const $results = map<{
+export const $searchResults = map<{
   items: Property[];
   total: number;
   page: number;
