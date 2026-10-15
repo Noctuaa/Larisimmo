@@ -3,9 +3,9 @@
 import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 import MoreFilter from './MoreFilter.astro';
-import FilterTrigger from './FilterTrigger.vue';
-import FilterButton from './FilterButton.vue';
-import FilterSelect from './FilterSelect.vue';
+import FilterTrigger from './filters/FilterTrigger.vue';
+import FilterButton from './filters/FilterButton.vue';
+import FilterSelect from './filters/FilterSelect.vue';
 import { countActiveFilters } from '../../utils/countActiveFilters';
 
 interface Props {

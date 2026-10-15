@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { computed} from 'vue';
+  import { computed } from 'vue';
   import { useStore } from '@nanostores/vue';
-  import { $filters} from '../../stores/filters';
-  import { type Filters } from '../../types/filters';
+  import { $filters } from '@/stores/filters';
+  import { type Filters } from '@/types/filters';
 
   const props = defineProps<{
     name: keyof Filters;
@@ -13,7 +13,7 @@
 
   const filters = useStore($filters);
 
-  const current = computed(() => [ import.meta.env.SSR ? props.selected : filters.value[props.name]].flat());
+  const current = computed(() => [import.meta.env.SSR ? props.selected : filters.value[props.name]].flat());
 
   const toggle = (option: string) => {
     const value = $filters.get()[props.name];
@@ -23,7 +23,7 @@
     } else {
       $filters.setKey(props.name, value === option ? '' : option);
     }
-  }
+  };
 
   const pillClass = 'flex h-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 px-4 text-sm text-gray-700';
 </script>

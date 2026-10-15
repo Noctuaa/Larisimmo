@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import { useStore } from '@nanostores/vue';
-  import { $filters } from '../../stores/filters';
-  import { type Filters } from '../../types/filters';
+  import { $filters } from '@/stores/filters';
+  import { type Filters } from '@/types/filters';
 
   const props = defineProps<{
     name: string;
@@ -22,8 +22,7 @@
   const currentMin = computed(() => toNumber(import.meta.env.SSR ? props.min : filters.value[minKey]));
   const currentMax = computed(() => toNumber(import.meta.env.SSR ? props.max : filters.value[maxKey]));
 
-  const isActive = (n: number) =>
-    currentMin.value !== null && currentMax.value !== null && n >= currentMin.value && n <= currentMax.value;
+  const isActive = (n: number) => currentMin.value !== null && currentMax.value !== null && n >= currentMin.value && n <= currentMax.value;
 
   const select = (clicked: number) => {
     const min = currentMin.value;
