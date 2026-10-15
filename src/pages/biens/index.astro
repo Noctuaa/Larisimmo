@@ -7,7 +7,6 @@ import type { Property } from '../../types/property';
 import { filterProperties } from '../../utils/filterProperties';
 import PropertyList from '../../components/search/PropertyList.vue';
 import SearchForm from '../../components/search/SearchForm.vue';
-import MoreFilter from '../../components/search/MoreFilter.astro';
 
 const params = Astro.url.searchParams;
 
@@ -95,9 +94,7 @@ const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort
         </svg>
       </button>
     </div>
-    <SearchForm client:load filters={filters} cities={cities} total={total}>
-      <MoreFilter {...filters} />
-    </SearchForm>
+    <SearchForm client:load filters={filters} cities={cities} total={total} />
   </div>
 
   <main id="results" class="container py-12" data-count={total}>

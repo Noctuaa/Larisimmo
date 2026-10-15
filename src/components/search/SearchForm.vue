@@ -4,9 +4,13 @@
   import { navigate } from 'astro:transitions/client';
   import { $filters, $searchUrl, resetFilters } from '@/stores/filters';
   import { countActiveFilters } from '@/utils/countActiveFilters';
+  import { DPE_CLASSES } from '@/types/property';
   import FilterSelect from './filters/FilterSelect.vue';
   import FilterTrigger from './filters/FilterTrigger.vue';
   import FilterButton from './filters/FilterButton.vue';
+  import FilterChoice from './filters/FilterChoice.vue';
+  import FilterRange from './filters/FilterRange.vue';
+  import FilterNumberRange from './filters/FilterNumberRange.vue';
 
   const props = defineProps<{ filters: Filters; cities: string[]; total: number }>();
   let searchTimer: number;
@@ -19,6 +23,24 @@
     { label: 'Location', value: 'location' },
   ];
   const propertyTypes = ['Appartement', 'Maison', 'Chalet'].map((type) => ({ label: type, value: type }));
+  const meubleOptions = [
+    { label: 'Meublé', value: 'true' },
+    { label: 'Non meublé', value: 'false' },
+  ];
+  const dpeOptions = DPE_CLASSES.map((classe) => ({ label: classe, value: classe }));
+  const equipementOptions = [
+    'Parking',
+    'Terrasse',
+    'Jardin',
+    'Piscine',
+    'Ascenseur',
+    'Cave',
+    'Grenier',
+    'Climatisation',
+    'Cheminée',
+    'Chauffage au sol',
+    'Cuisine équipée',
+  ].map((equipement) => ({ label: equipement, value: equipement }));
   const cityOptions = computed(() => props.cities.map((city) => ({ label: city, value: city })));
 
   onMounted(() => {
@@ -69,7 +91,52 @@
           </button>
         </header>
 
-        <slot />
+        <div class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-6">
+          <section class="filter-section">
+            <h3>Achat ou location</h3>
+            <FilterChoice name="transaction" :options="transactions" :selected="filters.transaction" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Type de bien</h3>
+            <FilterChoice name="type" :options="propertyTypes" :selected="filters.type" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Prix</h3>
+            <FilterNumberRange name="prix" unit="€" :min="filters.prixMin" :max="filters.prixMax" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Chambres</h3>
+            <FilterRange name="chambres" :min="filters.chambresMin" :max="filters.chambresMax" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Pièces</h3>
+            <FilterRange name="pieces" :min="filters.piecesMin" :max="filters.piecesMax" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Surface</h3>
+            <FilterNumberRange name="surface" unit="m²" :min="filters.surfaceMin" :max="filters.surfaceMax" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Meublé / Non meublé</h3>
+            <FilterChoice name="meuble" :options="meubleOptions" :selected="filters.meuble" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Classe énergie</h3>
+            <FilterChoice name="dpe" :options="dpeOptions" :selected="filters.dpe" />
+          </section>
+
+          <section class="filter-section">
+            <h3>Équipements</h3>
+            <FilterChoice name="equipements" :options="equipementOptions" :selected="filters.equipements" multiple />
+          </section>
+        </div>
 
         <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">
           <button type="button" class="btn btn-secondary" @click="resetFilters">Effacer</button>
