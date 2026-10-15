@@ -124,7 +124,7 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
 
 <script>
   import { navigate } from 'astro:transitions/client';
-  import { $filters } from '../../stores/filters';
+  import { $filters, $searchUrl } from '../../stores/filters';
   import { type Filters } from '../../types/filters';
   import { LAST_SEARCH_KEY } from '../../utils/lastSearch';
 
@@ -134,19 +134,8 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
     $filters.setKey(target.name as keyof Filters, target.value);
   });
 
-  const searchUrl = (): string => {
-    const urlParams = new URLSearchParams();
-    for (const [key, value] of Object.entries($filters.get())) {
-      if (Array.isArray(value)) value.forEach((v) => urlParams.append(key, v));
-      else if (value) urlParams.append(key, value);
-    }
-
-    const qs = urlParams.toString();
-    return qs ? `/biens?${qs}` : '/biens';
-  };
-
   const runSearch = () => {
-    const url = searchUrl();
+    const url = $searchUrl.get();
     document.addEventListener('astro:page-load', () => window.scrollTo({ top: 0, behavior: 'instant' }), { once: true });
     localStorage.setItem(LAST_SEARCH_KEY, url);
     navigate(url, { history: 'replace' });

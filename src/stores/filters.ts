@@ -2,6 +2,8 @@ import { computed, map } from 'nanostores';
 import type { Filters } from '../types/filters';
 import { countActiveFilters } from '../utils/countActiveFilters';
 
+// === State ===s
+
 const initialFilters: Filters = {
   transaction: '',
   ville: '',
@@ -28,6 +30,24 @@ if (typeof window !== 'undefined') {
   }
 }
 
-export const $activeFiltersCount = computed($filters, countActiveFilters);
+// === Actions ===
+
+
 
 export const resetFilters = () => $filters.set({ ...initialFilters, ville: $filters.get().ville });
+
+// === Getters ===
+
+export const $activeFiltersCount = computed($filters, countActiveFilters);
+
+export const $searchUrl = computed($filters, (filters) => {
+  const urlParams = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(filters)) {
+    if (Array.isArray(value)) value.forEach((v) => urlParams.append(key, v));
+    else if (value) urlParams.append(key, value);
+  }
+
+  const qs = urlParams.toString();
+  return qs ? `/biens?${qs}` : '/biens';
+});
