@@ -95,7 +95,7 @@ const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort
         </svg>
       </button>
     </div>
-    <SearchForm client:load filters={filters} cities={cities}>
+    <SearchForm client:load filters={filters} cities={cities} total={total}>
       <MoreFilter {...filters} />
     </SearchForm>
   </div>

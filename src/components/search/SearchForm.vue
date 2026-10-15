@@ -1,15 +1,18 @@
 <script setup lang="ts">
-  import { computed, onMounted } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import type { Filters } from '@/types/filters';
   import { navigate } from 'astro:transitions/client';
-  import { $filters, $searchUrl } from '@/stores/filters';
+  import { $filters, $searchUrl, resetFilters } from '@/stores/filters';
   import { countActiveFilters } from '@/utils/countActiveFilters';
   import FilterSelect from './filters/FilterSelect.vue';
   import FilterTrigger from './filters/FilterTrigger.vue';
   import FilterButton from './filters/FilterButton.vue';
 
-  const props = defineProps<{ filters: Filters; cities: string[] }>();
+  const props = defineProps<{ filters: Filters; cities: string[]; total: number }>();
   let searchTimer: number;
+
+  const panel = ref<HTMLElement | null>(null);
+  const resultsCount = ref(props.total);
 
   const transactions = [
     { label: 'Achat', value: 'vente' },
@@ -19,9 +22,20 @@
   const cityOptions = computed(() => props.cities.map((city) => ({ label: city, value: city })));
 
   onMounted(() => {
+    // Quand un filtre change : on attend 300 ms, puis on va à la nouvelle adresse
     $filters.listen(() => {
       clearTimeout(searchTimer);
       searchTimer = window.setTimeout(() => navigate($searchUrl.get(), { history: 'replace' }), 300);
+    });
+
+    // Pendant un changement de page, on coupe l'animation du panneau (Astro le déplace dans la nouvelle page)
+    document.addEventListener('astro:before-swap', () => panel.value?.setAttribute('data-no-anim', ''));
+
+    // Une fois la page chargée : on met à jour le nombre de biens, puis on réactive l'animation
+    document.addEventListener('astro:page-load', () => {
+      const count = document.getElementById('results')?.dataset.count;
+      if (count !== undefined) resultsCount.value = Number(count);
+      requestAnimationFrame(() => requestAnimationFrame(() => panel.value?.removeAttribute('data-no-anim')));
     });
   });
 </script>
@@ -39,6 +53,79 @@
     <FilterTrigger name="type" label="Type de bien" placeholder="Tous les types" :options="propertyTypes" :selected="filters.type" />
     <FilterButton :initial-count="countActiveFilters(filters)" />
 
-    <slot />
+    <!-- Panneau latéral des filtres -->
+    <div ref="panel" popover id="more-filters" class="more-filters-popover">
+      <div class="flex h-full flex-col">
+        <header class="flex items-center justify-between border-b border-gray-300 px-6 py-4">
+          <span class="text-lg font-bold text-primary">Tous les filtres</span>
+          <button
+            type="button"
+            popovertarget="more-filters"
+            popovertargetaction="hide"
+            class="flex h-9 w-9 items-center justify-center rounded-full text-lg text-gray-700 hover:bg-gray-100"
+            aria-label="Fermer"
+          >
+            ✕
+          </button>
+        </header>
+
+        <slot />
+
+        <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">
+          <button type="button" class="btn btn-secondary" @click="resetFilters">Effacer</button>
+          <button type="button" popovertarget="more-filters" popovertargetaction="hide" class="btn btn-primary">
+            Rechercher ({{ resultsCount }})
+          </button>
+        </footer>
+      </div>
+    </div>
   </div>
 </template>
+
+<style>
+  .more-filters-popover {
+    inset: 0 0 0 auto;
+    margin: 0;
+    width: min(480px, 100vw);
+    height: 100dvh;
+    max-height: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgb(0 0 0 / 0.15);
+    transform: translateX(100%);
+    transition:
+      transform 0.25s ease-out,
+      display 0.25s allow-discrete,
+      overlay 0.25s allow-discrete;
+  }
+
+  .more-filters-popover:popover-open {
+    transform: translateX(0);
+
+    @starting-style {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Posé par le script pendant un changement de page : évite que l'animation se rejoue quand Astro déplace le panneau */
+  .more-filters-popover[data-no-anim],
+  .more-filters-popover[data-no-anim]::backdrop {
+    transition: none;
+  }
+
+  .more-filters-popover::backdrop {
+    background: rgb(0 0 0 / 0.4);
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+  }
+
+  .more-filters-popover:popover-open::backdrop {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+</style>
