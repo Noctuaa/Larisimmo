@@ -5,6 +5,7 @@ import type { Property } from '../../types/property';
 import MoreFilter from './MoreFilter.astro';
 import FilterTrigger from './FilterTrigger.vue';
 import FilterButton from './FilterButton.vue';
+import FilterSelect from './FilterSelect.vue';
 import { countActiveFilters } from '../../utils/countActiveFilters';
 
 interface Props {
@@ -73,19 +74,14 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
   <!-- Champs principaux -->
 
   <!-- Ville -->
-  <div class="flex flex-col gap-1">
-    <label for="search-city" class="field-label">Choisir la localisation</label>
-    <select id="search-city" name="ville" class="field w-full lg:w-56">
-      <option value="">Toutes les localisations</option>
-      {
-        cities.map((c) => (
-          <option value={c} selected={c === ville}>
-            {c}
-          </option>
-        ))
-      }
-    </select>
-  </div>
+  <FilterSelect
+    client:load
+    name="ville"
+    label="Choisir la localisation"
+    placeholder="Toutes les localisations"
+    options={cities.map((c) => ({ label: c, value: c }))}
+    selected={ville}
+  />
 
   <!-- Transaction -->
   <FilterTrigger client:load name="transaction" label="Achat ou location" placeholder="Peu importe" options={transactions} selected={transaction} />
@@ -125,14 +121,7 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
 <script>
   import { navigate } from 'astro:transitions/client';
   import { $filters, $searchUrl } from '../../stores/filters';
-  import { type Filters } from '../../types/filters';
   import { LAST_SEARCH_KEY } from '../../utils/lastSearch';
-
-  document.addEventListener('change', (e) => {
-    const target = e.target as HTMLInputElement | HTMLSelectElement;
-    if (!(target.name in $filters.get())) return;
-    $filters.setKey(target.name as keyof Filters, target.value);
-  });
 
   const runSearch = () => {
     const url = $searchUrl.get();
