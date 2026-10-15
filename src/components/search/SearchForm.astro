@@ -70,7 +70,7 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
 // #endregion
 ---
 
-<form method="get" data-live class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
+<div role="search" class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
   <!-- Champs principaux -->
 
   <!-- Ville -->
@@ -114,9 +114,7 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
     meuble={meuble}
     equipements={equipements}
   />
-
-  <button type="submit" class="rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 lg:ml-auto">Rechercher</button>
-</form>
+</div>
 
 <script>
   import { navigate } from 'astro:transitions/client';
@@ -140,6 +138,5 @@ const propertyTypes = ['Appartement', 'Maison', 'Chalet'];
   document.addEventListener('submit', (e) => {
     if (!(e.target as HTMLElement).closest('.search-form')) return;
     e.preventDefault();
-    runSearch();
   });
 </script>
