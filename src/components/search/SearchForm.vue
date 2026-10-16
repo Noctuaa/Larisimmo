@@ -20,7 +20,11 @@
 
   const cityOptions = computed(() => props.cities.map((city) => ({ label: city, value: city })));
 
-  onMounted(() => {
+  /**
+   * Branche la recherche automatique et la synchro du panneau.
+   * À appeler une fois la page affichée.
+   */
+  const startSearch = () => {
     // Quand un filtre change : on attend 300 ms, puis on va à la nouvelle adresse
     $filters.listen(() => {
       clearTimeout(searchTimer);
@@ -36,7 +40,9 @@
       if (count !== undefined) resultsCount.value = Number(count);
       requestAnimationFrame(() => requestAnimationFrame(() => panel.value?.removeAttribute('data-no-anim')));
     });
-  });
+  };
+
+  onMounted(startSearch);
 </script>
 
 <template>
