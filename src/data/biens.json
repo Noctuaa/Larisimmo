@@ -2,7 +2,7 @@
   {
     "id": "1",
     "titre": "Appartement lumineux avec balcon",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 285000,
     "ville": "Paris",
@@ -20,10 +20,10 @@
       }
     ],
     "equipements": [
-      "Balcon",
-      "Ascenseur",
-      "Cave",
-      "Chauffage au sol"
+      "balcon",
+      "ascenseur",
+      "cave",
+      "chauffage_au_sol"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -34,7 +34,7 @@
   {
     "id": "2",
     "titre": "Maison familiale avec jardin",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 420000,
     "ville": "Lyon",
@@ -52,10 +52,10 @@
       }
     ],
     "equipements": [
-      "Jardin",
-      "Garage",
-      "Terrasse",
-      "Grenier"
+      "jardin",
+      "garage",
+      "terrasse",
+      "grenier"
     ],
     "dpe": "D",
     "etiquettes": [
@@ -67,7 +67,7 @@
   {
     "id": "3",
     "titre": "Chalet cosy avec vue montagne",
-    "type": "Chalet",
+    "type": "chalet",
     "transaction": "location",
     "prix": 1450,
     "ville": "Annecy",
@@ -85,10 +85,10 @@
       }
     ],
     "equipements": [
-      "Poêle à bois",
-      "Terrasse",
-      "Parking",
-      "Cuisine équipée"
+      "poele_a_bois",
+      "terrasse",
+      "parking",
+      "cuisine_equipee"
     ],
     "dpe": "E",
     "etiquettes": [
@@ -99,7 +99,7 @@
   {
     "id": "4",
     "titre": "Studio rénové proche centre-ville",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 620,
     "ville": "Lyon",
@@ -117,7 +117,7 @@
       }
     ],
     "equipements": [
-      "Ascenseur"
+      "ascenseur"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -128,7 +128,7 @@
   {
     "id": "5",
     "titre": "Maison contemporaine avec piscine",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 590000,
     "ville": "Annecy",
@@ -146,10 +146,10 @@
       }
     ],
     "equipements": [
-      "Piscine",
-      "Garage",
-      "Jardin",
-      "Grenier"
+      "piscine",
+      "garage",
+      "jardin",
+      "grenier"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -160,7 +160,7 @@
   {
     "id": "6",
     "titre": "Appartement 2 pièces avec parking",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 780,
     "ville": "Paris",
@@ -178,9 +178,9 @@
       }
     ],
     "equipements": [
-      "Parking",
-      "Ascenseur",
-      "Chauffage au sol"
+      "parking",
+      "ascenseur",
+      "chauffage_au_sol"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -191,7 +191,7 @@
   {
     "id": "7",
     "titre": "Duplex avec terrasse",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 476000,
     "ville": "Strasbourg",
@@ -209,11 +209,11 @@
       }
     ],
     "equipements": [
-      "Cheminée",
-      "Garage",
-      "Jardin",
-      "Ascenseur",
-      "Cuisine équipée"
+      "cheminee",
+      "garage",
+      "jardin",
+      "ascenseur",
+      "cuisine_equipee"
     ],
     "dpe": "F",
     "etiquettes": [
@@ -224,7 +224,7 @@
   {
     "id": "8",
     "titre": "Appartement avec parking privatif",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 596,
     "ville": "Bordeaux",
@@ -242,9 +242,9 @@
       }
     ],
     "equipements": [
-      "Balcon",
-      "Garage",
-      "Poêle à bois"
+      "balcon",
+      "garage",
+      "poele_a_bois"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -253,7 +253,7 @@
   {
     "id": "9",
     "titre": "Maison d'architecte avec jardin",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 911000,
     "ville": "Paris",
@@ -271,8 +271,8 @@
       }
     ],
     "equipements": [
-      "Interphone",
-      "Jardin"
+      "interphone",
+      "jardin"
     ],
     "dpe": "A",
     "etiquettes": [
@@ -283,7 +283,7 @@
   {
     "id": "10",
     "titre": "Appartement calme dernier étage",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 420000,
     "ville": "Lyon",
@@ -301,9 +301,9 @@
       }
     ],
     "equipements": [
-      "Ascenseur",
-      "Garage",
-      "Balcon"
+      "ascenseur",
+      "garage",
+      "balcon"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -312,7 +312,7 @@
   {
     "id": "11",
     "titre": "Appartement lumineux avec balcon",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 119000,
     "ville": "Lille",
@@ -330,11 +330,11 @@
       }
     ],
     "equipements": [
-      "Terrasse",
-      "Garage",
-      "Cheminée",
-      "Chauffage au sol",
-      "Cuisine équipée"
+      "terrasse",
+      "garage",
+      "cheminee",
+      "chauffage_au_sol",
+      "cuisine_equipee"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -343,7 +343,7 @@
   {
     "id": "12",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "location",
     "prix": 3910,
     "ville": "Marseille",
@@ -361,9 +361,9 @@
       }
     ],
     "equipements": [
-      "Garage",
-      "Poêle à bois",
-      "Grenier"
+      "garage",
+      "poele_a_bois",
+      "grenier"
     ],
     "dpe": "B",
     "etiquettes": [],
@@ -372,7 +372,7 @@
   {
     "id": "13",
     "titre": "Duplex avec terrasse",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 644,
     "ville": "Nantes",
@@ -390,10 +390,10 @@
       }
     ],
     "equipements": [
-      "Cheminée",
-      "Digicode",
-      "Garage",
-      "Ascenseur"
+      "cheminee",
+      "digicode",
+      "garage",
+      "ascenseur"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -404,7 +404,7 @@
   {
     "id": "14",
     "titre": "Maison de plain-pied lumineuse",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "location",
     "prix": 2392,
     "ville": "Marseille",
@@ -422,10 +422,10 @@
       }
     ],
     "equipements": [
-      "Poêle à bois",
-      "Cheminée",
-      "Parking",
-      "Terrasse"
+      "poele_a_bois",
+      "cheminee",
+      "parking",
+      "terrasse"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -434,7 +434,7 @@
   {
     "id": "15",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 446000,
     "ville": "Paris",
@@ -452,10 +452,10 @@
       }
     ],
     "equipements": [
-      "Piscine",
-      "Climatisation",
-      "Grenier",
-      "Cuisine équipée"
+      "piscine",
+      "climatisation",
+      "grenier",
+      "cuisine_equipee"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -464,7 +464,7 @@
   {
     "id": "16",
     "titre": "Maison de plain-pied lumineuse",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "location",
     "prix": 1530,
     "ville": "Strasbourg",
@@ -482,9 +482,9 @@
       }
     ],
     "equipements": [
-      "Garage",
-      "Balcon",
-      "Chauffage au sol"
+      "garage",
+      "balcon",
+      "chauffage_au_sol"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -493,7 +493,7 @@
   {
     "id": "17",
     "titre": "Villa avec vue dégagée",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "location",
     "prix": 2986,
     "ville": "Paris",
@@ -511,11 +511,11 @@
       }
     ],
     "equipements": [
-      "Terrasse",
-      "Garage",
-      "Cheminée",
-      "Interphone",
-      "Grenier"
+      "terrasse",
+      "garage",
+      "cheminee",
+      "interphone",
+      "grenier"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -524,7 +524,7 @@
   {
     "id": "18",
     "titre": "Maison d'architecte avec jardin",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 1340000,
     "ville": "Paris",
@@ -542,9 +542,9 @@
       }
     ],
     "equipements": [
-      "Balcon",
-      "Piscine",
-      "Climatisation"
+      "balcon",
+      "piscine",
+      "climatisation"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -553,7 +553,7 @@
   {
     "id": "19",
     "titre": "Studio moderne proche transports",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 491,
     "ville": "Nantes",
@@ -571,9 +571,9 @@
       }
     ],
     "equipements": [
-      "Cave",
-      "Cheminée",
-      "Cuisine équipée"
+      "cave",
+      "cheminee",
+      "cuisine_equipee"
     ],
     "dpe": "A",
     "etiquettes": [
@@ -584,7 +584,7 @@
   {
     "id": "20",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 834000,
     "ville": "Lyon",
@@ -602,10 +602,10 @@
       }
     ],
     "equipements": [
-      "Balcon",
-      "Ascenseur",
-      "Cave",
-      "Grenier"
+      "balcon",
+      "ascenseur",
+      "cave",
+      "grenier"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -614,7 +614,7 @@
   {
     "id": "21",
     "titre": "Appartement traversant avec vue",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 245000,
     "ville": "Toulouse",
@@ -632,11 +632,11 @@
       }
     ],
     "equipements": [
-      "Parking",
-      "Digicode",
-      "Ascenseur",
-      "Cheminée",
-      "Chauffage au sol"
+      "parking",
+      "digicode",
+      "ascenseur",
+      "cheminee",
+      "chauffage_au_sol"
     ],
     "dpe": "A",
     "etiquettes": [],
@@ -645,7 +645,7 @@
   {
     "id": "22",
     "titre": "Appartement charme ancien rénové",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 278000,
     "ville": "Toulouse",
@@ -663,8 +663,8 @@
       }
     ],
     "equipements": [
-      "Poêle à bois",
-      "Cave"
+      "poele_a_bois",
+      "cave"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -675,7 +675,7 @@
   {
     "id": "23",
     "titre": "Appartement calme dernier étage",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 191000,
     "ville": "Annecy",
@@ -693,11 +693,11 @@
       }
     ],
     "equipements": [
-      "Climatisation",
-      "Poêle à bois",
-      "Garage",
-      "Ascenseur",
-      "Cuisine équipée"
+      "climatisation",
+      "poele_a_bois",
+      "garage",
+      "ascenseur",
+      "cuisine_equipee"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -706,7 +706,7 @@
   {
     "id": "24",
     "titre": "T2 refait à neuf",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 2146,
     "ville": "Annecy",
@@ -724,8 +724,8 @@
       }
     ],
     "equipements": [
-      "Poêle à bois",
-      "Ascenseur"
+      "poele_a_bois",
+      "ascenseur"
     ],
     "dpe": "F",
     "etiquettes": [
@@ -736,7 +736,7 @@
   {
     "id": "25",
     "titre": "Longère rénovée avec terrain",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "location",
     "prix": 2583,
     "ville": "Bordeaux",
@@ -754,10 +754,10 @@
       }
     ],
     "equipements": [
-      "Local vélo",
-      "Ascenseur",
-      "Digicode",
-      "Cave"
+      "local_velo",
+      "ascenseur",
+      "digicode",
+      "cave"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -766,7 +766,7 @@
   {
     "id": "26",
     "titre": "Pavillon calme et lumineux",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "location",
     "prix": 2310,
     "ville": "Marseille",
@@ -784,10 +784,10 @@
       }
     ],
     "equipements": [
-      "Terrasse",
-      "Jardin",
-      "Grenier",
-      "Chauffage au sol"
+      "terrasse",
+      "jardin",
+      "grenier",
+      "chauffage_au_sol"
     ],
     "dpe": "E",
     "etiquettes": [
@@ -798,7 +798,7 @@
   {
     "id": "27",
     "titre": "T2 refait à neuf",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 771,
     "ville": "Lyon",
@@ -816,11 +816,11 @@
       }
     ],
     "equipements": [
-      "Poêle à bois",
-      "Garage",
-      "Cheminée",
-      "Local vélo",
-      "Cuisine équipée"
+      "poele_a_bois",
+      "garage",
+      "cheminee",
+      "local_velo",
+      "cuisine_equipee"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -831,7 +831,7 @@
   {
     "id": "28",
     "titre": "Appartement rénové centre-ville",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 457000,
     "ville": "Toulouse",
@@ -849,10 +849,10 @@
       }
     ],
     "equipements": [
-      "Garage",
-      "Cheminée",
-      "Poêle à bois",
-      "Jardin"
+      "garage",
+      "cheminee",
+      "poele_a_bois",
+      "jardin"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -861,7 +861,7 @@
   {
     "id": "29",
     "titre": "Studio moderne proche transports",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 485000,
     "ville": "Strasbourg",
@@ -879,10 +879,10 @@
       }
     ],
     "equipements": [
-      "Digicode",
-      "Poêle à bois",
-      "Interphone",
-      "Local vélo"
+      "digicode",
+      "poele_a_bois",
+      "interphone",
+      "local_velo"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -891,7 +891,7 @@
   {
     "id": "30",
     "titre": "Appartement lumineux avec balcon",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 212000,
     "ville": "Paris",
@@ -909,10 +909,10 @@
       }
     ],
     "equipements": [
-      "Digicode",
-      "Balcon",
-      "Terrasse",
-      "Local vélo"
+      "digicode",
+      "balcon",
+      "terrasse",
+      "local_velo"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -921,7 +921,7 @@
   {
     "id": "31",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "location",
     "prix": 3122,
     "ville": "Bordeaux",
@@ -939,10 +939,10 @@
       }
     ],
     "equipements": [
-      "Terrasse",
-      "Poêle à bois",
-      "Chauffage au sol",
-      "Cuisine équipée"
+      "terrasse",
+      "poele_a_bois",
+      "chauffage_au_sol",
+      "cuisine_equipee"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -951,7 +951,7 @@
   {
     "id": "32",
     "titre": "Villa avec vue dégagée",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 629000,
     "ville": "Strasbourg",
@@ -969,11 +969,11 @@
       }
     ],
     "equipements": [
-      "Garage",
-      "Jardin",
-      "Parking",
-      "Ascenseur",
-      "Grenier"
+      "garage",
+      "jardin",
+      "parking",
+      "ascenseur",
+      "grenier"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -982,7 +982,7 @@
   {
     "id": "33",
     "titre": "Studio moderne proche transports",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 647,
     "ville": "Marseille",
@@ -1000,9 +1000,9 @@
       }
     ],
     "equipements": [
-      "Cave",
-      "Jardin",
-      "Local vélo"
+      "cave",
+      "jardin",
+      "local_velo"
     ],
     "dpe": "B",
     "etiquettes": [],
@@ -1011,7 +1011,7 @@
   {
     "id": "34",
     "titre": "Maison de plain-pied lumineuse",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 946000,
     "ville": "Strasbourg",
@@ -1029,8 +1029,8 @@
       }
     ],
     "equipements": [
-      "Parking",
-      "Terrasse"
+      "parking",
+      "terrasse"
     ],
     "dpe": "A",
     "etiquettes": [],
@@ -1039,7 +1039,7 @@
   {
     "id": "35",
     "titre": "Maison familiale avec jardin",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 711000,
     "ville": "Annecy",
@@ -1057,11 +1057,11 @@
       }
     ],
     "equipements": [
-      "Climatisation",
-      "Cheminée",
-      "Jardin",
-      "Grenier",
-      "Cuisine équipée"
+      "climatisation",
+      "cheminee",
+      "jardin",
+      "grenier",
+      "cuisine_equipee"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1070,7 +1070,7 @@
   {
     "id": "36",
     "titre": "Appartement avec parking privatif",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 2020,
     "ville": "Bordeaux",
@@ -1088,9 +1088,9 @@
       }
     ],
     "equipements": [
-      "Cave",
-      "Digicode",
-      "Chauffage au sol"
+      "cave",
+      "digicode",
+      "chauffage_au_sol"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1099,7 +1099,7 @@
   {
     "id": "37",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 915000,
     "ville": "Paris",
@@ -1117,10 +1117,10 @@
       }
     ],
     "equipements": [
-      "Terrasse",
-      "Local vélo",
-      "Interphone",
-      "Piscine"
+      "terrasse",
+      "local_velo",
+      "interphone",
+      "piscine"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -1131,7 +1131,7 @@
   {
     "id": "38",
     "titre": "Duplex avec terrasse",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 557000,
     "ville": "Lille",
@@ -1149,10 +1149,10 @@
       }
     ],
     "equipements": [
-      "Local vélo",
-      "Climatisation",
-      "Cheminée",
-      "Interphone"
+      "local_velo",
+      "climatisation",
+      "cheminee",
+      "interphone"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1161,7 +1161,7 @@
   {
     "id": "39",
     "titre": "Villa avec vue dégagée",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 627000,
     "ville": "Marseille",
@@ -1179,12 +1179,12 @@
       }
     ],
     "equipements": [
-      "Terrasse",
-      "Local vélo",
-      "Poêle à bois",
-      "Cave",
-      "Grenier",
-      "Cuisine équipée"
+      "terrasse",
+      "local_velo",
+      "poele_a_bois",
+      "cave",
+      "grenier",
+      "cuisine_equipee"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -1195,7 +1195,7 @@
   {
     "id": "40",
     "titre": "Maison d'architecte avec jardin",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 316000,
     "ville": "Lille",
@@ -1213,10 +1213,10 @@
       }
     ],
     "equipements": [
-      "Ascenseur",
-      "Cave",
-      "Climatisation",
-      "Interphone"
+      "ascenseur",
+      "cave",
+      "climatisation",
+      "interphone"
     ],
     "dpe": "E",
     "etiquettes": [],

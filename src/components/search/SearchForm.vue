@@ -4,7 +4,7 @@
   import { navigate } from 'astro:transitions/client';
   import { $filters, $searchUrl, resetFilters } from '@/stores/filters';
   import { countActiveFilters } from '@/utils/countActiveFilters';
-  import { DPE_CLASSES } from '@/types/property';
+  import { filterOptions } from '@/utils/filterOptions';
   import FilterSelect from './filters/FilterSelect.vue';
   import FilterTrigger from './filters/FilterTrigger.vue';
   import FilterButton from './filters/FilterButton.vue';
@@ -18,29 +18,6 @@
   const panel = ref<HTMLElement | null>(null);
   const resultsCount = ref(props.total);
 
-  const transactions = [
-    { label: 'Achat', value: 'vente' },
-    { label: 'Location', value: 'location' },
-  ];
-  const propertyTypes = ['Appartement', 'Maison', 'Chalet'].map((type) => ({ label: type, value: type }));
-  const meubleOptions = [
-    { label: 'Meublé', value: 'true' },
-    { label: 'Non meublé', value: 'false' },
-  ];
-  const dpeOptions = DPE_CLASSES.map((classe) => ({ label: classe, value: classe }));
-  const equipementOptions = [
-    'Parking',
-    'Terrasse',
-    'Jardin',
-    'Piscine',
-    'Ascenseur',
-    'Cave',
-    'Grenier',
-    'Climatisation',
-    'Cheminée',
-    'Chauffage au sol',
-    'Cuisine équipée',
-  ].map((equipement) => ({ label: equipement, value: equipement }));
   const cityOptions = computed(() => props.cities.map((city) => ({ label: city, value: city })));
 
   onMounted(() => {
@@ -71,8 +48,14 @@
       :options="cityOptions"
       :selected="filters.ville"
     />
-    <FilterTrigger name="transaction" label="Achat ou location" placeholder="Peu importe" :options="transactions" :selected="filters.transaction" />
-    <FilterTrigger name="type" label="Type de bien" placeholder="Tous les types" :options="propertyTypes" :selected="filters.type" />
+    <FilterTrigger
+      name="transaction"
+      label="Achat ou location"
+      placeholder="Peu importe"
+      :options="filterOptions.transaction"
+      :selected="filters.transaction"
+    />
+    <FilterTrigger name="type" label="Type de bien" placeholder="Tous les types" :options="filterOptions.type" :selected="filters.type" />
     <FilterButton :initial-count="countActiveFilters(filters)" />
 
     <!-- Panneau latéral des filtres -->
@@ -94,12 +77,12 @@
         <div class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-6">
           <section class="filter-section">
             <h3>Achat ou location</h3>
-            <FilterChoice name="transaction" :options="transactions" :selected="filters.transaction" />
+            <FilterChoice name="transaction" :options="filterOptions.transaction" :selected="filters.transaction" />
           </section>
 
           <section class="filter-section">
             <h3>Type de bien</h3>
-            <FilterChoice name="type" :options="propertyTypes" :selected="filters.type" />
+            <FilterChoice name="type" :options="filterOptions.type" :selected="filters.type" />
           </section>
 
           <section class="filter-section">
@@ -124,17 +107,17 @@
 
           <section class="filter-section">
             <h3>Meublé / Non meublé</h3>
-            <FilterChoice name="meuble" :options="meubleOptions" :selected="filters.meuble" />
+            <FilterChoice name="meuble" :options="filterOptions.meuble" :selected="filters.meuble" />
           </section>
 
           <section class="filter-section">
             <h3>Classe énergie</h3>
-            <FilterChoice name="dpe" :options="dpeOptions" :selected="filters.dpe" />
+            <FilterChoice name="dpe" :options="filterOptions.dpe" :selected="filters.dpe" />
           </section>
 
           <section class="filter-section">
             <h3>Équipements</h3>
-            <FilterChoice name="equipements" :options="equipementOptions" :selected="filters.equipements" multiple />
+            <FilterChoice name="equipements" :options="filterOptions.equipements" :selected="filters.equipements" multiple />
           </section>
         </div>
 

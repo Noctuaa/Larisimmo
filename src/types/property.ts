@@ -1,4 +1,4 @@
-export type PropertyType = 'Appartement' | 'Maison' | 'Chalet';
+export type PropertyType = 'appartement' | 'maison' | 'chalet';
 export type Transaction = 'vente' | 'location';
 export type Tag = 'Nouveau' | 'Bon plan' | 'Coup de cœur';
 export type Status = 'disponible' | 'vendu' | 'en pause';
