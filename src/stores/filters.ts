@@ -2,7 +2,7 @@ import { computed, map } from 'nanostores';
 import type { Filters } from '../types/filters';
 import { countActiveFilters } from '../utils/countActiveFilters';
 
-// === State ===s
+// === State ===
 
 const initialFilters: Filters = {
   transaction: '',
@@ -20,6 +20,8 @@ const initialFilters: Filters = {
   meuble: '',
   equipements: [],
 };
+
+const LAST_SEARCH_KEY = 'larisimmo:lastSearch';
 
 export const $filters = map<Filters>({ ...initialFilters });
 
@@ -51,3 +53,9 @@ export const $searchUrl = computed($filters, (filters) => {
   const qs = urlParams.toString();
   return qs ? `/biens?${qs}` : '/biens';
 });
+
+export const getLastSearch = () => localStorage.getItem(LAST_SEARCH_KEY);
+
+// === Setters ===
+
+$searchUrl.listen((url) => localStorage.setItem(LAST_SEARCH_KEY, url));

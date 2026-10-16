@@ -44,10 +44,7 @@ import homeImage from '../../assets/images/home-unsplash.jpg';
       >
         Continuer ma recherche
       </a>
-      <a
-        href="/biens"
-        class="rounded-lg bg-primary px-6 py-3 text-center text-sm font-semibold text-white transition hover:opacity-90"
-      >
+      <a href="/biens" class="rounded-lg bg-primary px-6 py-3 text-center text-sm font-semibold text-white transition hover:opacity-90">
         Nouvelle recherche
       </a>
     </div>
@@ -55,5 +52,17 @@ import homeImage from '../../assets/images/home-unsplash.jpg';
 </section>
 
 <script>
-  import '../../utils/lastSearch';
+  import { getLastSearch } from '@/stores/filters';
+
+  // À chaque arrivée sur une page : si on est sur l'accueil et qu'une recherche est en mémoire, on affiche le bouton
+  document.addEventListener('astro:page-load', () => {
+    const continueLink = document.getElementById('continue-search') as HTMLAnchorElement | null;
+    if (!continueLink) return; // pas sur l'accueil
+
+    const lastSearch = getLastSearch();
+    if (lastSearch) {
+      continueLink.href = lastSearch;
+      continueLink.hidden = false;
+    }
+  });
 </script>
