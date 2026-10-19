@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, onMounted, ref, watch } from 'vue';
+  import { useStore } from '@nanostores/vue';
   import type { Filters } from '@/types/filters';
   import { navigate } from 'astro:transitions/client';
   import { $filters, $searchUrl, resetFilters } from '@/stores/filters';
@@ -14,32 +15,42 @@
 
   const props = defineProps<{ filters: Filters; cities: string[]; total: number }>();
   let searchTimer: number;
+  let ownSearch = false; // vrai pendant qu'une recherche lancée par ce formulaire est en route
 
   const panel = ref<HTMLElement | null>(null);
+  const storeFilters = useStore($filters);
 
   const cityOptions = computed(() => props.cities.map((city) => ({ label: city, value: city })));
 
-  /**
-   * Branche la recherche automatique et la synchro du panneau.
-   * À appeler une fois la page affichée.
-   */
-  const startSearch = () => {
-    // Quand un filtre change : on attend 300 ms, puis on va à la nouvelle adresse
-    $filters.listen(() => {
-      clearTimeout(searchTimer);
-      searchTimer = window.setTimeout(() => navigate($searchUrl.get(), { history: 'replace' }), 300);
-    });
+  // Le serveur envoie les filtres de l'adresse : au démarrage (navigateur seulement), on les copie dans le store
+  if (!import.meta.env.SSR) $filters.set({ ...props.filters });
 
-    // Pendant un changement de page, on coupe l'animation du panneau (Astro le déplace dans la nouvelle page)
+  // Quand un filtre change : on attend 300 ms, puis on va à la nouvelle adresse (si elle est différente)
+  // prettier-ignore
+  watch(storeFilters, () => {
+    clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(() => {
+      const url = $searchUrl.get();
+      if (url === location.pathname + location.search) return;
+      ownSearch = true;
+      navigate(url, { history: 'replace' });
+    }, 300);
+  }, { deep: true });
+
+  // Nouvelle page : si ce n'est pas notre propre recherche (lien, bouton retour), on recopie les filtres du serveur
+  // prettier-ignore
+  watch(() => props.filters, (serverFilters) => {
+    if (ownSearch) ownSearch = false;
+    else $filters.set({ ...serverFilters });
+  });
+
+  // Pendant un changement de page, on coupe l'animation du panneau (Astro le déplace dans la nouvelle page)
+  onMounted(() => {
     document.addEventListener('astro:before-swap', () => panel.value?.setAttribute('data-no-anim', ''));
-
-    // Une fois la page chargée : on met à jour le nombre de biens, puis on réactive l'animation
     document.addEventListener('astro:page-load', () => {
       requestAnimationFrame(() => requestAnimationFrame(() => panel.value?.removeAttribute('data-no-anim')));
     });
-  };
-
-  onMounted(startSearch);
+  });
 </script>
 
 <template>

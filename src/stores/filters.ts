@@ -25,16 +25,10 @@ const LAST_SEARCH_KEY = 'larisimmo:lastSearch';
 
 export const $filters = map<Filters>({ ...initialFilters });
 
-if (typeof window !== 'undefined') {
-  const params = new URLSearchParams(window.location.search);
-  for (const key of Object.keys(initialFilters) as (keyof Filters)[]) {
-    $filters.setKey(key, key === 'equipements' ? params.getAll(key) : (params.get(key) ?? ''));
-  }
-}
+
+
 
 // === Actions ===
-
-
 
 export const resetFilters = () => $filters.set({ ...initialFilters, ville: $filters.get().ville });
 
