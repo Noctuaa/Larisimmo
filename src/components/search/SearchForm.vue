@@ -16,7 +16,6 @@
   let searchTimer: number;
 
   const panel = ref<HTMLElement | null>(null);
-  const resultsCount = ref(props.total);
 
   const cityOptions = computed(() => props.cities.map((city) => ({ label: city, value: city })));
 
@@ -36,8 +35,6 @@
 
     // Une fois la page chargée : on met à jour le nombre de biens, puis on réactive l'animation
     document.addEventListener('astro:page-load', () => {
-      const count = document.getElementById('results')?.dataset.count;
-      if (count !== undefined) resultsCount.value = Number(count);
       requestAnimationFrame(() => requestAnimationFrame(() => panel.value?.removeAttribute('data-no-anim')));
     });
   };
@@ -129,9 +126,7 @@
 
         <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">
           <button type="button" class="btn btn-secondary" @click="resetFilters">Effacer</button>
-          <button type="button" popovertarget="more-filters" popovertargetaction="hide" class="btn btn-primary">
-            Rechercher ({{ resultsCount }})
-          </button>
+          <button type="button" popovertarget="more-filters" popovertargetaction="hide" class="btn btn-primary">Rechercher ({{ total }})</button>
         </footer>
       </div>
     </div>

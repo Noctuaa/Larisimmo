@@ -65,7 +65,6 @@ const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort
 
   <div
     id="search-panel"
-    transition:persist="search-panel"
     class="fixed inset-0 z-100 flex -translate-y-full flex-col bg-white pointer-events-none transition duration-300
     lg:sticky lg:top-0 lg:z-60 lg:mt-(--nav-height) lg:w-full lg:translate-y-0 lg:flex-row lg:items-end lg:gap-4 lg:border-b lg:border-t
     lg:border-gray-100 lg:bg-background lg:opacity-100 lg:pointer-events-auto lg:shadow-md"
@@ -94,10 +93,10 @@ const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort
         </svg>
       </button>
     </div>
-    <SearchForm client:load filters={filters} cities={cities} total={total} />
+    <SearchForm client:load transition:persist="search-form" filters={filters} cities={cities} total={total} />
   </div>
 
-  <main id="results" class="container py-12" data-count={total}>
+  <main id="results" class="container py-12">
     <div class="mb-8">
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
