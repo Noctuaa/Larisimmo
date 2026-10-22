@@ -6,7 +6,7 @@
   import type { Filters } from '@/types/filters';
   import { $filters, $searchUrl, resetFilters } from '@/stores/filters';
   import { countActiveFilters } from '@/utils/countActiveFilters';
-  import { filterOptions } from '@/utils/filterOptions';
+  import { filterOptions } from '@/data/filterOptions';
 
   import FilterSelect from './filters/FilterSelect.vue';
   import FilterTrigger from './filters/FilterTrigger.vue';
