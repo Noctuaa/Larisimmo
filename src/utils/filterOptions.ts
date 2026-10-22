@@ -1,3 +1,4 @@
+/** `label` : texte affiché à l'utilisateur ; `value` : ce qui circule dans l'adresse et les données */
 export const filterOptions = {
   transaction: [
     { label: 'Achat', value: 'vente' },
@@ -9,6 +10,7 @@ export const filterOptions = {
     { label: 'Appartement', value: 'appartement' },
   ],
   meuble: [
+    // texte et non booléen : l'adresse ne contient que du texte
     { label: 'Meublé', value: 'true' },
     { label: 'Non meublé', value: 'false' },
   ],
