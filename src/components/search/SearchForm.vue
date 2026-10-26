@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { computed, onMounted, ref, watch } from 'vue';
+  import { onMounted, ref, watch } from 'vue';
   import { useStore } from '@nanostores/vue';
   import { navigate } from 'astro:transitions/client';
 
@@ -17,7 +17,7 @@
 
   const SEARCH_DELAY = 300; // ms d'attente après le dernier changement de filtre
 
-  const props = defineProps<{ filters: Filters; cities: string[]; total: number }>();
+  const props = defineProps<{ filters: Filters; total: number }>();
 
   let searchTimer: number;
 
@@ -26,8 +26,6 @@
 
   const panel = ref<HTMLElement | null>(null);
   const storeFilters = useStore($filters);
-
-  const cityOptions = computed(() => props.cities.map((city) => ({ label: city, value: city })));
 
   // Le serveur envoie les filtres de l'adresse : au démarrage (navigateur seulement), on les copie dans le store
   if (!import.meta.env.SSR) $filters.set({ ...props.filters });
@@ -74,7 +72,7 @@
       name="ville"
       label="Choisir la localisation"
       placeholder="Toutes les localisations"
-      :options="cityOptions"
+      :options="filterOptions.ville"
       :selected="filters.ville"
     />
     <FilterTrigger

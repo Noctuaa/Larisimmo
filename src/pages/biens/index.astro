@@ -37,8 +37,6 @@ const pageLink = (page: number) => {
   p.set('page', String(page));
   return `/biens?${p.toString()}`;
 };
-
-const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort();
 ---
 
 <Layout>
@@ -93,7 +91,7 @@ const cities = [...new Set((properties as Property[]).map((p) => p.ville))].sort
         </svg>
       </button>
     </div>
-    <SearchForm client:load transition:persist="search-form" filters={filters} cities={cities} total={total} />
+    <SearchForm client:load transition:persist="search-form" filters={filters} total={total} />
   </div>
 
   <main id="results" class="container py-12">

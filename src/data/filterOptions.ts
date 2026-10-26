@@ -1,5 +1,16 @@
 /** `label` : texte affiché à l'utilisateur ; `value` : ce qui circule dans l'adresse et les données */
 export const filterOptions = {
+  ville: [
+    { label: 'Annecy', value: 'Annecy' },
+    { label: 'Bordeaux', value: 'Bordeaux' },
+    { label: 'Lille', value: 'Lille' },
+    { label: 'Lyon', value: 'Lyon' },
+    { label: 'Marseille', value: 'Marseille' },
+    { label: 'Nantes', value: 'Nantes' },
+    { label: 'Paris', value: 'Paris' },
+    { label: 'Strasbourg', value: 'Strasbourg' },
+    { label: 'Toulouse', value: 'Toulouse' },
+  ],
   transaction: [
     { label: 'Achat', value: 'vente' },
     { label: 'Location', value: 'location' },
