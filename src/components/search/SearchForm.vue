@@ -10,7 +10,7 @@
 
   import FilterSelect from './filters/FilterSelect.vue';
   import FilterTrigger from './filters/FilterTrigger.vue';
-  import FilterButton from './filters/FilterButton.vue';
+  import FiltersCountButton from './filters/FiltersCountButton.vue';
   import FilterChoice from './filters/FilterChoice.vue';
   import FilterRange from './filters/FilterRange.vue';
   import FilterNumberRange from './filters/FilterNumberRange.vue';
@@ -85,7 +85,7 @@
       :selected="filters.transaction"
     />
     <FilterTrigger name="type" label="Type de bien" placeholder="Tous les types" :options="filterOptions.type" :selected="filters.type" />
-    <FilterButton :initial-count="countActiveFilters(filters)" />
+    <FiltersCountButton :initial-count="countActiveFilters(filters)" />
 
     <!-- Panneau latéral des filtres -->
     <div ref="panel" popover id="more-filters" class="more-filters-popover">

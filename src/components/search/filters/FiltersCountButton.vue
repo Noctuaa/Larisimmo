@@ -9,6 +9,7 @@
 
   const activeCount = useStore($activeFiltersCount);
 
+  /** Serveur : le nombre vient de l'adresse (prop) ; navigateur : il vient du store, mis à jour en direct (évite un clignotement du badge) */
   const count = computed(() => (import.meta.env.SSR ? props.initialCount : activeCount.value));
 </script>
 
