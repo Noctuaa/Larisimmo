@@ -16,11 +16,11 @@
   const filters = useStore($filters);
 
   /** Serveur : choix lu dans l'adresse (prop) ; navigateur : choix du store, en direct */
-  const current = computed(() => (import.meta.env.SSR ? props.selected : filters.value[props.name]));
+  const currentChoice = computed(() => (import.meta.env.SSR ? props.selected : filters.value[props.name]));
 
   /** Texte du bouton : les noms lisibles des choix, séparés par une virgule, ou le placeholder s'il n'y en a pas */
   const buttonText = computed(() => {
-    const labels = [current.value]
+    const labels = [currentChoice.value]
       .flat()
       .map((value) => props.options.find((option) => option.value === value)?.label)
       .filter(Boolean);

@@ -13,8 +13,10 @@
 
   const filters = useStore($filters);
 
-  const current = computed(() => [import.meta.env.SSR ? props.selected : filters.value[props.name]].flat());
+  /** Toujours une liste (`.flat()`), pour tester avec `includes` qu'il y ait un ou plusieurs choix */
+  const currentChoices = computed(() => [import.meta.env.SSR ? props.selected : filters.value[props.name]].flat());
 
+  /** Choix unique : un 2e clic décoche. `multiple` : on ajoute ou retire le choix, en recréant la liste pour que le store voie le changement */
   const toggle = (option: string) => {
     const value = $filters.get()[props.name];
     if (props.multiple) {
@@ -34,8 +36,8 @@
       v-for="option in options"
       :key="option.value"
       type="button"
-      :aria-pressed="current.includes(option.value)"
-      :class="[pillClass, current.includes(option.value) ? 'bg-primary text-white' : 'hover:bg-gray-50 hover:text-primary']"
+      :aria-pressed="currentChoices.includes(option.value)"
+      :class="[pillClass, currentChoices.includes(option.value) ? 'bg-primary text-white' : 'hover:bg-gray-50 hover:text-primary']"
       @click="toggle(option.value)"
     >
       {{ option.label }}

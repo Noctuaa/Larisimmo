@@ -16,10 +16,10 @@
   const filters = useStore($filters);
 
   /** Valeur affichée dans le menu : côté serveur, celle de l'adresse (`selected`) ; côté navigateur, celle du store */
-  const current = computed(() => (import.meta.env.SSR ? props.selected : filters.value[props.name]) ?? '');
+  const currentChoice = computed(() => (import.meta.env.SSR ? props.selected : filters.value[props.name]) ?? '');
 
   /** Écrit le choix de l'utilisateur dans le store (c'est `SearchForm` qui lance ensuite la recherche) */
-  const update = (event: Event) => {
+  const onChange = (event: Event) => {
     $filters.setKey(props.name, (event.target as HTMLSelectElement).value);
   };
 </script>
@@ -27,7 +27,7 @@
 <template>
   <div class="flex flex-col gap-1">
     <label :for="`filter-${name}`" class="field-label">{{ label }}</label>
-    <select :id="`filter-${name}`" :value="current" class="field filter-select w-full whitespace-nowrap lg:w-56" @change="update">
+    <select :id="`filter-${name}`" :value="currentChoice" class="field filter-select w-full whitespace-nowrap lg:w-56" @change="onChange">
       <option value="">{{ placeholder }}</option>
       <option v-for="option in options" :key="option.value" :value="option.value">{{ option.label }}</option>
     </select>
