@@ -12,8 +12,8 @@
   import FilterTrigger from './filters/FilterTrigger.vue';
   import FiltersCountButton from './filters/FiltersCountButton.vue';
   import FilterChoice from './filters/FilterChoice.vue';
-  import FilterRange from './filters/FilterRange.vue';
-  import FilterNumberRange from './filters/FilterNumberRange.vue';
+  import FilterRangePills from './filters/FilterRangePills.vue';
+  import FilterRangeInputs from './filters/FilterRangeInputs.vue';
 
   const SEARCH_DELAY = 300; // ms d'attente après le dernier changement de filtre
 
@@ -114,22 +114,22 @@
 
           <section class="filter-section">
             <h3>Prix</h3>
-            <FilterNumberRange name="prix" unit="€" :min="filters.prixMin" :max="filters.prixMax" />
+            <FilterRangeInputs name="prix" unit="€" :min="filters.prixMin" :max="filters.prixMax" />
           </section>
 
           <section class="filter-section">
             <h3>Chambres</h3>
-            <FilterRange name="chambres" :min="filters.chambresMin" :max="filters.chambresMax" />
+            <FilterRangePills name="chambres" :min="filters.chambresMin" :max="filters.chambresMax" />
           </section>
 
           <section class="filter-section">
             <h3>Pièces</h3>
-            <FilterRange name="pieces" :min="filters.piecesMin" :max="filters.piecesMax" />
+            <FilterRangePills name="pieces" :min="filters.piecesMin" :max="filters.piecesMax" />
           </section>
 
           <section class="filter-section">
             <h3>Surface</h3>
-            <FilterNumberRange name="surface" unit="m²" :min="filters.surfaceMin" :max="filters.surfaceMax" />
+            <FilterRangeInputs name="surface" unit="m²" :min="filters.surfaceMin" :max="filters.surfaceMax" />
           </section>
 
           <section class="filter-section">
