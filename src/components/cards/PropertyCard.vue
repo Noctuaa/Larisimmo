@@ -2,6 +2,7 @@
   import { computed } from 'vue';
   import type { Property } from '../../types/property';
   import { rulerIcon, bedDoubleIcon, bathIcon } from '../../utils/propertyIcons';
+  import { dpeColors } from '../../data/dpeColors';
 
   const props = defineProps<{ property: Property }>();
 
@@ -9,6 +10,13 @@
     const formatted = props.property.prix.toLocaleString('fr-FR');
     return props.property.transaction === 'location' ? `${formatted} € / mois` : `${formatted} €`;
   });
+
+  /** Les trois infos de la rangée du bas : une icône (constante SVG) et son texte */
+  const features = computed(() => [
+    { key: 'chambres', icon: bedDoubleIcon, text: `${props.property.chambres}` },
+    { key: 'sallesDeBain', icon: bathIcon, text: `${props.property.sallesDeBain}` },
+    { key: 'surface', icon: rulerIcon, text: `${props.property.surface} m²` },
+  ]);
 
   const tagStyles: Record<string, string> = {
     Nouveau: 'bg-primary text-white',
@@ -18,7 +26,7 @@
 </script>
 
 <template>
-  <a :href="`/biens/${property.id}`" class="group block overflow-hidden rounded-2xl bg-white shadow-md transition hover:shadow-xl">
+  <a :href="`/biens/${property.id}`" class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md transition hover:shadow-xl">
     <div class="card-notch relative h-70 overflow-hidden before:content-[''] before:absolute before:z-10 before:bg-white">
       <img
         :src="property.photos[0].compacte"
@@ -34,8 +42,8 @@
       </div>
     </div>
 
-    <div class="relative -mt-10 flex flex-col gap-2 rounded-tr-4xl bg-white p-8">
-      <div class="mb-2 flex items-center justify-between">
+    <div class="relative -mt-10 flex flex-1 flex-col gap-4 rounded-tr-4xl bg-white p-8">
+      <div class="flex items-center justify-between">
         <div class="flex flex-col gap-1">
           <p class="text-xs font-bold uppercase text-accent">{{ property.type }}</p>
           <p class="text-sm font-semibold text-primary">{{ property.ville }}</p>
@@ -45,13 +53,19 @@
 
       <div class="flex flex-col gap-2">
         <h3 class="truncate font-semibold text-gray-900">{{ property.titre }}</h3>
-        <p class="line-clamp-2 text-sm text-gray-600">{{ property.description }}</p>
+        <p class="line-clamp-2 min-h-10 text-sm text-gray-600">{{ property.description }}</p>
       </div>
 
-      <ul class="mt-3 flex flex-wrap gap-y-2 text-sm font-semibold text-gray-800">
-        <li class="flex items-center gap-1.5 px-1 after:relative after:content-['|']" v-html="`${bedDoubleIcon}${property.chambres}`" />
-        <li class="flex items-center gap-1.5 px-1 after:relative after:content-['|']" v-html="`${bathIcon}${property.sallesDeBain}`" />
-        <li class="flex items-center gap-1.5 px-1" v-html="`${rulerIcon}${property.surface} m²`" />
+      <ul class="mt-auto flex flex-wrap gap-y-2 pt-3 text-sm font-semibold text-gray-800">
+        <li v-for="feature in features" :key="feature.key" class="flex items-center gap-2 px-1 after:relative after:content-['|']">
+          <span class="flex" v-html="feature.icon" />
+          {{ feature.text }}
+        </li>
+        <li :class="['ml-1 flex size-7 items-center justify-center rounded-full text-xs font-bold', dpeColors[property.dpe]]">
+          <span :title="`Classe énergie ${property.dpe}`" :aria-label="`Classe énergie ${property.dpe}`">
+            {{ property.dpe }}
+          </span>
+        </li>
       </ul>
     </div>
   </a>
