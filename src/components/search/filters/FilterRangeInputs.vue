@@ -3,6 +3,7 @@
   import { useStore } from '@nanostores/vue';
   import { $filters } from '@/stores/filters';
   import { type Filters } from '@/types/filters';
+  import { orderRange } from '@/utils/orderRange';
 
   const props = defineProps<{
     name: 'surface' | 'prix';
@@ -26,6 +27,13 @@
     $filters.setKey(key, digits);
   };
 
+  /** Quand on quitte un champ : si le minimum dépasse le maximum, on les échange pour que l'affichage rattrape la recherche
+   * (qui, elle, a déjà été remise dans l'ordre pendant la frappe) */
+  const orderValues = () => {
+    const [min, max] = orderRange($filters.get()[minKey] as string, $filters.get()[maxKey] as string);
+    $filters.set({ ...$filters.get(), [minKey]: min, [maxKey]: max });
+  };
+
   const fields = computed(() => [
     { label: 'Min.', id: `filter-${props.name}-min`, key: minKey, value: currentMin.value },
     { label: 'Max.', id: `filter-${props.name}-max`, key: maxKey, value: currentMax.value },
@@ -37,7 +45,15 @@
     <div v-for="f in fields" :key="f.id" class="flex flex-col min-w-0 flex-1">
       <label :for="f.id" class="field-label">{{ f.label }}</label>
       <div class="relative">
-        <input type="text" inputmode="numeric" :id="f.id" :value="f.value" class="peer field w-full pr-12" @input="update(f.key, $event)" />
+        <input
+          type="text"
+          inputmode="numeric"
+          :id="f.id"
+          :value="f.value"
+          class="peer field w-full pr-12"
+          @input="update(f.key, $event)"
+          @change="orderValues"
+        />
         <span
           class="absolute right-0 inset-y-0 flex items-center px-3 text-sm text-primary border-l border-gray-200 rounded-r-lg peer-focus:border-primary"
         >

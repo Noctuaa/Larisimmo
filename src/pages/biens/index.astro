@@ -5,13 +5,15 @@ import Layout from '../../layouts/Layout.astro';
 import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 import { filterProperties } from '../../utils/filterProperties';
+import { withOrderedRanges } from '../../utils/orderRange';
 import PropertyList from '../../components/search/PropertyList.vue';
 import SearchForm from '../../components/search/SearchForm.vue';
 
 const params = Astro.url.searchParams;
 
 // Les clés correspondent exactement aux props attendues par <SearchForm>, spread plus bas
-const filters = {
+// (un minimum plus grand que le maximum, écrit à la main dans l'adresse, est remis dans l'ordre)
+const filters = withOrderedRanges({
   ville: params.get('ville') ?? '',
   type: params.get('type') ?? '',
   transaction: params.get('transaction') ?? '',
@@ -27,7 +29,7 @@ const filters = {
   meuble: params.get('meuble') ?? '',
   // Équipements : coché = plusieurs `equipements=` dans l'URL, le bien doit tous les avoir
   equipements: params.getAll('equipements'),
-};
+});
 
 const { items, total, page: currentPage, totalPages } = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
 
