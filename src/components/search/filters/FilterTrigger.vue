@@ -18,13 +18,15 @@
   /** Serveur : choix lu dans l'adresse (prop) ; navigateur : choix du store, en direct */
   const currentChoice = computed(() => (import.meta.env.SSR ? props.selected : filters.value[props.name]));
 
-  /** Texte du bouton : les noms lisibles des choix, séparés par une virgule, ou le placeholder s'il n'y en a pas */
+  /** Texte du bouton, comme Leboncoin : le premier choix, suivi de « +1 », « +2 »… s'il y en a d'autres (tient sur une ligne),
+   * ou le placeholder s'il n'y en a pas */
   const buttonText = computed(() => {
     const labels = [currentChoice.value]
       .flat()
       .map((value) => props.options.find((option) => option.value === value)?.label)
       .filter(Boolean);
-    return labels.length ? labels.join(', ') : props.placeholder;
+    if (!labels.length) return props.placeholder;
+    return labels.length > 1 ? `${labels[0]}, +${labels.length - 1}` : labels[0];
   });
 </script>
 

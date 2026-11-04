@@ -1,7 +1,7 @@
 import { computed, map } from 'nanostores';
 import type { Filters } from '../types/filters';
 import { countActiveFilters } from '../utils/countActiveFilters';
-import { withOrderedRanges } from '../utils/orderRange';
+import { buildSearchUrl } from '../utils/filtersUrl';
 
 // #region State
 
@@ -9,7 +9,7 @@ import { withOrderedRanges } from '../utils/orderRange';
 const initialFilters: Filters = {
   transaction: '',
   ville: '',
-  type: '',
+  type: [],
   prixMin: '',
   prixMax: '',
   chambresMin: '',
@@ -45,20 +45,8 @@ export const resetFilters = () => $filters.set({ ...initialFilters, ville: $filt
 /** Nombre de filtres actifs (badge du bouton « Filtres »), recalculé tout seul à chaque changement */
 export const $activeFiltersCount = computed($filters, countActiveFilters);
 
-/** Adresse de la recherche : `/biens?type=maison&…`, ou `/biens` quand aucun filtre n'est rempli.
- * Un minimum plus grand que le maximum est remis dans l'ordre ici, sans toucher aux champs que l'utilisateur est en train de remplir */
-export const $searchUrl = computed($filters, (filters) => {
-  const urlParams = new URLSearchParams();
-
-  // On ajoute chaque filtre rempli à l'adresse ; une liste (équipements) donne un paramètre par élément, un filtre vide est ignoré.
-  for (const [key, value] of Object.entries(withOrderedRanges(filters))) {
-    if (Array.isArray(value)) value.forEach((v) => urlParams.append(key, v));
-    else if (value) urlParams.append(key, value);
-  }
-
-  const qs = urlParams.toString();
-  return qs ? `${SEARCH_PATH}?${qs}` : SEARCH_PATH;
-});
+/** Adresse de la recherche : `/biens?type=maison&prix=15500-20000`, ou `/biens` quand aucun filtre n'est rempli (voir `buildSearchUrl`) */
+export const $searchUrl = computed($filters, (filters) => buildSearchUrl(filters, SEARCH_PATH));
 
 /** Dernière recherche mémorisée dans le navigateur (lue par « Continuer ma recherche » sur l'accueil) */
 export const getLastSearch = () => localStorage.getItem(LAST_SEARCH_KEY);

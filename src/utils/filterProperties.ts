@@ -6,7 +6,7 @@ export const PER_PAGE = 12;
 export const filterProperties = (properties: Property[], filters: Filters, page = 1) => {
   const filtered = properties.filter((p) => {
     if (filters.ville && p.ville !== filters.ville) return false;
-    if (filters.type && p.type !== filters.type) return false;
+    if (filters.type.length && !filters.type.includes(p.type)) return false;
     if (filters.transaction && p.transaction !== filters.transaction) return false;
     if (filters.prixMin && p.prix < Number(filters.prixMin)) return false;
     if (filters.prixMax && p.prix > Number(filters.prixMax)) return false;

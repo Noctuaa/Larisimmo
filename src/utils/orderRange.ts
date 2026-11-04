@@ -1,7 +1,7 @@
 import type { Filters } from '../types/filters';
 
 /** Les filtres qui fonctionnent par plage : `prix` donne `prixMin` et `prixMax` */
-const RANGE_NAMES = ['prix', 'surface', 'chambres', 'pieces'] as const;
+export const RANGE_NAMES = ['prix', 'surface', 'chambres', 'pieces'] as const;
 
 /** Remet un minimum et un maximum (en texte) dans le bon ordre ; si l'un des deux est vide, on ne change rien */
 export const orderRange = (min: string, max: string): [string, string] => {

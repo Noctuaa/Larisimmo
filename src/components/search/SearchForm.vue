@@ -109,7 +109,7 @@
 
           <section class="filter-section">
             <h3>Type de bien</h3>
-            <FilterChoice name="type" :options="filterOptions.type" :selected="filters.type" />
+            <FilterChoice name="type" :options="filterOptions.type" :selected="filters.type" multiple />
           </section>
 
           <section class="filter-section">
