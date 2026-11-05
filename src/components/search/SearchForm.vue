@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref, watch } from 'vue';
   import { useStore } from '@nanostores/vue';
-  import { navigate } from 'astro:transitions/client';
+  import { navigate, type TransitionBeforeSwapEvent } from 'astro:transitions/client';
 
   import type { Filters } from '@/types/filters';
   import { $filters, $searchUrl, resetFilters } from '@/stores/filters';
@@ -50,7 +50,21 @@
 
   /** Coupe l'animation du panneau pendant un changement de page, puis la réactive (Astro déplace le panneau dans la nouvelle page) */
   const watchPageChanges = () => {
-    document.addEventListener('astro:before-swap', () => panel.value?.setAttribute('data-no-anim', ''));
+    // On retient ici si le changement de page vient de notre recherche : au moment d'`after-swap`, `ownSearch` est déjà remis à faux
+    let searchSwap = false;
+
+    document.addEventListener('astro:before-swap', (event) => {
+      panel.value?.setAttribute('data-no-anim', '');
+      searchSwap = ownSearch;
+      // Notre propre recherche : on saute le fondu, car pendant qu'il joue la page est une « photo » qui ignore les clics.
+      // Les autres changements de page (menu, pagination) gardent leur fondu
+      if (searchSwap) (event as TransitionBeforeSwapEvent).viewTransition.skipTransition();
+    });
+    // Notre propre recherche : petit fondu fait maison sur les résultats (une animation normale ne bloque pas les clics)
+    document.addEventListener('astro:after-swap', () => {
+      if (searchSwap) document.getElementById('results')?.animate({ opacity: [0, 1] }, { duration: 600, easing: 'ease-in-out' });
+      searchSwap = false;
+    });
     document.addEventListener('astro:page-load', () => {
       requestAnimationFrame(() => requestAnimationFrame(() => panel.value?.removeAttribute('data-no-anim')));
     });

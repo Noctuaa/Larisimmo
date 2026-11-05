@@ -80,14 +80,14 @@ const pageLink = (page: number) => {
     <SearchForm client:load transition:persist="search-form" filters={filters} total={total} />
   </div>
 
-  <main id="results" class="container py-12">
+  <main class="container py-12">
     <div class="mb-8">
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
       <p class="mt-2 text-gray-600">{total} bien{total > 1 ? 's' : ''} trouvé{total > 1 ? 's' : ''}</p>
     </div>
 
-    <PropertyList client:load items={items} />
+    <PropertyList client:load items={items} id="results" />
 
     {
       totalPages > 1 && (
