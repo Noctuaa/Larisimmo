@@ -26,7 +26,7 @@
 
 <template>
   <div class="flex flex-col gap-1">
-    <label :for="`filter-${name}`" class="field-label">{{ label }}</label>
+    <label :for="`filter-${name}`" class="field-label sr-only">{{ label }}</label>
     <select :id="`filter-${name}`" :value="currentChoice" class="field filter-select w-full whitespace-nowrap lg:w-56" @change="onChange">
       <option value="">{{ placeholder }}</option>
       <option v-for="option in options" :key="option.value" :value="option.value">{{ option.label }}</option>

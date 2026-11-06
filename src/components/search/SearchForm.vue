@@ -84,6 +84,7 @@
   <div role="search" class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
     <FilterSelect
       name="ville"
+      mode="selected"
       label="Choisir la localisation"
       placeholder="Toutes les localisations"
       :options="filterOptions.ville"
@@ -91,12 +92,13 @@
     />
     <FilterTrigger
       name="transaction"
+      mode="selected"
       label="Achat ou location"
-      placeholder="Peu importe"
       :options="filterOptions.transaction"
       :selected="filters.transaction"
     />
-    <FilterTrigger name="type" label="Type de bien" placeholder="Tous les types" :options="filterOptions.type" :selected="filters.type" />
+    <FilterTrigger name="type" mode="selected" label="Type de bien" :options="filterOptions.type" :selected="filters.type" />
+    <FilterTrigger mode="range" label="Prix" :range="{ min: filters.prixMin, max: filters.prixMax }" />
     <FiltersCountButton :initial-count="countActiveFilters(filters)" />
 
     <!-- Panneau latéral des filtres -->
