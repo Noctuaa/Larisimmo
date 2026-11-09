@@ -58,7 +58,12 @@
       searchSwap = ownSearch;
       // Notre propre recherche : on saute le fondu, car pendant qu'il joue la page est une « photo » qui ignore les clics.
       // Les autres changements de page (menu, pagination) gardent leur fondu
-      if (searchSwap) (event as TransitionBeforeSwapEvent).viewTransition.skipTransition();
+      if (searchSwap) {
+        const { viewTransition } = event as TransitionBeforeSwapEvent;
+        viewTransition.skipTransition();
+        // Le navigateur signale cette annulation voulue par une erreur `AbortError` : on l'ignore pour garder la console propre
+        viewTransition.ready.catch(() => {});
+      }
     });
     // Notre propre recherche : petit fondu fait maison sur les résultats (une animation normale ne bloque pas les clics)
     document.addEventListener('astro:after-swap', () => {

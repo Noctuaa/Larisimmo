@@ -20,7 +20,7 @@ const RANGE_URL_KEYS = {
   pieces: 'rooms',
 } as const;
 
-/** Lit une plage de l'adresse, comme Leboncoin : `15500-20000` donne `['15500', '20000']`,
+/** Lit une plage de l'adresse : `15500-20000` donne `['15500', '20000']`,
  * `15500-max` donne `['15500', '']` (minimum seul), `min-20000` donne `['', '20000']` (maximum seul),
  * et une valeur seule sans tiret (`500`) veut dire exactement cette valeur.
  * On ne garde que les chiffres : `min` et `max` deviennent vides */
