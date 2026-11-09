@@ -51,16 +51,19 @@
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-2">
-    <button
-      v-for="n in values"
-      :key="n"
-      type="button"
-      :aria-pressed="isInRange(n)"
-      :class="[pillClass, isInRange(n) ? 'bg-primary text-white' : 'hover:bg-gray-50 hover:text-primary']"
-      @click="selectRange(n)"
-    >
-      {{ n === 8 ? '8+' : n }}
-    </button>
+  <div>
+    <p class="-mt-2 mb-2 text-xs text-gray-500">Sélectionnez un minimum et un maximum</p>
+    <div class="flex flex-wrap gap-2">
+      <button
+        v-for="n in values"
+        :key="n"
+        type="button"
+        :aria-pressed="isInRange(n)"
+        :class="[pillClass, isInRange(n) ? 'bg-primary text-white' : 'hover:bg-gray-50 hover:text-primary']"
+        @click="selectRange(n)"
+      >
+        {{ n === 8 ? '8+' : n }}
+      </button>
+    </div>
   </div>
 </template>
