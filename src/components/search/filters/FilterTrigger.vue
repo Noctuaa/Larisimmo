@@ -25,8 +25,11 @@
 
   const filters = useStore($filters);
 
+  /** Met un nombre (en texte) au format français, avec l'espace des milliers : `3000` donne `3 000` */
   const formatNumber = (value: string) => Number(value).toLocaleString('fr-FR');
 
+  /** Plage de prix à afficher. Serveur : lue dans l'adresse (prop `range`) ; navigateur : lue dans le store, en direct.
+   * Les clés `prixMin` et `prixMax` sont écrites en dur : ce bouton ne sert qu'au prix pour l'instant */
   const currentRange = computed(() => (import.meta.env.SSR ? range : { min: filters.value.prixMin, max: filters.value.prixMax }));
 
   /** Serveur : choix lu dans l'adresse (prop) ; navigateur : choix du store, en direct */
@@ -35,6 +38,8 @@
     return import.meta.env.SSR ? selected : filters.value[name];
   });
 
+  /** Texte du bouton en mode `range` : `300 - 3 000 €` (les deux), `Min. 300 €` ou `3 000 € max.` (un seul),
+   * ou le libellé s'il n'y a ni l'un ni l'autre */
   const rangeText = computed(() => {
     const { min, max } = currentRange.value;
     if (!min && !max) return label;
@@ -42,6 +47,8 @@
     return min ? `Min. ${formatNumber(min)} €` : `${formatNumber(max)} € max.`;
   });
 
+  /** Texte du bouton en mode `selected`: le premier choix, puis `, +1`, `, +2`… s'il y en a d'autres
+   * (pour tenir sur une ligne), ou le libellé s'il n'y en a aucun */
   const choiceText = computed(() => {
     const labels = [currentChoice.value]
       .flat()
@@ -51,15 +58,19 @@
     return labels.length > 1 ? `${labels[0]}, +${labels.length - 1}` : labels[0];
   });
 
-  /** Texte du bouton, comme Leboncoin : le premier choix, suivi de « +1 », « +2 »… s'il y en a d'autres (tient sur une ligne),
-   * ou le placeholder s'il n'y en a pas */
+  /** Texte du bouton selon le mode : le résumé d'une plage (`range`) ou celui d'une liste de choix (`selected`) */
   const buttonText = computed(() => (mode === 'range' ? rangeText.value : choiceText.value));
 </script>
 
 <template>
   <div class="flex flex-col gap-1">
-    <span class="sr-only field-label">{{ label }}</span>
-    <button type="button" popovertarget="more-filters" :title="buttonText" class="field w-full truncate text-left lg:w-44">
+    <button
+      type="button"
+      popovertarget="more-filters"
+      :title="buttonText"
+      :aria-label="buttonText !== label ? `${label} : ${buttonText}` : undefined"
+      class="field w-full truncate text-left lg:w-44"
+    >
       {{ buttonText }}
     </button>
   </div>
