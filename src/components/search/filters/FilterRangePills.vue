@@ -29,21 +29,27 @@
   /** Le bouton `n` est-il dans la plage choisie ? (aucun bouton n'est allumé s'il manque le début ou la fin) */
   const isInRange = (n: number) => currentMin.value !== null && currentMax.value !== null && n >= currentMin.value && n <= currentMax.value;
 
+  /** Écrit le début et la fin de la plage dans le store (`''` pour les deux = plus de filtre) */
+  const setRange = (newMin: string, newMax: string) => $filters.set({ ...$filters.get(), [minKey]: newMin, [maxKey]: newMax });
+
   /** Clic sur un bouton :
-   * - sur une borne actuelle : rien ne change
+   * - sur le seul bouton choisi : le filtre est retiré
+   * - sur le début, la fin ou l'intérieur de la plage : la plage repart avec ce seul bouton
    * - avant le début ou après la fin : la plage s'agrandit jusqu'à ce bouton
-   * - à l'intérieur, ou rien de choisi : la plage repart avec ce seul bouton */
+   * - rien de choisi : ce bouton devient le choix */
   const selectRange = (clicked: number) => {
     const min = currentMin.value;
     const max = currentMax.value;
 
-    if (clicked === min || clicked === max) return;
+    // Un seul bouton choisi (début et fin égaux, ou un seul des deux renseigné) et on clique dessus : on retire le filtre
+    const isSingle = min === null || max === null || min === max;
+    if (isSingle && (clicked === min || clicked === max)) return setRange('', '');
 
     const extend = min === null || max === null || clicked < min || clicked > max;
     const newMin = extend ? Math.min(min ?? clicked, clicked) : clicked;
     const newMax = extend ? Math.max(max ?? clicked, clicked) : clicked;
 
-    $filters.set({ ...$filters.get(), [minKey]: String(newMin), [maxKey]: String(newMax) });
+    setRange(String(newMin), String(newMax));
   };
 
   /** Forme commune des boutons ; la couleur (dans la plage ou non) est ajoutée dans le <template> */
