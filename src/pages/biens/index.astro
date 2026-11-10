@@ -4,7 +4,7 @@ export const prerender = false;
 import properties from '../../data/biens.json';
 import type { Property } from '../../types/property';
 import { filterProperties } from '../../utils/filterProperties';
-import { parseFilters } from '../../utils/filtersUrl';
+import { buildSearchUrl, parseFilters } from '../../utils/filtersUrl';
 
 import Layout from '../../layouts/Layout.astro';
 import PropertyList from '../../components/search/PropertyList.vue';
@@ -18,11 +18,7 @@ const filters = parseFilters(params);
 const { items, total, page: currentPage, totalPages } = filterProperties(properties as Property[], filters, Number(params.get('page')) || 1);
 
 // Construit un lien vers /biens en conservant les filtres actuels, avec un param en plus/écrasé
-const pageLink = (page: number) => {
-  const p = new URLSearchParams(params);
-  p.set('page', String(page));
-  return `/biens?${p.toString()}`;
-};
+const pageLink = (page: number) => buildSearchUrl(filters, '/biens', page);
 ---
 
 <Layout>

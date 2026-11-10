@@ -67,7 +67,7 @@ export const parseFilters = (params: URLSearchParams): Filters => {
  * ou `/biens` quand aucun filtre n'est rempli.
  * Un minimum plus grand que le maximum est remis dans l'ordre ici,
  * sans toucher aux champs que l'utilisateur est en train de remplir */
-export const buildSearchUrl = (filters: Filters, path: string): string => {
+export const buildSearchUrl = (filters: Filters, path: string, page?: number): string => {
   const ordered = withOrderedRanges(filters);
   const urlParams = new URLSearchParams();
 
@@ -86,6 +86,9 @@ export const buildSearchUrl = (filters: Filters, path: string): string => {
     const max = ordered[`${name}Max`];
     if (min || max) urlParams.append(RANGE_URL_KEYS[name], `${min || 'min'}-${max || 'max'}`);
   }
+
+  // La page demandée, en dernier (rien pour la page 1 ou sans page)
+  if (page) urlParams.append('page', String(page));
 
   // `URLSearchParams` écrit la virgule `%2C` ; on remet la vraie virgule, plus lisible (permise dans une adresse)
   const qs = urlParams.toString().replaceAll('%2C', ',');
