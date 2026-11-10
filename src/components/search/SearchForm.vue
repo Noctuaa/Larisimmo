@@ -14,6 +14,7 @@
   import FilterChoice from './filters/FilterChoice.vue';
   import FilterRangePills from './filters/FilterRangePills.vue';
   import FilterRangeInputs from './filters/FilterRangeInputs.vue';
+  import FilterDpePills from './filters/FilterDpePills.vue';
 
   const SEARCH_DELAY = 300; // ms d'attente après le dernier changement de filtre
 
@@ -160,7 +161,7 @@
 
           <section class="filter-section">
             <h3>Classe énergie</h3>
-            <FilterChoice name="dpe" :options="filterOptions.dpe" :selected="filters.dpe" />
+            <FilterDpePills :options="filterOptions.dpe" :selected="filters.dpe" />
           </section>
 
           <section class="filter-section">
