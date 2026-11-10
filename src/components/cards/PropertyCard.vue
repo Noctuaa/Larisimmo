@@ -61,7 +61,7 @@
           <span class="flex" v-html="feature.icon" />
           {{ feature.text }}
         </li>
-        <li :class="['ml-1 flex size-7 items-center justify-center rounded-full text-xs font-bold', dpeColors[property.dpe]]">
+        <li :class="['ml-1 size-6 dpe-tag', dpeColors[property.dpe]]">
           <span :title="`Classe énergie ${property.dpe}`" :aria-label="`Classe énergie ${property.dpe}`">
             {{ property.dpe }}
           </span>
