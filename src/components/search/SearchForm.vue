@@ -122,7 +122,7 @@
             type="button"
             popovertarget="more-filters"
             popovertargetaction="hide"
-            class="flex h-9 w-9 items-center justify-center rounded-full text-lg text-gray-700 hover:bg-gray-100"
+            class="flex size-11 items-center justify-center rounded-full text-lg text-gray-700 hover:bg-gray-100"
             aria-label="Fermer"
           >
             ✕

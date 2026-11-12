@@ -53,13 +53,13 @@
   };
 
   /** Forme commune des boutons ; la couleur (dans la plage ou non) est ajoutée dans le <template> */
-  const pillClass = 'flex h-10 min-w-10 cursor-pointer items-center justify-center rounded-full border border-gray-200 px-3 text-sm text-gray-700';
+  const pillClass = 'flex items-center justify-center aspect-square rounded-full border border-gray-200 text-sm text-gray-700 cursor-pointer ';
 </script>
 
 <template>
   <div>
     <p class="-mt-2 mb-2 text-xs text-gray-500">Sélectionnez un minimum et un maximum</p>
-    <div class="flex flex-wrap gap-2">
+    <div class="grid grid-cols-8 gap-1.5 md:gap-2">
       <button
         v-for="n in values"
         :key="n"
