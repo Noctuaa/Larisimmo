@@ -87,7 +87,10 @@
 </script>
 
 <template>
-  <div role="search" class="search-form container flex flex-col gap-4 py-4 lg:flex-row lg:flex-wrap lg:items-end lg:gap-y-0">
+  <div
+    role="search"
+    class="search-form container grid grid-cols-[1fr_auto] items-center gap-2 py-3 lg:flex lg:flex-wrap lg:items-end lg:gap-x-4 lg:gap-y-0 lg:py-4"
+  >
     <FilterSelect
       name="ville"
       mode="selected"
@@ -96,16 +99,19 @@
       :options="filterOptions.ville"
       :selected="filters.ville"
     />
-    <FilterTrigger
-      name="transaction"
-      mode="selected"
-      label="Achat ou location"
-      :options="filterOptions.transaction"
-      :selected="filters.transaction"
-    />
-    <FilterTrigger name="type" mode="selected" label="Type de bien" :options="filterOptions.type" :selected="filters.type" />
-    <FilterTrigger mode="range" label="Prix" :range="{ min: filters.prixMin, max: filters.prixMax }" />
-    <FiltersCountButton :initial-count="countActiveFilters(filters)" />
+    <div class="col-span-2 flex gap-2 overflow-x-auto lg:contents">
+      <FilterTrigger
+        name="transaction"
+        mode="selected"
+        label="Achat ou location"
+        :options="filterOptions.transaction"
+        :selected="filters.transaction"
+      />
+      <FilterTrigger name="type" mode="selected" label="Type de bien" :options="filterOptions.type" :selected="filters.type" />
+      <FilterTrigger mode="range" label="Prix" :range="{ min: filters.prixMin, max: filters.prixMax }" />
+    </div>
+
+    <FiltersCountButton :initial-count="countActiveFilters(filters)" class="col-start-2 row-start-1" />
 
     <!-- Panneau latéral des filtres -->
     <div ref="panel" popover id="more-filters" class="more-filters-popover">

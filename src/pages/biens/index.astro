@@ -22,7 +22,11 @@ const pageLink = (page: number) => buildSearchUrl(filters, '/biens', page);
 ---
 
 <Layout>
-  <div id="search-panel" class="sticky top-0 z-60 mt-(--nav-height) w-full border-y border-gray-100 bg-background shadow-md">
+  <div
+    id="search-panel"
+    class="sticky top-0 z-40 mb-(--nav-height) translate-y-(--nav-height) w-full border-y border-gray-100 bg-background shadow-md
+  transition-transform duration-300 [body:has(header.-translate-y-full)_&]:translate-y-0"
+  >
     <SearchForm client:load transition:persist="search-form" filters={filters} total={total} />
   </div>
 
