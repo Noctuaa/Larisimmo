@@ -45,7 +45,8 @@ export const parseFilters = (params: URLSearchParams): Filters => {
 
   return withOrderedRanges({
     ville: params.get(URL_KEYS.ville) ?? '',
-    transaction: params.get(URL_KEYS.transaction) ?? '',
+    // Par défaut, on vend
+    transaction: params.get(URL_KEYS.transaction) === 'location' ? 'location' : 'vente',
     // Types de bien : `type=maison,chalet`, le bien doit être de l'un d'eux
     type: readList(params, URL_KEYS.type),
     prixMin,

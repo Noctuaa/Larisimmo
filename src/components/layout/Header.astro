@@ -7,6 +7,17 @@ const links = [
 ];
 
 const currentPath = Astro.url.pathname;
+// Achat ou Location de la page en cours (la vente par défaut, comme dans `parseFilters`)
+const currentTransaction = Astro.url.searchParams.get('transaction') === 'location' ? 'location' : 'vente';
+
+/** Le lien est-il celui de la page en cours ? On compare le chemin, puis la transaction quand le lien en a une
+ * (`/biens?transaction=vente` s'allume sur la vente, `/biens?transaction=location` sur la location) */
+const isActive = (href: string) => {
+  const url = new URL(href, Astro.url);
+  if (url.pathname !== currentPath) return false;
+  const linkTransaction = url.searchParams.get('transaction');
+  return !linkTransaction || linkTransaction === currentTransaction;
+};
 ---
 
 <header
@@ -27,7 +38,7 @@ const currentPath = Astro.url.pathname;
             href={link.href}
             class:list={[
               'rounded-lg px-3 py-3 text-base font-semibold transition hover:bg-gray-50 text-center hover:text-accent md:rounded-none md:p-0 md:text-sm md:hover:bg-transparent',
-              currentPath === link.href ? 'text-accent' : 'text-gray-700',
+              isActive(link.href) ? 'text-accent' : 'text-gray-700',
             ]}
           >
             {link.label}

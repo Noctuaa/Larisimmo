@@ -4,8 +4,15 @@
   import { $filters } from '@/stores/filters';
   import { type Filters } from '@/types/filters';
 
-  const props = defineProps<{
+  const {
+    name,
+    required = false,
+    options,
+    selected = '',
+    multiple = false,
+  } = defineProps<{
     name: keyof Filters;
+    required?: boolean;
     options: { label: string; value: string }[];
     selected?: string | string[];
     multiple?: boolean;
@@ -14,16 +21,17 @@
   const filters = useStore($filters);
 
   /** Toujours une liste (`.flat()`), pour tester avec `includes` qu'il y ait un ou plusieurs choix */
-  const currentChoices = computed(() => [import.meta.env.SSR ? props.selected : filters.value[props.name]].flat());
+  const currentChoices = computed(() => [import.meta.env.SSR ? selected : filters.value[name]].flat());
 
-  /** Choix unique : un 2e clic décoche. `multiple` : on ajoute ou retire le choix, en recréant la liste pour que le store voie le changement */
+  /** Choix unique : un 2e clic décoche, sauf si `required` (un choix est obligatoire : on ne fait alors rien).
+   * `multiple` : on ajoute ou retire le choix, en recréant la liste pour que le store voie le changement */
   const toggle = (option: string) => {
-    const value = $filters.get()[props.name];
-    if (props.multiple) {
+    const value = $filters.get()[name];
+    if (multiple) {
       const list = value as string[];
-      $filters.setKey(props.name, list.includes(option) ? list.filter((v) => v !== option) : [...list, option]);
-    } else {
-      $filters.setKey(props.name, value === option ? '' : option);
+      $filters.setKey(name, list.includes(option) ? list.filter((v) => v !== option) : [...list, option]);
+    } else if (!(required && value === option)) {
+      $filters.setKey(name, value === option ? '' : option);
     }
   };
 

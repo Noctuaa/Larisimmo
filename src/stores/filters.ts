@@ -7,7 +7,7 @@ import { buildSearchUrl } from '../utils/filtersUrl';
 
 /** État de départ : tous les filtres vides. On le garde à part pour pouvoir remettre le formulaire à zéro */
 const initialFilters: Filters = {
-  transaction: '',
+  transaction: 'vente',
   ville: '',
   type: [],
   prixMin: '',
@@ -35,8 +35,8 @@ export const $filters = map<Filters>({ ...initialFilters });
 
 // #region Actions
 
-/** Remet tous les filtres à zéro, sauf la ville (elle est dans la barre du haut, pas dans le panneau). */
-export const resetFilters = () => $filters.set({ ...initialFilters, ville: $filters.get().ville });
+/** Remet tous les filtres à zéro, sauf la ville et le type de transaction. */
+export const resetFilters = () => $filters.set({ ...initialFilters, ville: $filters.get().ville, transaction: $filters.get().transaction });
 
 // #endregion
 

@@ -132,7 +132,7 @@
         <div class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-6">
           <section class="filter-section">
             <h3>Achat ou location</h3>
-            <FilterChoice name="transaction" :options="filterOptions.transaction" :selected="filters.transaction" />
+            <FilterChoice name="transaction" required :options="filterOptions.transaction" :selected="filters.transaction" />
           </section>
 
           <section class="filter-section">
