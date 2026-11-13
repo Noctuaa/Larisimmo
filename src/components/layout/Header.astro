@@ -36,9 +36,10 @@ const isActive = (href: string) => {
         links.map((link) => (
           <a
             href={link.href}
+            aria-current={isActive(link.href) ? 'page' : undefined}
             class:list={[
-              'rounded-lg px-3 py-3 text-base font-semibold transition hover:bg-gray-50 text-center hover:text-accent md:rounded-none md:p-0 md:text-sm md:hover:bg-transparent',
-              isActive(link.href) ? 'text-accent' : 'text-gray-700',
+              'rounded-lg px-3 py-3 text-base font-semibold transition hover:bg-gray-50 text-center hover:text-accent md:rounded-none md:border-b-2 md:p-0 md:pb-1 md:text-sm md:hover:bg-transparent',
+              isActive(link.href) ? 'bg-gray-50 text-accent md:border-accent md:bg-transparent' : 'text-gray-700 md:border-transparent',
             ]}
           >
             {link.label}
