@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref, watch } from 'vue';
   import { useStore } from '@nanostores/vue';
+  import { BedDouble, Building2, DoorOpen, Euro, Key, ListChecks, Ruler, Sofa, Zap } from '@lucide/vue';
   import { navigate, type TransitionBeforeSwapEvent } from 'astro:transitions/client';
 
   import type { Filters } from '@/types/filters';
@@ -131,47 +132,76 @@
 
         <div class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-6">
           <section class="filter-section">
-            <h3>Achat ou location</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><Key class="size-4" aria-hidden="true" /></span>
+              Achat ou location
+            </h3>
             <FilterChoice name="transaction" required :options="filterOptions.transaction" :selected="filters.transaction" />
           </section>
 
           <section class="filter-section">
-            <h3>Type de bien</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><Building2 class="size-4" aria-hidden="true" /></span>
+              Type de bien
+            </h3>
             <FilterChoice name="type" :options="filterOptions.type" :selected="filters.type" multiple />
           </section>
 
           <section class="filter-section">
-            <h3>Prix</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon">
+                <Euro class="size-4" aria-hidden="true" />
+              </span>
+              Prix
+            </h3>
             <FilterRangeInputs name="prix" unit="€" :min="filters.prixMin" :max="filters.prixMax" />
           </section>
 
           <section class="filter-section">
-            <h3>Chambres</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><BedDouble class="size-4" aria-hidden="true" /></span>
+              Chambres
+            </h3>
             <FilterRangePills name="chambres" :min="filters.chambresMin" :max="filters.chambresMax" />
           </section>
 
           <section class="filter-section">
-            <h3>Pièces</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><DoorOpen class="size-4" aria-hidden="true" /></span>
+              Pièces
+            </h3>
             <FilterRangePills name="pieces" :min="filters.piecesMin" :max="filters.piecesMax" />
           </section>
 
           <section class="filter-section">
-            <h3>Surface</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><Ruler class="size-4" aria-hidden="true" /></span>
+              Surface
+            </h3>
             <FilterRangeInputs name="surface" unit="m²" :min="filters.surfaceMin" :max="filters.surfaceMax" />
           </section>
 
           <section class="filter-section">
-            <h3>Meublé / Non meublé</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><Sofa class="size-4" aria-hidden="true" /></span>
+              Meublé / Non meublé
+            </h3>
             <FilterChoice name="meuble" :options="filterOptions.meuble" :selected="filters.meuble" />
           </section>
 
           <section class="filter-section">
-            <h3>Classe énergie</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><Zap class="size-4" aria-hidden="true" /></span>
+              Classe énergétique (DPE)
+            </h3>
             <FilterDpePills :options="filterOptions.dpe" :selected="filters.dpe" />
           </section>
 
           <section class="filter-section">
-            <h3>Équipements</h3>
+            <h3 class="flex items-center gap-2">
+              <span class="section-icon"><ListChecks class="size-4" aria-hidden="true" /></span>
+              Equipements
+            </h3>
             <FilterChoice name="equipements" :options="filterOptions.equipements" :selected="filters.equipements" multiple />
           </section>
         </div>

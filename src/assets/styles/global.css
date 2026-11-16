@@ -62,6 +62,10 @@ html {
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
   }
 
+  .section-icon {
+    @apply flex size-7 items-center justify-center rounded-full bg-primary/10 text-primary;
+  }
+
   .btn {
     @apply rounded-lg px-5 py-2.5 font-semibold;
   }
