@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref, watch } from 'vue';
   import { useStore } from '@nanostores/vue';
-  import { BedDouble, Building2, DoorOpen, Euro, Key, ListChecks, Ruler, Sofa, Zap } from '@lucide/vue';
+  import { BedDouble, Building, Building2, DoorOpen, Euro, Key, ListChecks, Ruler, Sofa, Zap } from '@lucide/vue';
   import { navigate, type TransitionBeforeSwapEvent } from 'astro:transitions/client';
 
   import type { Filters } from '@/types/filters';
@@ -102,14 +102,15 @@
     />
     <div class="col-span-2 flex gap-2 overflow-x-auto lg:contents">
       <FilterTrigger
+        :icon="Key"
         name="transaction"
         mode="selected"
         label="Achat ou location"
         :options="filterOptions.transaction"
         :selected="filters.transaction"
       />
-      <FilterTrigger name="type" mode="selected" label="Type de bien" :options="filterOptions.type" :selected="filters.type" />
-      <FilterTrigger mode="range" label="Prix" :range="{ min: filters.prixMin, max: filters.prixMax }" />
+      <FilterTrigger :icon="Building2" name="type" mode="selected" label="Type de bien" :options="filterOptions.type" :selected="filters.type" />
+      <FilterTrigger :icon="Euro" mode="range" label="Prix" :range="{ min: filters.prixMin, max: filters.prixMax }" />
     </div>
 
     <FiltersCountButton :initial-count="countActiveFilters(filters)" class="col-start-2 row-start-1" />

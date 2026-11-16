@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
+  import type { Component } from 'vue';
 
   import { useStore } from '@nanostores/vue';
   import { type Filters } from '@/types/filters';
@@ -8,6 +9,7 @@
   const {
     mode,
     label,
+    icon,
     name,
     options = [],
     selected,
@@ -15,6 +17,7 @@
   } = defineProps<{
     mode: 'selected' | 'range';
     label: string;
+    icon?: Component;
 
     name?: keyof Filters;
     options?: { label: string; value: string }[];
@@ -69,9 +72,10 @@
       popovertarget="more-filters"
       :title="buttonText"
       :aria-label="buttonText !== label ? `${label} : ${buttonText}` : undefined"
-      class="field w-full truncate text-left lg:w-44"
+      class="field flex w-full items-center gap-2 text-left lg:w-44"
     >
-      {{ buttonText }}
+      <component :is="icon" v-if="icon" class="size-4 shrink-0" aria-hidden="true" />
+      <span class="truncate">{{ buttonText }}</span>
     </button>
   </div>
 </template>

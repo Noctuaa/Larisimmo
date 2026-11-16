@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import { useStore } from '@nanostores/vue';
+  import { MapPin } from '@lucide/vue';
   import { $filters } from '@/stores/filters';
   import { type Filters } from '@/types/filters';
 
@@ -25,9 +26,11 @@
 </script>
 
 <template>
-  <div class="flex flex-col gap-1">
+  <div class="relative flex flex-col gap-1">
     <label :for="`filter-${name}`" class="field-label sr-only">{{ label }}</label>
-    <select :id="`filter-${name}`" :value="currentChoice" class="field filter-select w-full whitespace-nowrap lg:w-56" @change="onChange">
+    <!-- Icône posée par-dessus le menu (une icône ne peut pas se mettre dans un <select>) ; les clics passent à travers -->
+    <MapPin class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2" aria-hidden="true" />
+    <select :id="`filter-${name}`" :value="currentChoice" class="field filter-select w-full pl-9 whitespace-nowrap lg:w-56" @change="onChange">
       <option value="">{{ placeholder }}</option>
       <option v-for="option in options" :key="option.value" :value="option.value">{{ option.label }}</option>
     </select>
