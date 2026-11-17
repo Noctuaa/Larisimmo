@@ -92,7 +92,7 @@
       :options="filterOptions.ville"
       :selected="filters.ville"
     />
-    <div class="col-span-2 flex gap-2 overflow-x-auto scrollbar-width:none lg:contents [&::-webkit-scrollbar]:hidden">
+    <div class="col-span-2 flex gap-2 overflow-x-auto scrollbar-none lg:contents">
       <FilterTrigger
         :icon="Key"
         name="transaction"
