@@ -18,7 +18,7 @@ html {
 }
 
 @theme {
-  --nav-height: 5rem;
+  --nav-height: 3.75rem;
   --color-accent: #4f46e5;
   --color-accent-secondary: #a78bfa;
   --color-primary: #15224e;
@@ -26,6 +26,12 @@ html {
   --font-sans: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
   --container-8xl: 96rem; /*1536px*/
   --container-padding: clamp(1rem, 4vw, 3rem);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --nav-height: 4.375rem;
+  } /* 70 px dès que l'écran est plus large */
 }
 
 @utility container {

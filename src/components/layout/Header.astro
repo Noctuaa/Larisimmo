@@ -22,30 +22,30 @@ const isActive = (href: string) => {
 
 <header
   id="site-header"
-  class="fixed inset-x-0 top-0 z-50 h-(--nav-height) border-b border-gray-100 bg-background backdrop-blur transition-transform duration-300"
+  class="fixed inset-x-0 top-0 z-50 h-(--nav-height) border-b border-gray-100 bg-background backdrop-blur"
 >
   <div class="container flex h-full items-center justify-between">
-    <a href="/" class="text-xl font-bold text-primary">Larisimmo</a>
+    <a href="/" class="text-xl font-bold text-primary">
+      Larisimmo
+    </a>
 
     <nav
       id="nav-menu"
       class="fixed inset-y-0 right-0 z-50 flex w-72 max-w-[50vw] mt-(--nav-height) h-svh translate-x-full flex-col gap-1 divide-y divide-gray-100 bg-white px-6 py-6 shadow-xl transition-transform duration-300
       md:relative md:gap-8 md:flex md:flex-row md:items-center md:w-auto md:h-auto md:translate-x-0 md:mt-0 md:divide-y-0 md:bg-transparent md:shadow-none"
     >
-      {
-        links.map((link) => (
-          <a
-            href={link.href}
-            aria-current={isActive(link.href) ? 'page' : undefined}
-            class:list={[
-              'rounded-lg px-3 py-3 text-base font-semibold transition hover:bg-gray-50 text-center hover:text-accent md:rounded-none md:border-b-2 md:p-0 md:pb-1 md:text-sm md:hover:bg-transparent',
-              isActive(link.href) ? 'bg-gray-50 text-accent md:border-accent md:bg-transparent' : 'text-gray-700 md:border-transparent',
-            ]}
-          >
-            {link.label}
-          </a>
-        ))
-      }
+      {links.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isActive(link.href) ? 'page' : undefined}
+          class:list={[
+            'rounded-lg px-3 py-3 text-base font-semibold transition hover:bg-gray-50 text-center hover:text-accent md:rounded-none md:border-b-2 md:p-0 md:pb-1 md:text-sm md:hover:bg-transparent',
+            isActive(link.href) ? 'bg-gray-50 text-accent md:border-accent md:bg-transparent' : 'text-gray-700 md:border-transparent',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
     </nav>
 
     <button
@@ -72,8 +72,7 @@ const isActive = (href: string) => {
           x2="20"
           y2="6"
           class="origin-center transition duration-300 transform-fill group-aria-expanded:translate-y-1.5 group-aria-expanded:rotate-45"
-        >
-        </line>
+        ></line>
         <line x1="4" y1="12" x2="20" y2="12" class="origin-center transition duration-300 group-aria-expanded:opacity-0"></line>
         <line
           x1="4"
@@ -81,19 +80,16 @@ const isActive = (href: string) => {
           x2="20"
           y2="18"
           class="origin-center transition duration-300 transform-fill group-aria-expanded:-translate-y-1.5 group-aria-expanded:-rotate-45"
-        >
-        </line>
+        ></line>
       </svg>
     </button>
   </div>
 </header>
 
 <script>
-  // Avec les View Transitions (<ClientRouter />), ce script ne s'exécute qu'une seule
-  // fois pour tout le site — header/menu/toggle sont remplacés par de nouveaux éléments
-  // à chaque navigation, donc on ne les capture jamais une fois pour toutes : on délègue
-  // l'écoute des clics à `document` (qui ne change jamais) et on recherche l'élément à
-  // jour à chaque scroll, plutôt que de garder une référence qui devient obsolète.
+  // Avec les View Transitions (<ClientRouter />), ce script ne s'exécute qu'une seule fois pour tout le site :
+  // le menu est remplacé par de nouveaux éléments à chaque navigation, donc on délègue l'écoute des clics
+  // à `document` (qui ne change jamais) et on recherche l'élément à jour à chaque clic.
 
   // Ouvre/ferme le tiroir mobile + bloque le scroll de la page pendant que le menu est ouvert
   document.addEventListener('click', (e) => {
@@ -104,37 +100,5 @@ const isActive = (href: string) => {
     const isOpen = menu?.classList.toggle('translate-x-full') === false;
     toggle.setAttribute('aria-expanded', String(isOpen));
     document.body.classList.toggle('overflow-hidden', isOpen);
-  });
-
-  // Cache le header au scroll vers le bas, le réaffiche au scroll vers le haut
-  // (jamais caché tout en haut de page ; pas de scroll possible pendant que le menu est ouvert)
-  let lastScrollY = window.scrollY;
-  let ticking = false;
-
-  const updateHeaderVisibility = () => {
-    const header = document.getElementById('site-header');
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY < 80 || currentScrollY < lastScrollY) {
-      header?.classList.remove('-translate-y-full');
-    } else {
-      header?.classList.add('-translate-y-full');
-    }
-
-    lastScrollY = currentScrollY;
-    ticking = false;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateHeaderVisibility);
-      ticking = true;
-    }
-  });
-
-  // Repart d'un scroll à 0 à chaque nouvelle page, sinon le premier tick après une
-  // navigation compare à la position de la page précédente
-  document.addEventListener('astro:page-load', () => {
-    lastScrollY = window.scrollY;
   });
 </script>

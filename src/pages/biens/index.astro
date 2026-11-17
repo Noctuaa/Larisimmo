@@ -25,7 +25,7 @@ const pageLink = (page: number) => buildSearchUrl(filters, '/biens', page);
   <div
     id="search-panel"
     class="sticky top-0 z-40 mb-(--nav-height) translate-y-(--nav-height) w-full border-y border-gray-100 bg-background shadow-md
-  transition-transform duration-300 [body:has(header.-translate-y-full)_&]:translate-y-0"
+  transition-transform duration-300 ease-in-out data-hidden:-translate-y-full"
   >
     <SearchForm client:load transition:persist="search-form" filters={filters} total={total} />
   </div>
@@ -34,27 +34,64 @@ const pageLink = (page: number) => buildSearchUrl(filters, '/biens', page);
     <div class="mb-8">
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
-      <p class="mt-2 text-gray-600">{total} bien{total > 1 ? 's' : ''} trouvé{total > 1 ? 's' : ''}</p>
+      <p class="mt-2 text-gray-600">
+        {total}bien{total > 1 ? 's' : ''}trouvé{total > 1 ? 's' : ''}
+      </p>
     </div>
 
     <PropertyList client:load items={items} id="results" />
 
-    {
-      totalPages > 1 && (
-        <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Pagination">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <a
-              href={pageLink(page)}
-              class:list={[
-                'flex h-10 w-10 items-center justify-center rounded-lg text-sm font-semibold transition',
-                page === currentPage ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100',
-              ]}
-            >
-              {page}
-            </a>
-          ))}
-        </nav>
-      )
-    }
+    {totalPages > 1 && (
+      <nav class="mt-12 flex items-center justify-center gap-2" aria-label="Pagination">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <a
+            href={pageLink(page)}
+            class:list={[
+              'flex h-10 w-10 items-center justify-center rounded-lg text-sm font-semibold transition',
+              page === currentPage ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100',
+            ]}
+          >
+            {page}
+          </a>
+        ))}
+      </nav>
+    )}
   </main>
 </Layout>
+
+<script>
+  // Sur mobile, la barre de recherche se cache quand on descend (pour laisser la place aux biens) et revient quand on remonte.
+  // Le script ne s'exécute qu'une fois avec les View Transitions : la barre est remplacée à chaque navigation,
+  // donc on la recherche à chaque défilement plutôt que de garder une référence qui devient obsolète.
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  const MIN_SCROLL = 10; // px : en dessous, on ignore le mouvement (petits à-coups de la molette ou du trackpad)
+
+  const updateSearchBar = () => {
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
+    ticking = false;
+
+    // Petit mouvement : on ne fait rien et on ne retient pas la position, pour que plusieurs petits mouvements finissent par compter.
+    // Exception tout en haut de page : la barre doit toujours réapparaître
+    if (Math.abs(delta) < MIN_SCROLL && currentScrollY >= 80) return;
+
+    const scrollingDown = currentScrollY >= 80 && delta > 0;
+    document.getElementById('search-panel')?.toggleAttribute('data-hidden', scrollingDown);
+
+    lastScrollY = currentScrollY;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateSearchBar);
+      ticking = true;
+    }
+  });
+
+  // Repart du défilement de la nouvelle page, sinon le premier tick compare à la position de la page précédente
+  document.addEventListener('astro:page-load', () => {
+    lastScrollY = window.scrollY;
+  });
+</script>

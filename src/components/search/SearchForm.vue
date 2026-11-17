@@ -82,7 +82,7 @@
 <template>
   <div
     role="search"
-    class="search-form container grid grid-cols-[1fr_auto] items-center gap-2 py-3 lg:flex lg:flex-wrap lg:items-end lg:gap-x-4 lg:gap-y-0 lg:py-4"
+    class="search-form container grid grid-cols-[1fr_auto] items-center gap-2 py-3 lg:flex lg:flex-wrap lg:items-end lg:gap-x-4 lg:gap-y-0 lg:py-3.25"
   >
     <FilterSelect
       name="ville"
@@ -92,7 +92,7 @@
       :options="filterOptions.ville"
       :selected="filters.ville"
     />
-    <div class="col-span-2 flex gap-2 overflow-x-auto [scrollbar-width:none] lg:contents [&::-webkit-scrollbar]:hidden">
+    <div class="col-span-2 flex gap-2 overflow-x-auto scrollbar-width:none lg:contents [&::-webkit-scrollbar]:hidden">
       <FilterTrigger
         :icon="Key"
         name="transaction"
