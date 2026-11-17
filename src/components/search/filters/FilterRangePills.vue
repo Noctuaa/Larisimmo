@@ -1,0 +1,75 @@
+<script setup lang="ts">
+  import { computed } from 'vue';
+  import { useStore } from '@nanostores/vue';
+  import { $filters } from '@/stores/filters';
+  import { type Filters } from '@/types/filters';
+
+  const props = defineProps<{
+    name: string;
+    min?: string;
+    max?: string;
+  }>();
+
+  /** Les boutons affichés : de 1 à 8 (le 8 veut dire « 8 et plus ») */
+  const values = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  const filters = useStore($filters);
+
+  /** Clés du store pour cette plage : `chambres` donne `chambresMin` et `chambresMax` */
+  const minKey = `${props.name}Min` as keyof Filters;
+  const maxKey = `${props.name}Max` as keyof Filters;
+
+  /** Texte → nombre ; un champ vide (`''`) donne `null` (« pas de valeur ») et pas 0 */
+  const toNumber = (value: unknown) => (value ? Number(value) : null);
+
+  /** Début et fin de la plage choisie, en nombres (serveur : lus dans l'adresse ; navigateur : lus dans le store) */
+  const currentMin = computed(() => toNumber(import.meta.env.SSR ? props.min : filters.value[minKey]));
+  const currentMax = computed(() => toNumber(import.meta.env.SSR ? props.max : filters.value[maxKey]));
+
+  /** Le bouton `n` est-il dans la plage choisie ? (aucun bouton n'est allumé s'il manque le début ou la fin) */
+  const isInRange = (n: number) => currentMin.value !== null && currentMax.value !== null && n >= currentMin.value && n <= currentMax.value;
+
+  /** Écrit le début et la fin de la plage dans le store (`''` pour les deux = plus de filtre) */
+  const setRange = (newMin: string, newMax: string) => $filters.set({ ...$filters.get(), [minKey]: newMin, [maxKey]: newMax });
+
+  /** Clic sur un bouton :
+   * - sur le seul bouton choisi : le filtre est retiré
+   * - sur le début, la fin ou l'intérieur de la plage : la plage repart avec ce seul bouton
+   * - avant le début ou après la fin : la plage s'agrandit jusqu'à ce bouton
+   * - rien de choisi : ce bouton devient le choix */
+  const selectRange = (clicked: number) => {
+    const min = currentMin.value;
+    const max = currentMax.value;
+
+    // Un seul bouton choisi (début et fin égaux, ou un seul des deux renseigné) et on clique dessus : on retire le filtre
+    const isSingle = min === null || max === null || min === max;
+    if (isSingle && (clicked === min || clicked === max)) return setRange('', '');
+
+    const extend = min === null || max === null || clicked < min || clicked > max;
+    const newMin = extend ? Math.min(min ?? clicked, clicked) : clicked;
+    const newMax = extend ? Math.max(max ?? clicked, clicked) : clicked;
+
+    setRange(String(newMin), String(newMax));
+  };
+
+  /** Forme commune des boutons ; la couleur (dans la plage ou non) est ajoutée dans le <template> */
+  const pillClass = 'flex items-center justify-center aspect-square rounded-full border border-gray-200 text-sm text-gray-700 cursor-pointer ';
+</script>
+
+<template>
+  <div>
+    <p class="-mt-2 mb-2 text-xs text-gray-500">Sélectionnez un minimum et un maximum</p>
+    <div class="grid grid-cols-8 gap-1.5 md:gap-2">
+      <button
+        v-for="n in values"
+        :key="n"
+        type="button"
+        :aria-pressed="isInRange(n)"
+        :class="[pillClass, isInRange(n) ? 'bg-primary text-white' : 'hover:bg-gray-50 hover:text-primary']"
+        @click="selectRange(n)"
+      >
+        {{ n === 8 ? '8+' : n }}
+      </button>
+    </div>
+  </div>
+</template>

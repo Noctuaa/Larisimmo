@@ -2,7 +2,7 @@
   {
     "id": "1",
     "titre": "Appartement lumineux avec balcon",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "vente",
     "prix": 285000,
     "ville": "Paris",
@@ -11,6 +11,7 @@
     "pieces": 3,
     "chambres": 2,
     "sallesDeBain": 1,
+    "meuble": false,
     "description": "Bel appartement traversant avec balcon, proche des commerces et transports.",
     "photos": [
       {
@@ -19,9 +20,10 @@
       }
     ],
     "equipements": [
-      "Balcon",
-      "Ascenseur",
-      "Cave"
+      "balcon",
+      "ascenseur",
+      "cave",
+      "chauffage_au_sol"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -32,7 +34,7 @@
   {
     "id": "2",
     "titre": "Maison familiale avec jardin",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 420000,
     "ville": "Lyon",
@@ -41,6 +43,7 @@
     "pieces": 5,
     "chambres": 4,
     "sallesDeBain": 2,
+    "meuble": false,
     "description": "Maison familiale spacieuse avec jardin arboré et garage double.",
     "photos": [
       {
@@ -49,9 +52,10 @@
       }
     ],
     "equipements": [
-      "Jardin",
-      "Garage",
-      "Terrasse"
+      "jardin",
+      "garage",
+      "terrasse",
+      "grenier"
     ],
     "dpe": "D",
     "etiquettes": [
@@ -63,7 +67,7 @@
   {
     "id": "3",
     "titre": "Chalet cosy avec vue montagne",
-    "type": "Chalet",
+    "type": "chalet",
     "transaction": "location",
     "prix": 1450,
     "ville": "Annecy",
@@ -72,6 +76,7 @@
     "pieces": 4,
     "chambres": 3,
     "sallesDeBain": 1,
+    "meuble": true,
     "description": "Chalet chaleureux avec poêle à bois et vue dégagée sur les montagnes.",
     "photos": [
       {
@@ -80,9 +85,10 @@
       }
     ],
     "equipements": [
-      "Poêle à bois",
-      "Terrasse",
-      "Parking"
+      "poele_a_bois",
+      "terrasse",
+      "parking",
+      "cuisine_equipee"
     ],
     "dpe": "E",
     "etiquettes": [
@@ -93,7 +99,7 @@
   {
     "id": "4",
     "titre": "Studio rénové proche centre-ville",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 620,
     "ville": "Lyon",
@@ -102,6 +108,7 @@
     "pieces": 1,
     "chambres": 1,
     "sallesDeBain": 1,
+    "meuble": true,
     "description": "Studio entièrement rénové, idéal étudiant ou jeune actif.",
     "photos": [
       {
@@ -110,7 +117,7 @@
       }
     ],
     "equipements": [
-      "Ascenseur"
+      "ascenseur"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -121,7 +128,7 @@
   {
     "id": "5",
     "titre": "Maison contemporaine avec piscine",
-    "type": "Maison",
+    "type": "maison",
     "transaction": "vente",
     "prix": 590000,
     "ville": "Annecy",
@@ -130,6 +137,7 @@
     "pieces": 6,
     "chambres": 4,
     "sallesDeBain": 3,
+    "meuble": false,
     "description": "Maison contemporaine avec piscine chauffée et vue lac.",
     "photos": [
       {
@@ -138,9 +146,10 @@
       }
     ],
     "equipements": [
-      "Piscine",
-      "Garage",
-      "Jardin"
+      "piscine",
+      "garage",
+      "jardin",
+      "grenier"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -151,7 +160,7 @@
   {
     "id": "6",
     "titre": "Appartement 2 pièces avec parking",
-    "type": "Appartement",
+    "type": "appartement",
     "transaction": "location",
     "prix": 780,
     "ville": "Paris",
@@ -160,6 +169,7 @@
     "pieces": 2,
     "chambres": 1,
     "sallesDeBain": 1,
+    "meuble": true,
     "description": "Appartement calme avec place de parking incluse.",
     "photos": [
       {
@@ -168,13 +178,1048 @@
       }
     ],
     "equipements": [
-      "Parking",
-      "Ascenseur"
+      "parking",
+      "ascenseur",
+      "chauffage_au_sol"
     ],
     "dpe": "C",
     "etiquettes": [
       "Nouveau"
     ],
+    "statut": "disponible"
+  },
+  {
+    "id": "7",
+    "titre": "Duplex avec terrasse",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 476000,
+    "ville": "Strasbourg",
+    "adresse": "18 rue du Château",
+    "surface": 85,
+    "pieces": 4,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-1.jpg",
+        "grande": "/images/biens/bien-1.jpg"
+      }
+    ],
+    "equipements": [
+      "cheminee",
+      "garage",
+      "jardin",
+      "ascenseur",
+      "cuisine_equipee"
+    ],
+    "dpe": "F",
+    "etiquettes": [
+      "Nouveau"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "8",
+    "titre": "Appartement avec parking privatif",
+    "type": "appartement",
+    "transaction": "location",
+    "prix": 596,
+    "ville": "Bordeaux",
+    "adresse": "8 rue Victor Hugo",
+    "surface": 47,
+    "pieces": 4,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": true,
+    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-2.jpg",
+        "grande": "/images/biens/bien-2.jpg"
+      }
+    ],
+    "equipements": [
+      "balcon",
+      "garage",
+      "poele_a_bois"
+    ],
+    "dpe": "E",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "9",
+    "titre": "Maison d'architecte avec jardin",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 911000,
+    "ville": "Paris",
+    "adresse": "27 avenue de la République",
+    "surface": 161,
+    "pieces": 5,
+    "chambres": 3,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Maison familiale idéale pour une vie de famille.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-3.jpg",
+        "grande": "/images/biens/bien-3.jpg"
+      }
+    ],
+    "equipements": [
+      "interphone",
+      "jardin"
+    ],
+    "dpe": "A",
+    "etiquettes": [
+      "Coup de cœur"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "10",
+    "titre": "Appartement calme dernier étage",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 420000,
+    "ville": "Lyon",
+    "adresse": "49 place de la Mairie",
+    "surface": 106,
+    "pieces": 2,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Belle luminosité, quartier calme et recherché.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-4.jpg",
+        "grande": "/images/biens/bien-4.jpg"
+      }
+    ],
+    "equipements": [
+      "ascenseur",
+      "garage",
+      "balcon"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "11",
+    "titre": "Appartement lumineux avec balcon",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 119000,
+    "ville": "Lille",
+    "adresse": "34 rue du Château",
+    "surface": 42,
+    "pieces": 3,
+    "chambres": 2,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-5.jpg",
+        "grande": "/images/biens/bien-5.jpg"
+      }
+    ],
+    "equipements": [
+      "terrasse",
+      "garage",
+      "cheminee",
+      "chauffage_au_sol",
+      "cuisine_equipee"
+    ],
+    "dpe": "C",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "12",
+    "titre": "Maison mitoyenne proche écoles",
+    "type": "maison",
+    "transaction": "location",
+    "prix": 3910,
+    "ville": "Marseille",
+    "adresse": "26 impasse du Lac",
+    "surface": 196,
+    "pieces": 4,
+    "chambres": 2,
+    "sallesDeBain": 2,
+    "meuble": true,
+    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-6.jpg",
+        "grande": "/images/biens/bien-6.jpg"
+      }
+    ],
+    "equipements": [
+      "garage",
+      "poele_a_bois",
+      "grenier"
+    ],
+    "dpe": "B",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "13",
+    "titre": "Duplex avec terrasse",
+    "type": "appartement",
+    "transaction": "location",
+    "prix": 644,
+    "ville": "Nantes",
+    "adresse": "41 avenue Jean Jaurès",
+    "surface": 31,
+    "pieces": 5,
+    "chambres": 4,
+    "sallesDeBain": 1,
+    "meuble": true,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-1.jpg",
+        "grande": "/images/biens/bien-1.jpg"
+      }
+    ],
+    "equipements": [
+      "cheminee",
+      "digicode",
+      "garage",
+      "ascenseur"
+    ],
+    "dpe": "C",
+    "etiquettes": [
+      "Coup de cœur"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "14",
+    "titre": "Maison de plain-pied lumineuse",
+    "type": "maison",
+    "transaction": "location",
+    "prix": 2392,
+    "ville": "Marseille",
+    "adresse": "3 rue du Château",
+    "surface": 179,
+    "pieces": 5,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Maison contemporaine avec belles prestations.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-2.jpg",
+        "grande": "/images/biens/bien-2.jpg"
+      }
+    ],
+    "equipements": [
+      "poele_a_bois",
+      "cheminee",
+      "parking",
+      "terrasse"
+    ],
+    "dpe": "D",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "15",
+    "titre": "Maison mitoyenne proche écoles",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 446000,
+    "ville": "Paris",
+    "adresse": "54 impasse du Lac",
+    "surface": 126,
+    "pieces": 7,
+    "chambres": 5,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Maison contemporaine avec belles prestations.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-3.jpg",
+        "grande": "/images/biens/bien-3.jpg"
+      }
+    ],
+    "equipements": [
+      "piscine",
+      "climatisation",
+      "grenier",
+      "cuisine_equipee"
+    ],
+    "dpe": "D",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "16",
+    "titre": "Maison de plain-pied lumineuse",
+    "type": "maison",
+    "transaction": "location",
+    "prix": 1530,
+    "ville": "Strasbourg",
+    "adresse": "17 rue des Tilleuls",
+    "surface": 104,
+    "pieces": 3,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Maison spacieuse avec jardin arboré et garage.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-4.jpg",
+        "grande": "/images/biens/bien-4.jpg"
+      }
+    ],
+    "equipements": [
+      "garage",
+      "balcon",
+      "chauffage_au_sol"
+    ],
+    "dpe": "E",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "17",
+    "titre": "Villa avec vue dégagée",
+    "type": "maison",
+    "transaction": "location",
+    "prix": 2986,
+    "ville": "Paris",
+    "adresse": "43 rue des Écoles",
+    "surface": 178,
+    "pieces": 4,
+    "chambres": 2,
+    "sallesDeBain": 3,
+    "meuble": false,
+    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-5.jpg",
+        "grande": "/images/biens/bien-5.jpg"
+      }
+    ],
+    "equipements": [
+      "terrasse",
+      "garage",
+      "cheminee",
+      "interphone",
+      "grenier"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "18",
+    "titre": "Maison d'architecte avec jardin",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 1340000,
+    "ville": "Paris",
+    "adresse": "4 rue Victor Hugo",
+    "surface": 205,
+    "pieces": 5,
+    "chambres": 3,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Maison familiale idéale pour une vie de famille.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-6.jpg",
+        "grande": "/images/biens/bien-6.jpg"
+      }
+    ],
+    "equipements": [
+      "balcon",
+      "piscine",
+      "climatisation"
+    ],
+    "dpe": "D",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "19",
+    "titre": "Studio moderne proche transports",
+    "type": "appartement",
+    "transaction": "location",
+    "prix": 491,
+    "ville": "Nantes",
+    "adresse": "12 rue des Écoles",
+    "surface": 24,
+    "pieces": 4,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": true,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-1.jpg",
+        "grande": "/images/biens/bien-1.jpg"
+      }
+    ],
+    "equipements": [
+      "cave",
+      "cheminee",
+      "cuisine_equipee"
+    ],
+    "dpe": "A",
+    "etiquettes": [
+      "Nouveau"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "20",
+    "titre": "Maison mitoyenne proche écoles",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 834000,
+    "ville": "Lyon",
+    "adresse": "51 place de la Mairie",
+    "surface": 198,
+    "pieces": 6,
+    "chambres": 4,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Maison contemporaine avec belles prestations.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-2.jpg",
+        "grande": "/images/biens/bien-2.jpg"
+      }
+    ],
+    "equipements": [
+      "balcon",
+      "ascenseur",
+      "cave",
+      "grenier"
+    ],
+    "dpe": "C",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "21",
+    "titre": "Appartement traversant avec vue",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 245000,
+    "ville": "Toulouse",
+    "adresse": "11 place de la Mairie",
+    "surface": 84,
+    "pieces": 3,
+    "chambres": 2,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Appartement entièrement rénové, idéal étudiant ou jeune actif.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-3.jpg",
+        "grande": "/images/biens/bien-3.jpg"
+      }
+    ],
+    "equipements": [
+      "parking",
+      "digicode",
+      "ascenseur",
+      "cheminee",
+      "chauffage_au_sol"
+    ],
+    "dpe": "A",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "22",
+    "titre": "Appartement charme ancien rénové",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 278000,
+    "ville": "Toulouse",
+    "adresse": "19 rue Victor Hugo",
+    "surface": 49,
+    "pieces": 3,
+    "chambres": 2,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-4.jpg",
+        "grande": "/images/biens/bien-4.jpg"
+      }
+    ],
+    "equipements": [
+      "poele_a_bois",
+      "cave"
+    ],
+    "dpe": "B",
+    "etiquettes": [
+      "Bon plan"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "23",
+    "titre": "Appartement calme dernier étage",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 191000,
+    "ville": "Annecy",
+    "adresse": "4 rue Sainte-Catherine",
+    "surface": 64,
+    "pieces": 3,
+    "chambres": 2,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Belle luminosité, quartier calme et recherché.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-5.jpg",
+        "grande": "/images/biens/bien-5.jpg"
+      }
+    ],
+    "equipements": [
+      "climatisation",
+      "poele_a_bois",
+      "garage",
+      "ascenseur",
+      "cuisine_equipee"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "24",
+    "titre": "T2 refait à neuf",
+    "type": "appartement",
+    "transaction": "location",
+    "prix": 2146,
+    "ville": "Annecy",
+    "adresse": "59 rue des Tilleuls",
+    "surface": 82,
+    "pieces": 3,
+    "chambres": 2,
+    "sallesDeBain": 1,
+    "meuble": true,
+    "description": "Belle luminosité, quartier calme et recherché.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-6.jpg",
+        "grande": "/images/biens/bien-6.jpg"
+      }
+    ],
+    "equipements": [
+      "poele_a_bois",
+      "ascenseur"
+    ],
+    "dpe": "F",
+    "etiquettes": [
+      "Bon plan"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "25",
+    "titre": "Longère rénovée avec terrain",
+    "type": "maison",
+    "transaction": "location",
+    "prix": 2583,
+    "ville": "Bordeaux",
+    "adresse": "46 rue des Écoles",
+    "surface": 174,
+    "pieces": 5,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-1.jpg",
+        "grande": "/images/biens/bien-1.jpg"
+      }
+    ],
+    "equipements": [
+      "local_velo",
+      "ascenseur",
+      "digicode",
+      "cave"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "26",
+    "titre": "Pavillon calme et lumineux",
+    "type": "maison",
+    "transaction": "location",
+    "prix": 2310,
+    "ville": "Marseille",
+    "adresse": "26 boulevard des Fleurs",
+    "surface": 115,
+    "pieces": 3,
+    "chambres": 1,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Maison contemporaine avec belles prestations.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-2.jpg",
+        "grande": "/images/biens/bien-2.jpg"
+      }
+    ],
+    "equipements": [
+      "terrasse",
+      "jardin",
+      "grenier",
+      "chauffage_au_sol"
+    ],
+    "dpe": "E",
+    "etiquettes": [
+      "Nouveau"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "27",
+    "titre": "T2 refait à neuf",
+    "type": "appartement",
+    "transaction": "location",
+    "prix": 771,
+    "ville": "Lyon",
+    "adresse": "16 rue Victor Hugo",
+    "surface": 49,
+    "pieces": 2,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "meuble": true,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-3.jpg",
+        "grande": "/images/biens/bien-3.jpg"
+      }
+    ],
+    "equipements": [
+      "poele_a_bois",
+      "garage",
+      "cheminee",
+      "local_velo",
+      "cuisine_equipee"
+    ],
+    "dpe": "B",
+    "etiquettes": [
+      "Coup de cœur"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "28",
+    "titre": "Appartement rénové centre-ville",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 457000,
+    "ville": "Toulouse",
+    "adresse": "54 allée des Cerisiers",
+    "surface": 74,
+    "pieces": 1,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-4.jpg",
+        "grande": "/images/biens/bien-4.jpg"
+      }
+    ],
+    "equipements": [
+      "garage",
+      "cheminee",
+      "poele_a_bois",
+      "jardin"
+    ],
+    "dpe": "C",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "29",
+    "titre": "Studio moderne proche transports",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 485000,
+    "ville": "Strasbourg",
+    "adresse": "21 place de la Mairie",
+    "surface": 95,
+    "pieces": 1,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-5.jpg",
+        "grande": "/images/biens/bien-5.jpg"
+      }
+    ],
+    "equipements": [
+      "digicode",
+      "poele_a_bois",
+      "interphone",
+      "local_velo"
+    ],
+    "dpe": "C",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "30",
+    "titre": "Appartement lumineux avec balcon",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 212000,
+    "ville": "Paris",
+    "adresse": "53 rue Sainte-Catherine",
+    "surface": 50,
+    "pieces": 2,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-6.jpg",
+        "grande": "/images/biens/bien-6.jpg"
+      }
+    ],
+    "equipements": [
+      "digicode",
+      "balcon",
+      "terrasse",
+      "local_velo"
+    ],
+    "dpe": "E",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "31",
+    "titre": "Maison mitoyenne proche écoles",
+    "type": "maison",
+    "transaction": "location",
+    "prix": 3122,
+    "ville": "Bordeaux",
+    "adresse": "47 rue Sainte-Catherine",
+    "surface": 144,
+    "pieces": 5,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Maison contemporaine avec belles prestations.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-1.jpg",
+        "grande": "/images/biens/bien-1.jpg"
+      }
+    ],
+    "equipements": [
+      "terrasse",
+      "poele_a_bois",
+      "chauffage_au_sol",
+      "cuisine_equipee"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "32",
+    "titre": "Villa avec vue dégagée",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 629000,
+    "ville": "Strasbourg",
+    "adresse": "57 rue du Château",
+    "surface": 215,
+    "pieces": 6,
+    "chambres": 4,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Maison contemporaine avec belles prestations.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-2.jpg",
+        "grande": "/images/biens/bien-2.jpg"
+      }
+    ],
+    "equipements": [
+      "garage",
+      "jardin",
+      "parking",
+      "ascenseur",
+      "grenier"
+    ],
+    "dpe": "D",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "33",
+    "titre": "Studio moderne proche transports",
+    "type": "appartement",
+    "transaction": "location",
+    "prix": 647,
+    "ville": "Marseille",
+    "adresse": "35 avenue Jean Jaurès",
+    "surface": 27,
+    "pieces": 5,
+    "chambres": 4,
+    "sallesDeBain": 1,
+    "meuble": true,
+    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-3.jpg",
+        "grande": "/images/biens/bien-3.jpg"
+      }
+    ],
+    "equipements": [
+      "cave",
+      "jardin",
+      "local_velo"
+    ],
+    "dpe": "B",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "34",
+    "titre": "Maison de plain-pied lumineuse",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 946000,
+    "ville": "Strasbourg",
+    "adresse": "13 avenue Jean Jaurès",
+    "surface": 213,
+    "pieces": 6,
+    "chambres": 4,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Maison familiale idéale pour une vie de famille.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-4.jpg",
+        "grande": "/images/biens/bien-4.jpg"
+      }
+    ],
+    "equipements": [
+      "parking",
+      "terrasse"
+    ],
+    "dpe": "A",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "35",
+    "titre": "Maison familiale avec jardin",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 711000,
+    "ville": "Annecy",
+    "adresse": "26 rue Sainte-Catherine",
+    "surface": 113,
+    "pieces": 3,
+    "chambres": 1,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Maison spacieuse avec jardin arboré et garage.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-5.jpg",
+        "grande": "/images/biens/bien-5.jpg"
+      }
+    ],
+    "equipements": [
+      "climatisation",
+      "cheminee",
+      "jardin",
+      "grenier",
+      "cuisine_equipee"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "36",
+    "titre": "Appartement avec parking privatif",
+    "type": "appartement",
+    "transaction": "location",
+    "prix": 2020,
+    "ville": "Bordeaux",
+    "adresse": "18 rue de la Paix",
+    "surface": 80,
+    "pieces": 3,
+    "chambres": 2,
+    "sallesDeBain": 1,
+    "meuble": true,
+    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-6.jpg",
+        "grande": "/images/biens/bien-6.jpg"
+      }
+    ],
+    "equipements": [
+      "cave",
+      "digicode",
+      "chauffage_au_sol"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "37",
+    "titre": "Maison mitoyenne proche écoles",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 915000,
+    "ville": "Paris",
+    "adresse": "6 avenue de la République",
+    "surface": 145,
+    "pieces": 4,
+    "chambres": 2,
+    "sallesDeBain": 2,
+    "meuble": false,
+    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-1.jpg",
+        "grande": "/images/biens/bien-1.jpg"
+      }
+    ],
+    "equipements": [
+      "terrasse",
+      "local_velo",
+      "interphone",
+      "piscine"
+    ],
+    "dpe": "C",
+    "etiquettes": [
+      "Nouveau"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "38",
+    "titre": "Duplex avec terrasse",
+    "type": "appartement",
+    "transaction": "vente",
+    "prix": 557000,
+    "ville": "Lille",
+    "adresse": "43 place de la Mairie",
+    "surface": 90,
+    "pieces": 4,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Appartement entièrement rénové, idéal étudiant ou jeune actif.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-2.jpg",
+        "grande": "/images/biens/bien-2.jpg"
+      }
+    ],
+    "equipements": [
+      "local_velo",
+      "climatisation",
+      "cheminee",
+      "interphone"
+    ],
+    "dpe": "F",
+    "etiquettes": [],
+    "statut": "disponible"
+  },
+  {
+    "id": "39",
+    "titre": "Villa avec vue dégagée",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 627000,
+    "ville": "Marseille",
+    "adresse": "3 impasse du Lac",
+    "surface": 215,
+    "pieces": 5,
+    "chambres": 3,
+    "sallesDeBain": 3,
+    "meuble": false,
+    "description": "Maison familiale idéale pour une vie de famille.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-3.jpg",
+        "grande": "/images/biens/bien-3.jpg"
+      }
+    ],
+    "equipements": [
+      "terrasse",
+      "local_velo",
+      "poele_a_bois",
+      "cave",
+      "grenier",
+      "cuisine_equipee"
+    ],
+    "dpe": "C",
+    "etiquettes": [
+      "Bon plan"
+    ],
+    "statut": "disponible"
+  },
+  {
+    "id": "40",
+    "titre": "Maison d'architecte avec jardin",
+    "type": "maison",
+    "transaction": "vente",
+    "prix": 316000,
+    "ville": "Lille",
+    "adresse": "54 chemin des Vignes",
+    "surface": 100,
+    "pieces": 5,
+    "chambres": 3,
+    "sallesDeBain": 1,
+    "meuble": false,
+    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "photos": [
+      {
+        "compacte": "/images/biens/bien-4.jpg",
+        "grande": "/images/biens/bien-4.jpg"
+      }
+    ],
+    "equipements": [
+      "ascenseur",
+      "cave",
+      "climatisation",
+      "interphone"
+    ],
+    "dpe": "E",
+    "etiquettes": [],
     "statut": "disponible"
   }
 ]

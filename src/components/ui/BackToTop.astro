@@ -2,9 +2,9 @@
 
 ---
 
-<a
+<button
   id="back-to-top"
-  href="#"
+  type="button"
   aria-label="Retour en haut de page"
   class="fixed bottom-6 right-6 z-40 flex h-12 w-12 translate-y-2 items-center justify-center rounded-full bg-white text-primary border-gray-300 opacity-0 shadow-lg cursor-pointer pointer-events-none transition duration-300 hover:opacity-90"
 >
@@ -22,15 +22,23 @@
     <path d="M12 19V5"></path>
     <path d="m5 12 7-7 7 7"></path>
   </svg>
-</a>
+</button>
 
 <script>
-  const link = document.getElementById('back-to-top');
+  // Recherche fraîche à chaque appel plutôt qu'une référence capturée une fois :
+  // avec <ClientRouter /> ce script ne s'exécute qu'une fois pour tout le site,
+  // et l'élément est remplacé par un nouveau à chaque navigation.
+
+  // Seuil fixe plutôt que basé sur innerHeight : certaines pages comme /biens
+  // n'ont pas de grand Hero, ce qui repoussait l'apparition du bouton jusqu'au footer
+  const SCROLL_THRESHOLD = 400;
+
   let ticking = false;
 
-  // Affiche le bouton une fois le Hero dépassé, le cache sinon
+  // Affiche le bouton une fois le seuil de scroll dépassé, le cache sinon
   const updateVisibility = () => {
-    const isVisible = window.scrollY > window.innerHeight;
+    const link = document.getElementById('back-to-top');
+    const isVisible = window.scrollY > SCROLL_THRESHOLD;
     const hiddenClasses = ['opacity-0', 'pointer-events-none', 'translate-y-2'];
     link?.classList[isVisible ? 'remove' : 'add'](...hiddenClasses);
     ticking = false;
@@ -42,5 +50,14 @@
       requestAnimationFrame(updateVisibility);
       ticking = true;
     }
+  });
+
+  // Bouton plutôt que lien "#" : <ClientRouter /> intercepte les clics sur les <a>
+  // du site entier, ce qui cassait le scroll natif fluide (scroll-behavior: smooth)
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('#back-to-top')) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   });
 </script>

@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '@fontsource-variable/plus-jakarta-sans';
 import '../assets/styles/global.css';
 import Header from '../components/layout/Header.astro';
@@ -8,29 +9,46 @@ import BackToTop from '../components/ui/BackToTop.astro';
 
 <!doctype html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Larisimmo — Trouvez le bien qui vous ressemble</title>
-	</head>
-	<body class="flex min-h-screen flex-col bg-background font-sans">
-		<Header />
-		<main class="flex-1">
-			<slot />
-		</main>
-		<Footer />
-		<BackToTop />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Larisimmo — Trouvez le bien qui vous ressemble</title>
+    <ClientRouter />
+  </head>
+  <body class="flex min-h-screen flex-col bg-background font-sans">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <BackToTop />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
+
+<script>
+  document.addEventListener('astro:before-swap', (event) => {
+    // Si c'est une navigation standard (pas un retour arrière/avant),
+    // on force le scroll instantané pour la transition de page
+    if (event.navigationType !== 'traverse') {
+      event.newDocument.documentElement.style.scrollBehavior = 'auto';
+    }
+
+    // Rétablir le smooth scroll après que le router ait fini de gérer le scroll
+    event.viewTransition?.updateCallbackDone.finally(() => {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    });
+  });
+</script>
+
