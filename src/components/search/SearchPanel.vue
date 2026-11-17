@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { onMounted, ref } from 'vue';
   import { BedDouble, Building2, DoorOpen, Euro, Key, ListChecks, Ruler, Sofa, Zap } from '@lucide/vue';
 
   import type { Filters } from '@/types/filters';
@@ -10,7 +11,19 @@
   import FilterRangeInputs from './filters/FilterRangeInputs.vue';
   import FilterDpePills from './filters/FilterDpePills.vue';
 
-  defineProps<{ filters: Filters; total: number }>();
+  const { filters, total } = defineProps<{ filters: Filters; total: number }>();
+
+  const panel = ref<HTMLElement | null>(null);
+  const disableAnimation = () => panel.value?.setAttribute('data-no-anim', '');
+  const enableAnimation = () => requestAnimationFrame(() => requestAnimationFrame(() => panel.value?.removeAttribute('data-no-anim')));
+
+  /** Coupe l'animation du panneau pendant un changement de page, puis la réactive (Astro déplace le panneau dans la nouvelle page) */
+  const watchPanelChanges = () => {
+    document.addEventListener('astro:before-swap', disableAnimation);
+    document.addEventListener('astro:page-load', enableAnimation);
+  };
+
+  onMounted(watchPanelChanges);
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { onMounted, ref, watch } from 'vue';
+  import { onMounted, watch } from 'vue';
   import { useStore } from '@nanostores/vue';
   import { Building2, Euro, Key } from '@lucide/vue';
   import { navigate, type TransitionBeforeSwapEvent } from 'astro:transitions/client';
@@ -16,18 +16,17 @@
 
   const SEARCH_DELAY = 300; // ms d'attente après le dernier changement de filtre
 
-  const props = defineProps<{ filters: Filters; total: number }>();
+  const { filters, total } = defineProps<{ filters: Filters; total: number }>();
 
   let searchTimer: number;
 
   /** Vrai pendant qu'une recherche lancée par ce formulaire est en route et évite d'écraser ce qu'on est en train de taper */
   let ownSearch = false;
 
-  const panel = ref<HTMLElement | null>(null);
   const storeFilters = useStore($filters);
 
   // Le serveur envoie les filtres de l'adresse : au démarrage (navigateur seulement), on les copie dans le store
-  if (!import.meta.env.SSR) $filters.set({ ...props.filters });
+  if (!import.meta.env.SSR) $filters.set({ ...filters });
 
   /** Lance la recherche 300 ms après le dernier changement de filtre (si l'adresse voulue est différente de l'actuelle) */
   const startSearch = () => {
@@ -47,13 +46,12 @@
     else $filters.set({ ...serverFilters });
   };
 
-  /** Coupe l'animation du panneau pendant un changement de page, puis la réactive (Astro déplace le panneau dans la nouvelle page) */
+  /** Gère le changement de page : fondu et saut de transition pour nos recherches */
   const watchPageChanges = () => {
     // On retient ici si le changement de page vient de notre recherche : au moment d'`after-swap`, `ownSearch` est déjà remis à faux
     let searchSwap = false;
 
     document.addEventListener('astro:before-swap', (event) => {
-      panel.value?.setAttribute('data-no-anim', '');
       searchSwap = ownSearch;
       // Notre propre recherche : on saute le fondu, car pendant qu'il joue la page est une « photo » qui ignore les clics.
       // Les autres changements de page (menu, pagination) gardent leur fondu
@@ -69,16 +67,13 @@
       if (searchSwap) document.getElementById('results')?.animate({ opacity: [0, 1] }, { duration: 600, easing: 'ease-in-out' });
       searchSwap = false;
     });
-    document.addEventListener('astro:page-load', () => {
-      requestAnimationFrame(() => requestAnimationFrame(() => panel.value?.removeAttribute('data-no-anim')));
-    });
   };
 
   // À chaque changement d'un filtre on relance le minuteur (`deep` : surveille aussi un seul filtre modifié dans le store)
   watch(storeFilters, () => startSearch(), { deep: true });
 
   // Quand le serveur envoie de nouveaux filtres (nouvelle page : lien, bouton retour ou notre propre recherche)
-  watch(() => props.filters, copyServerFilters);
+  watch(() => filters, copyServerFilters);
 
   // Pendant un changement de page, on coupe l'animation du panneau (Astro le déplace dans la nouvelle page)
   onMounted(watchPageChanges);
