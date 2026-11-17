@@ -6,6 +6,7 @@
   import { resetFilters } from '@/stores/filters';
   import { filterOptions } from '@/data/filterOptions';
 
+  import PanelSection from './PanelSection.vue';
   import FilterChoice from './filters/FilterChoice.vue';
   import FilterRangePills from './filters/FilterRangePills.vue';
   import FilterRangeInputs from './filters/FilterRangeInputs.vue';
@@ -44,79 +45,50 @@
       </header>
 
       <div class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-6">
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><Key class="size-4" aria-hidden="true" /></span>
-            Achat ou location
-          </h3>
+        <!-- Achat ou location -->
+        <PanelSection title="Achat ou location" :icon="Key">
           <FilterChoice name="transaction" required :options="filterOptions.transaction" :selected="filters.transaction" />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><Building2 class="size-4" aria-hidden="true" /></span>
-            Type de bien
-          </h3>
+        <!-- Type de bien -->
+        <PanelSection title="Type de bien" :icon="Building2">
           <FilterChoice name="type" :options="filterOptions.type" :selected="filters.type" multiple />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon">
-              <Euro class="size-4" aria-hidden="true" />
-            </span>
-            Prix
-          </h3>
+        <!-- Prix -->
+        <PanelSection title="Prix" :icon="Euro">
           <FilterRangeInputs name="prix" unit="€" :min="filters.prixMin" :max="filters.prixMax" />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><BedDouble class="size-4" aria-hidden="true" /></span>
-            Chambres
-          </h3>
+        <!-- Chambres -->
+        <PanelSection title="Chambres" :icon="BedDouble">
           <FilterRangePills name="chambres" :min="filters.chambresMin" :max="filters.chambresMax" />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><DoorOpen class="size-4" aria-hidden="true" /></span>
-            Pièces
-          </h3>
+        <!-- Pièces -->
+        <PanelSection title="Pièces" :icon="DoorOpen">
           <FilterRangePills name="pieces" :min="filters.piecesMin" :max="filters.piecesMax" />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><Ruler class="size-4" aria-hidden="true" /></span>
-            Surface
-          </h3>
+        <!-- Surface -->
+        <PanelSection title="Surface" :icon="Ruler">
           <FilterRangeInputs name="surface" unit="m²" :min="filters.surfaceMin" :max="filters.surfaceMax" />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><Sofa class="size-4" aria-hidden="true" /></span>
-            Meublé / Non meublé
-          </h3>
+        <!-- Meublé / Non meublé -->
+        <PanelSection title="Meublé / Non meublé" :icon="Sofa">
           <FilterChoice name="meuble" :options="filterOptions.meuble" :selected="filters.meuble" />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><Zap class="size-4" aria-hidden="true" /></span>
-            Classe énergétique (DPE)
-          </h3>
+        <!-- Classe énergétique -->
+        <PanelSection title="Classe énergétique (DPE)" :icon="Zap">
           <FilterDpePills :options="filterOptions.dpe" :selected="filters.dpe" />
-        </section>
+        </PanelSection>
 
-        <section class="filter-section">
-          <h3 class="flex items-center gap-2">
-            <span class="section-icon"><ListChecks class="size-4" aria-hidden="true" /></span>
-            Equipements
-          </h3>
+        <!-- Equipements -->
+        <PanelSection title="Équipements" :icon="ListChecks">
           <FilterChoice name="equipements" :options="filterOptions.equipements" :selected="filters.equipements" multiple />
-        </section>
+        </PanelSection>
       </div>
 
       <footer class="flex items-center justify-between border-t border-gray-300 px-6 py-4">

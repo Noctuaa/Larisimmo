@@ -88,11 +88,11 @@
       name="ville"
       mode="selected"
       label="Choisir la localisation"
-      placeholder="Toutes les localisations"
+      placeholder="Toutes les villes"
       :options="filterOptions.ville"
       :selected="filters.ville"
     />
-    <div class="col-span-2 flex gap-2 overflow-x-auto lg:contents">
+    <div class="col-span-2 flex gap-2 overflow-x-auto [scrollbar-width:none] lg:contents [&::-webkit-scrollbar]:hidden">
       <FilterTrigger
         :icon="Key"
         name="transaction"
