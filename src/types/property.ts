@@ -1,12 +1,11 @@
+import type { Dpe } from '@/schemas/dpe';
+
 export type PropertyType = 'appartement' | 'maison' | 'chalet';
 export type Transaction = 'vente' | 'location';
 export type Tag = 'Nouveau' | 'Bon plan' | 'Coup de cœur';
 export type Status = 'disponible' | 'vendu' | 'en pause';
 
-// Ordre du meilleur au pire : sert à la fois d'options du <select> (SearchForm) et de règle de
-// comparaison "X ou mieux" pour le filtre (biens/index.astro)
-export const DPE_CLASSES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'] as const;
-export type Dpe = (typeof DPE_CLASSES)[number];
+export type { Dpe };
 
 export interface Property {
   id: string;
