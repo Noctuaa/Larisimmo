@@ -1,4 +1,4 @@
-import type { Dpe, Transaction } from '@/schemas/property';
+import type { Dpe, PropertyType, Transaction } from '@/schemas/property';
 
 /**
  * Filtres de recherche. Tout est en texte : un champ de saisie et l'adresse ne donnent que du texte
@@ -7,7 +7,7 @@ import type { Dpe, Transaction } from '@/schemas/property';
 export type Filters = {
   transaction: Transaction;
   ville: string;
-  type: string[];
+  type: PropertyType[];
   prixMin: string;
   prixMax: string;
   chambresMin: string;
