@@ -1,5 +1,5 @@
 import type { Property } from '@/types/property';
-import { dpeSchema, type Dpe } from '@/schemas/dpe';
+import { dpeSchema, type Dpe } from '@/schemas/property';
 import type { Filters } from '@/types/filters';
 
 export const PER_PAGE = 12;

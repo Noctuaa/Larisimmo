@@ -1,4 +1,4 @@
-import type { Dpe } from '@/schemas/dpe';
+import type { Dpe } from '@/schemas/property';
 
 export type PropertyType = 'appartement' | 'maison' | 'chalet';
 export type Transaction = 'vente' | 'location';
