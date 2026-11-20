@@ -1,7 +1,7 @@
 import type { Filters } from '../types/filters';
 import { RANGE_NAMES, withOrderedRanges } from './orderRange';
 
-import { dpeSchema } from '@/schemas/property';
+import { dpeSchema, transactionSchema } from '@/schemas/property';
 
 /** Nom de chaque filtre simple dans l'adresse (dans le code, ils gardent leur nom français) */
 const URL_KEYS = {
@@ -44,12 +44,14 @@ export const parseFilters = (params: URLSearchParams): Filters => {
   const [surfaceMin, surfaceMax] = readRange(params.get(RANGE_URL_KEYS.surface));
   const [chambresMin, chambresMax] = readRange(params.get(RANGE_URL_KEYS.chambres));
   const [piecesMin, piecesMax] = readRange(params.get(RANGE_URL_KEYS.pieces));
+  const transactionResult = transactionSchema.safeParse(params.get(URL_KEYS.transaction));
   const dpeResult = dpeSchema.safeParse(params.get(URL_KEYS.dpe));
+
 
   return withOrderedRanges({
     ville: params.get(URL_KEYS.ville) ?? '',
     // Par défaut, on vend
-    transaction: params.get(URL_KEYS.transaction) === 'location' ? 'location' : 'vente',
+    transaction: transactionResult.success ? transactionResult.data : 'vente',
     // Types de bien : `type=maison,chalet`, le bien doit être de l'un d'eux
     type: readList(params, URL_KEYS.type),
     prixMin,
