@@ -1,7 +1,5 @@
-import type { Dpe } from '@/schemas/property';
+import type { Dpe, PropertyType, Transaction } from '@/schemas/property';
 
-export type PropertyType = 'appartement' | 'maison' | 'chalet';
-export type Transaction = 'vente' | 'location';
 export type Tag = 'Nouveau' | 'Bon plan' | 'Coup de cœur';
 export type Status = 'disponible' | 'vendu' | 'en pause';
 
