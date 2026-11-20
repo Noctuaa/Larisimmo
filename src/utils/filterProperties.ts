@@ -1,5 +1,5 @@
 import type { Property } from '@/types/property';
-import { dpeSchema, type Dpe } from '@/schemas/property';
+import { dpeSchema } from '@/schemas/property';
 import type { Filters } from '@/types/filters';
 
 export const PER_PAGE = 12;
@@ -17,7 +17,7 @@ export const filterProperties = (properties: Property[], filters: Filters, page 
     if (filters.piecesMax && filters.piecesMax !== '8' && p.pieces > Number(filters.piecesMax)) return false;
     if (filters.surfaceMin && p.surface < Number(filters.surfaceMin)) return false;
     if (filters.surfaceMax && p.surface > Number(filters.surfaceMax)) return false;
-    if (filters.dpe && dpeSchema.options.indexOf(p.dpe) > dpeSchema.options.indexOf(filters.dpe as Dpe)) return false;
+    if (filters.dpe && dpeSchema.options.indexOf(p.dpe) > dpeSchema.options.indexOf(filters.dpe)) return false;
     if (filters.meuble && String(p.meuble) !== filters.meuble) return false;
     if (filters.equipements.length && !filters.equipements.every((e) => p.equipements.includes(e))) return false;
     return true;
