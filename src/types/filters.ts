@@ -1,4 +1,4 @@
-import type { Dpe, PropertyType, Transaction } from '@/schemas/property';
+import type { Dpe, Equipement, PropertyType, Transaction } from '@/schemas/property';
 
 /**
  * Filtres de recherche. Tout est en texte : un champ de saisie et l'adresse ne donnent que du texte
@@ -18,5 +18,5 @@ export type Filters = {
   surfaceMax: string;
   dpe: Dpe | '';
   meuble: string;
-  equipements: string[];
+  equipements: Equipement[];
 };

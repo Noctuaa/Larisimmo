@@ -1,4 +1,4 @@
-import type { Dpe, PropertyType, Transaction } from '@/schemas/property';
+import type { Dpe, Equipement, PropertyType, Transaction } from '@/schemas/property';
 
 export type Tag = 'Nouveau' | 'Bon plan' | 'Coup de cœur';
 export type Status = 'disponible' | 'vendu' | 'en pause';
@@ -20,7 +20,7 @@ export interface Property {
   meuble: boolean;
   description: string;
   photos: { compacte: string; grande: string }[];
-  equipements: string[];
+  equipements: Equipement[];
   dpe: Dpe;
   etiquettes: Tag[];
   statut: Status;
