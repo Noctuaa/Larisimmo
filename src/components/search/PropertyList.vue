@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { Property } from '../../types/property';
+  import type { Property } from '@/schemas/property';
   import PropertyCard from '../cards/PropertyCard.vue';
 
   defineProps<{ items: Property[] }>();

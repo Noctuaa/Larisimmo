@@ -1,4 +1,4 @@
-import type { Property } from '@/types/property';
+import type { Property } from '@/schemas/property';
 import { dpeSchema } from '@/schemas/property';
 import type { Filters } from '@/types/filters';
 

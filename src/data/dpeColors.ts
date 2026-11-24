@@ -1,4 +1,4 @@
-import type { Dpe } from '../types/property';
+import type { Dpe } from '@/schemas/property';
 
 /** Couleur de chaque classe énergie (A = vert, G = rouge). Classes Tailwind écrites en entier pour qu'il les repère */
 export const dpeColors: Record<Dpe, string> = {
