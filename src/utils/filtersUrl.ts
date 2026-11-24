@@ -1,7 +1,7 @@
-import type { Filters } from '../types/filters';
+import type { Filters } from '@/schemas/filters';
 import { RANGE_NAMES, withOrderedRanges } from './orderRange';
 
-import { dpeSchema, equipementSchema, propertyTypeSchema, transactionSchema } from '@/schemas/property';
+import { dpeSchema, equipementSchema, meubleSchema, propertyTypeSchema, transactionSchema } from '@/schemas/property';
 
 /** Nom de chaque filtre simple dans l'adresse (dans le code, ils gardent leur nom français) */
 const URL_KEYS = {
@@ -60,6 +60,8 @@ export const parseFilters = (params: URLSearchParams): Filters => {
     .filter((result) => result.success)
     .map((result) => result.data);
 
+  const meubleResult = meubleSchema.safeParse(params.get(URL_KEYS.meuble));
+
   const dpeResult = dpeSchema.safeParse(params.get(URL_KEYS.dpe));
 
 
@@ -78,7 +80,7 @@ export const parseFilters = (params: URLSearchParams): Filters => {
     surfaceMin,
     surfaceMax,
     dpe: dpeResult.success ? dpeResult.data : '',
-    meuble: params.get(URL_KEYS.meuble) ?? '',
+    meuble: meubleResult.success ? meubleResult.data : '',
     // Équipements : `amenities=jardin,piscine`, le bien doit tous les avoir
     equipements: amenities,
   });

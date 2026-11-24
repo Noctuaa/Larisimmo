@@ -1,6 +1,6 @@
 import type { Property } from '@/schemas/property';
 import { dpeSchema } from '@/schemas/property';
-import type { Filters } from '@/types/filters';
+import type { Filters } from '@/schemas/filters';
 
 export const PER_PAGE = 12;
 

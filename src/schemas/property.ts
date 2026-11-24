@@ -12,6 +12,9 @@ export type Transaction = z.infer<typeof transactionSchema>;
 export const propertyTypeSchema = z.enum(['appartement', 'maison', 'chalet']);
 export type PropertyType = z.infer<typeof propertyTypeSchema>;
 
+export const meubleSchema = z.enum(['true', 'false']);
+export type Meuble = z.infer<typeof meubleSchema>;
+
 export const dpeSchema = z.enum(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
 export type Dpe = z.infer<typeof dpeSchema>;
 

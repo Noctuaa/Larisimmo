@@ -1,4 +1,4 @@
-import type { Filters } from '../types/filters';
+import type { Filters } from '@/schemas/filters';
 
 /** Les filtres qui fonctionnent par plage : `prix` donne `prixMin` et `prixMax` */
 export const RANGE_NAMES = ['prix', 'surface', 'chambres', 'pieces'] as const;

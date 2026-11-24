@@ -2,7 +2,7 @@
   import { computed } from 'vue';
   import { useStore } from '@nanostores/vue';
   import { $filters } from '@/stores/filters';
-  import { type Filters } from '@/types/filters';
+  import { type Filters } from '@/schemas/filters';
   import { orderRange } from '@/utils/orderRange';
 
   /** `name` : le filtre (prix ou surface) ; `unit` : l'unité affichée à droite du champ (€ ou m²) ;
