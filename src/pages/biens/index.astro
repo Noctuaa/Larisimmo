@@ -19,6 +19,8 @@ const { items, total, page: currentPage, totalPages } = filterProperties(propert
 
 // Construit un lien vers /biens en conservant les filtres actuels, avec un param en plus/écrasé
 const pageLink = (page: number) => buildSearchUrl(filters, '/biens', page);
+
+const countLabel = `${total} bien${total > 1 ? 's' : ''} trouvé${total > 1 ? 's' : ''}`;
 ---
 
 <Layout>
@@ -34,9 +36,7 @@ const pageLink = (page: number) => buildSearchUrl(filters, '/biens', page);
     <div class="mb-8">
       <p class="text-sm font-semibold text-accent">À la une</p>
       <h1 class="mt-2 text-3xl font-bold text-gray-900">Tous les biens</h1>
-      <p class="mt-2 text-gray-600">
-        {total}bien{total > 1 ? 's' : ''}trouvé{total > 1 ? 's' : ''}
-      </p>
+      <p class="mt-2 text-gray-600">{countLabel}</p>
     </div>
 
     <PropertyList client:load items={items} id="results" />
