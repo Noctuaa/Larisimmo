@@ -3,7 +3,7 @@
   import { useStore } from '@nanostores/vue';
   import { $filters } from '@/stores/filters';
   import { dpeColors } from '@/data/dpeColors';
-  import { type Dpe } from '@/types/property';
+  import { type Dpe } from '@/schemas/property';
 
   const { options = [], selected = '' } = defineProps<{
     options?: { label: string; value: string }[];

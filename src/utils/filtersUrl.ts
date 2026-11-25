@@ -1,5 +1,7 @@
-import type { Filters } from '../types/filters';
+import type { Filters } from '@/schemas/filters';
 import { RANGE_NAMES, withOrderedRanges } from './orderRange';
+
+import { dpeSchema, equipementSchema, meubleSchema, propertyTypeSchema, transactionSchema } from '@/schemas/property';
 
 /** Nom de chaque filtre simple dans l'adresse (dans le code, ils gardent leur nom français) */
 const URL_KEYS = {
@@ -43,12 +45,32 @@ export const parseFilters = (params: URLSearchParams): Filters => {
   const [chambresMin, chambresMax] = readRange(params.get(RANGE_URL_KEYS.chambres));
   const [piecesMin, piecesMax] = readRange(params.get(RANGE_URL_KEYS.pieces));
 
+
+  const transactionResult = transactionSchema.safeParse(params.get(URL_KEYS.transaction));
+
+  // Types de bien : on garde seulement ceux qui existent (`type=maison,chateau` donne `maison`)
+  const types = readList(params, URL_KEYS.type)
+    .map((value) => propertyTypeSchema.safeParse(value))
+    .filter((result) => result.success)
+    .map((result) => result.data);
+
+  // Équipements : on garde seulement ceux qui existent (`amenities=jardin,garage` donne `jardin`)
+  const amenities = readList(params, URL_KEYS.equipements)
+    .map((value) => equipementSchema.safeParse(value))
+    .filter((result) => result.success)
+    .map((result) => result.data);
+
+  const meubleResult = meubleSchema.safeParse(params.get(URL_KEYS.meuble));
+
+  const dpeResult = dpeSchema.safeParse(params.get(URL_KEYS.dpe));
+
+
   return withOrderedRanges({
     ville: params.get(URL_KEYS.ville) ?? '',
     // Par défaut, on vend
-    transaction: params.get(URL_KEYS.transaction) === 'location' ? 'location' : 'vente',
+    transaction: transactionResult.success ? transactionResult.data : 'vente',
     // Types de bien : `type=maison,chalet`, le bien doit être de l'un d'eux
-    type: readList(params, URL_KEYS.type),
+    type: types,
     prixMin,
     prixMax,
     chambresMin,
@@ -57,10 +79,10 @@ export const parseFilters = (params: URLSearchParams): Filters => {
     piecesMax,
     surfaceMin,
     surfaceMax,
-    dpe: params.get(URL_KEYS.dpe) ?? '',
-    meuble: params.get(URL_KEYS.meuble) ?? '',
+    dpe: dpeResult.success ? dpeResult.data : '',
+    meuble: meubleResult.success ? meubleResult.data : '',
     // Équipements : `amenities=jardin,piscine`, le bien doit tous les avoir
-    equipements: readList(params, URL_KEYS.equipements),
+    equipements: amenities,
   });
 };
 

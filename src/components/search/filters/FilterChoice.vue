@@ -1,8 +1,9 @@
 <script setup lang="ts">
   import { computed } from 'vue';
+
   import { useStore } from '@nanostores/vue';
   import { $filters } from '@/stores/filters';
-  import { type Filters } from '@/types/filters';
+  import { type Filters } from '@/schemas/filters';
 
   const {
     name,
@@ -23,15 +24,19 @@
   /** Toujours une liste (`.flat()`), pour tester avec `includes` qu'il y ait un ou plusieurs choix */
   const currentChoices = computed(() => [import.meta.env.SSR ? selected : filters.value[name]].flat());
 
+  /** Écrit un choix dans le store. Les valeurs viennent de `filterOptions`, donc elles sont valides pour ce filtre :
+   * TypeScript ne peut pas le deviner quand la clé (`name`) est choisie à l'exécution, d'où le `as never` */
+  const setChoice = (value: string | string[]) => $filters.setKey(name, value as never);
+
   /** Choix unique : un 2e clic décoche, sauf si `required` (un choix est obligatoire : on ne fait alors rien).
    * `multiple` : on ajoute ou retire le choix, en recréant la liste pour que le store voie le changement */
   const toggle = (option: string) => {
     const value = $filters.get()[name];
     if (multiple) {
       const list = value as string[];
-      $filters.setKey(name, list.includes(option) ? list.filter((v) => v !== option) : [...list, option]);
+      setChoice(list.includes(option) ? list.filter((v) => v !== option) : [...list, option]);
     } else if (!(required && value === option)) {
-      $filters.setKey(name, value === option ? '' : option);
+      setChoice(value === option ? '' : option);
     }
   };
 

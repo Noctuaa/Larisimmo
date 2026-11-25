@@ -4,7 +4,7 @@
   import { Building2, Euro, Key } from '@lucide/vue';
   import { navigate, type TransitionBeforeSwapEvent } from 'astro:transitions/client';
 
-  import type { Filters } from '@/types/filters';
+  import type { Filters } from '@/schemas/filters';
   import { $filters, $searchUrl } from '@/stores/filters';
   import { countActiveFilters } from '@/utils/countActiveFilters';
   import { filterOptions } from '@/data/filterOptions';

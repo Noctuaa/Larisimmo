@@ -2,7 +2,7 @@
   import { computed } from 'vue';
   import { useStore } from '@nanostores/vue';
   import { $filters } from '@/stores/filters';
-  import { type Filters } from '@/types/filters';
+  import { type Filters } from '@/schemas/filters';
 
   const props = defineProps<{
     name: string;

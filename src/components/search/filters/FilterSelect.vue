@@ -3,7 +3,7 @@
   import { useStore } from '@nanostores/vue';
   import { MapPin } from '@lucide/vue';
   import { $filters } from '@/stores/filters';
-  import { type Filters } from '@/types/filters';
+  import { type Filters } from '@/schemas/filters';
 
   const props = defineProps<{
     name: Exclude<keyof Filters, 'equipements'>;

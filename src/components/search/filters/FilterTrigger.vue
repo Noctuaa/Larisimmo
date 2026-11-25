@@ -3,7 +3,7 @@
   import type { Component } from 'vue';
 
   import { useStore } from '@nanostores/vue';
-  import { type Filters } from '@/types/filters';
+  import { type Filters } from '@/schemas/filters';
   import { $filters } from '@/stores/filters';
 
   const {

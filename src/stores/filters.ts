@@ -1,7 +1,8 @@
 import { computed, map } from 'nanostores';
-import type { Filters } from '../types/filters';
-import { countActiveFilters } from '../utils/countActiveFilters';
-import { buildSearchUrl } from '../utils/filtersUrl';
+
+import type { Filters } from '@/schemas/filters';
+import { countActiveFilters } from '@/utils/countActiveFilters';
+import { buildSearchUrl } from '@/utils/filtersUrl';
 
 // #region State
 

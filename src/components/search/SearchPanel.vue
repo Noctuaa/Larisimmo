@@ -2,7 +2,7 @@
   import { onMounted, ref } from 'vue';
   import { BedDouble, Building2, DoorOpen, Euro, Key, ListChecks, Ruler, Sofa, Zap } from '@lucide/vue';
 
-  import type { Filters } from '@/types/filters';
+  import type { Filters } from '@/schemas/filters';
   import { resetFilters } from '@/stores/filters';
   import { filterOptions } from '@/data/filterOptions';
 

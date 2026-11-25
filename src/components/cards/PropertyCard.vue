@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import type { Property } from '../../types/property';
+  import type { Property } from '@/schemas/property';
   import { rulerIcon, bedDoubleIcon, bathIcon } from '../../utils/propertyIcons';
   import { dpeColors } from '../../data/dpeColors';
 

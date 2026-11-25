@@ -20,7 +20,7 @@
       }
     ],
     "equipements": [
-      "balcon",
+      "terrasse",
       "ascenseur",
       "cave",
       "chauffage_au_sol"
@@ -53,7 +53,7 @@
     ],
     "equipements": [
       "jardin",
-      "garage",
+      "parking",
       "terrasse",
       "grenier"
     ],
@@ -85,7 +85,7 @@
       }
     ],
     "equipements": [
-      "poele_a_bois",
+      "cheminee",
       "terrasse",
       "parking",
       "cuisine_equipee"
@@ -147,7 +147,7 @@
     ],
     "equipements": [
       "piscine",
-      "garage",
+      "parking",
       "jardin",
       "grenier"
     ],
@@ -210,7 +210,7 @@
     ],
     "equipements": [
       "cheminee",
-      "garage",
+      "parking",
       "jardin",
       "ascenseur",
       "cuisine_equipee"
@@ -242,9 +242,9 @@
       }
     ],
     "equipements": [
-      "balcon",
-      "garage",
-      "poele_a_bois"
+      "terrasse",
+      "parking",
+      "cheminee"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -271,7 +271,7 @@
       }
     ],
     "equipements": [
-      "interphone",
+      "grenier",
       "jardin"
     ],
     "dpe": "A",
@@ -302,8 +302,8 @@
     ],
     "equipements": [
       "ascenseur",
-      "garage",
-      "balcon"
+      "parking",
+      "terrasse"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -331,7 +331,7 @@
     ],
     "equipements": [
       "terrasse",
-      "garage",
+      "parking",
       "cheminee",
       "chauffage_au_sol",
       "cuisine_equipee"
@@ -361,8 +361,8 @@
       }
     ],
     "equipements": [
-      "garage",
-      "poele_a_bois",
+      "parking",
+      "cheminee",
       "grenier"
     ],
     "dpe": "B",
@@ -391,8 +391,8 @@
     ],
     "equipements": [
       "cheminee",
-      "digicode",
-      "garage",
+      "cave",
+      "parking",
       "ascenseur"
     ],
     "dpe": "C",
@@ -422,7 +422,7 @@
       }
     ],
     "equipements": [
-      "poele_a_bois",
+      "grenier",
       "cheminee",
       "parking",
       "terrasse"
@@ -482,8 +482,8 @@
       }
     ],
     "equipements": [
-      "garage",
-      "balcon",
+      "parking",
+      "terrasse",
       "chauffage_au_sol"
     ],
     "dpe": "E",
@@ -512,9 +512,9 @@
     ],
     "equipements": [
       "terrasse",
-      "garage",
+      "parking",
       "cheminee",
-      "interphone",
+      "jardin",
       "grenier"
     ],
     "dpe": "F",
@@ -542,7 +542,7 @@
       }
     ],
     "equipements": [
-      "balcon",
+      "terrasse",
       "piscine",
       "climatisation"
     ],
@@ -602,7 +602,7 @@
       }
     ],
     "equipements": [
-      "balcon",
+      "terrasse",
       "ascenseur",
       "cave",
       "grenier"
@@ -633,7 +633,7 @@
     ],
     "equipements": [
       "parking",
-      "digicode",
+      "cave",
       "ascenseur",
       "cheminee",
       "chauffage_au_sol"
@@ -663,7 +663,7 @@
       }
     ],
     "equipements": [
-      "poele_a_bois",
+      "cheminee",
       "cave"
     ],
     "dpe": "B",
@@ -694,8 +694,8 @@
     ],
     "equipements": [
       "climatisation",
-      "poele_a_bois",
-      "garage",
+      "cheminee",
+      "parking",
       "ascenseur",
       "cuisine_equipee"
     ],
@@ -724,7 +724,7 @@
       }
     ],
     "equipements": [
-      "poele_a_bois",
+      "cheminee",
       "ascenseur"
     ],
     "dpe": "F",
@@ -754,9 +754,9 @@
       }
     ],
     "equipements": [
-      "local_velo",
+      "grenier",
       "ascenseur",
-      "digicode",
+      "jardin",
       "cave"
     ],
     "dpe": "F",
@@ -816,10 +816,10 @@
       }
     ],
     "equipements": [
-      "poele_a_bois",
-      "garage",
+      "cave",
+      "parking",
       "cheminee",
-      "local_velo",
+      "ascenseur",
       "cuisine_equipee"
     ],
     "dpe": "B",
@@ -849,9 +849,9 @@
       }
     ],
     "equipements": [
-      "garage",
+      "parking",
       "cheminee",
-      "poele_a_bois",
+      "cave",
       "jardin"
     ],
     "dpe": "C",
@@ -879,10 +879,10 @@
       }
     ],
     "equipements": [
-      "digicode",
-      "poele_a_bois",
-      "interphone",
-      "local_velo"
+      "cave",
+      "cheminee",
+      "ascenseur",
+      "climatisation"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -909,10 +909,10 @@
       }
     ],
     "equipements": [
-      "digicode",
-      "balcon",
+      "cave",
+      "ascenseur",
       "terrasse",
-      "local_velo"
+      "climatisation"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -940,7 +940,7 @@
     ],
     "equipements": [
       "terrasse",
-      "poele_a_bois",
+      "cheminee",
       "chauffage_au_sol",
       "cuisine_equipee"
     ],
@@ -969,7 +969,7 @@
       }
     ],
     "equipements": [
-      "garage",
+      "terrasse",
       "jardin",
       "parking",
       "ascenseur",
@@ -1002,7 +1002,7 @@
     "equipements": [
       "cave",
       "jardin",
-      "local_velo"
+      "ascenseur"
     ],
     "dpe": "B",
     "etiquettes": [],
@@ -1089,7 +1089,7 @@
     ],
     "equipements": [
       "cave",
-      "digicode",
+      "ascenseur",
       "chauffage_au_sol"
     ],
     "dpe": "F",
@@ -1118,8 +1118,8 @@
     ],
     "equipements": [
       "terrasse",
-      "local_velo",
-      "interphone",
+      "grenier",
+      "jardin",
       "piscine"
     ],
     "dpe": "C",
@@ -1149,10 +1149,10 @@
       }
     ],
     "equipements": [
-      "local_velo",
+      "cave",
       "climatisation",
       "cheminee",
-      "interphone"
+      "ascenseur"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1180,8 +1180,8 @@
     ],
     "equipements": [
       "terrasse",
-      "local_velo",
-      "poele_a_bois",
+      "jardin",
+      "cheminee",
       "cave",
       "grenier",
       "cuisine_equipee"
@@ -1216,7 +1216,7 @@
       "ascenseur",
       "cave",
       "climatisation",
-      "interphone"
+      "grenier"
     ],
     "dpe": "E",
     "etiquettes": [],

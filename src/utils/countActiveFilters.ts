@@ -1,4 +1,4 @@
-import { type Filters } from '../types/filters';
+import { type Filters } from '@/schemas/filters';
 
 /**
  * Nombre de filtres actifs, pour le badge du bouton « Filtres ».
