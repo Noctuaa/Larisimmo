@@ -1,17 +1,17 @@
 ---
 const links = [
   { label: 'Accueil', href: '/' },
-  { label: 'Acheter', href: '/biens?transaction=vente' },
-  { label: 'Louer', href: '/biens?transaction=location' },
+  { label: 'Acheter', href: '/biens?transaction=sale' },
+  { label: 'Louer', href: '/biens?transaction=rent' },
   { label: 'Contact', href: '/contact' },
 ];
 
 const currentPath = Astro.url.pathname;
 // Achat ou Location de la page en cours (la vente par défaut, comme dans `parseFilters`)
-const currentTransaction = Astro.url.searchParams.get('transaction') === 'location' ? 'location' : 'vente';
+const currentTransaction = Astro.url.searchParams.get('transaction') === 'rent' ? 'rent' : 'sale';
 
 /** Le lien est-il celui de la page en cours ? On compare le chemin, puis la transaction quand le lien en a une
- * (`/biens?transaction=vente` s'allume sur la vente, `/biens?transaction=location` sur la location) */
+ * (`/biens?transaction=sale` s'allume sur la vente, `/biens?transaction=rent` sur la location) */
 const isActive = (href: string) => {
   const url = new URL(href, Astro.url);
   if (url.pathname !== currentPath) return false;

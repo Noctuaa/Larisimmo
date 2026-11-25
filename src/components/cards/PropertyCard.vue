@@ -3,12 +3,13 @@
   import type { Property } from '@/schemas/property';
   import { rulerIcon, bedDoubleIcon, bathIcon } from '../../utils/propertyIcons';
   import { dpeColors } from '../../data/dpeColors';
+  import { propertyTypeLabels } from '@/data/filterOptions';
 
   const props = defineProps<{ property: Property }>();
 
   const price = computed(() => {
     const formatted = props.property.prix.toLocaleString('fr-FR');
-    return props.property.transaction === 'location' ? `${formatted} € / mois` : `${formatted} €`;
+    return props.property.transaction === 'rent' ? `${formatted} € / mois` : `${formatted} €`;
   });
 
   /** Les trois infos de la rangée du bas : une icône (constante SVG) et son texte */
@@ -45,7 +46,7 @@
     <div class="relative -mt-10 flex flex-1 flex-col gap-4 rounded-tr-4xl bg-white p-8">
       <div class="flex items-center justify-between">
         <div class="flex flex-col gap-1">
-          <p class="text-xs font-bold uppercase text-accent">{{ property.type }}</p>
+          <p class="text-xs font-bold uppercase text-accent">{{ propertyTypeLabels[property.type] }}</p>
           <p class="text-sm font-semibold text-primary">{{ property.ville }}</p>
         </div>
         <p class="text-right text-lg font-bold text-primary">{{ price }}</p>

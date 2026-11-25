@@ -2,8 +2,8 @@
   {
     "id": "1",
     "titre": "Appartement lumineux avec balcon",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 285000,
     "ville": "Paris",
     "adresse": "12 rue des Tilleuls",
@@ -20,10 +20,10 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "ascenseur",
-      "cave",
-      "chauffage_au_sol"
+      "terrace",
+      "elevator",
+      "cellar",
+      "underfloor_heating"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -34,8 +34,8 @@
   {
     "id": "2",
     "titre": "Maison familiale avec jardin",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 420000,
     "ville": "Lyon",
     "adresse": "5 allée des Cerisiers",
@@ -52,10 +52,10 @@
       }
     ],
     "equipements": [
-      "jardin",
+      "garden",
       "parking",
-      "terrasse",
-      "grenier"
+      "terrace",
+      "attic"
     ],
     "dpe": "D",
     "etiquettes": [
@@ -68,7 +68,7 @@
     "id": "3",
     "titre": "Chalet cosy avec vue montagne",
     "type": "chalet",
-    "transaction": "location",
+    "transaction": "rent",
     "prix": 1450,
     "ville": "Annecy",
     "adresse": "8 chemin des Sapins",
@@ -85,10 +85,10 @@
       }
     ],
     "equipements": [
-      "cheminee",
-      "terrasse",
+      "fireplace",
+      "terrace",
       "parking",
-      "cuisine_equipee"
+      "equipped_kitchen"
     ],
     "dpe": "E",
     "etiquettes": [
@@ -99,8 +99,8 @@
   {
     "id": "4",
     "titre": "Studio rénové proche centre-ville",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 620,
     "ville": "Lyon",
     "adresse": "22 rue de la Paix",
@@ -117,7 +117,7 @@
       }
     ],
     "equipements": [
-      "ascenseur"
+      "elevator"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -128,8 +128,8 @@
   {
     "id": "5",
     "titre": "Maison contemporaine avec piscine",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 590000,
     "ville": "Annecy",
     "adresse": "3 impasse du Lac",
@@ -146,10 +146,10 @@
       }
     ],
     "equipements": [
-      "piscine",
+      "pool",
       "parking",
-      "jardin",
-      "grenier"
+      "garden",
+      "attic"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -160,8 +160,8 @@
   {
     "id": "6",
     "titre": "Appartement 2 pièces avec parking",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 780,
     "ville": "Paris",
     "adresse": "40 boulevard des Fleurs",
@@ -179,8 +179,8 @@
     ],
     "equipements": [
       "parking",
-      "ascenseur",
-      "chauffage_au_sol"
+      "elevator",
+      "underfloor_heating"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -191,8 +191,8 @@
   {
     "id": "7",
     "titre": "Duplex avec terrasse",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 476000,
     "ville": "Strasbourg",
     "adresse": "18 rue du Château",
@@ -209,11 +209,11 @@
       }
     ],
     "equipements": [
-      "cheminee",
+      "fireplace",
       "parking",
-      "jardin",
-      "ascenseur",
-      "cuisine_equipee"
+      "garden",
+      "elevator",
+      "equipped_kitchen"
     ],
     "dpe": "F",
     "etiquettes": [
@@ -224,8 +224,8 @@
   {
     "id": "8",
     "titre": "Appartement avec parking privatif",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 596,
     "ville": "Bordeaux",
     "adresse": "8 rue Victor Hugo",
@@ -242,9 +242,9 @@
       }
     ],
     "equipements": [
-      "terrasse",
+      "terrace",
       "parking",
-      "cheminee"
+      "fireplace"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -253,8 +253,8 @@
   {
     "id": "9",
     "titre": "Maison d'architecte avec jardin",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 911000,
     "ville": "Paris",
     "adresse": "27 avenue de la République",
@@ -271,8 +271,8 @@
       }
     ],
     "equipements": [
-      "grenier",
-      "jardin"
+      "attic",
+      "garden"
     ],
     "dpe": "A",
     "etiquettes": [
@@ -283,8 +283,8 @@
   {
     "id": "10",
     "titre": "Appartement calme dernier étage",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 420000,
     "ville": "Lyon",
     "adresse": "49 place de la Mairie",
@@ -301,9 +301,9 @@
       }
     ],
     "equipements": [
-      "ascenseur",
+      "elevator",
       "parking",
-      "terrasse"
+      "terrace"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -312,8 +312,8 @@
   {
     "id": "11",
     "titre": "Appartement lumineux avec balcon",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 119000,
     "ville": "Lille",
     "adresse": "34 rue du Château",
@@ -330,11 +330,11 @@
       }
     ],
     "equipements": [
-      "terrasse",
+      "terrace",
       "parking",
-      "cheminee",
-      "chauffage_au_sol",
-      "cuisine_equipee"
+      "fireplace",
+      "underfloor_heating",
+      "equipped_kitchen"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -343,8 +343,8 @@
   {
     "id": "12",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "maison",
-    "transaction": "location",
+    "type": "house",
+    "transaction": "rent",
     "prix": 3910,
     "ville": "Marseille",
     "adresse": "26 impasse du Lac",
@@ -362,8 +362,8 @@
     ],
     "equipements": [
       "parking",
-      "cheminee",
-      "grenier"
+      "fireplace",
+      "attic"
     ],
     "dpe": "B",
     "etiquettes": [],
@@ -372,8 +372,8 @@
   {
     "id": "13",
     "titre": "Duplex avec terrasse",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 644,
     "ville": "Nantes",
     "adresse": "41 avenue Jean Jaurès",
@@ -390,10 +390,10 @@
       }
     ],
     "equipements": [
-      "cheminee",
-      "cave",
+      "fireplace",
+      "cellar",
       "parking",
-      "ascenseur"
+      "elevator"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -404,8 +404,8 @@
   {
     "id": "14",
     "titre": "Maison de plain-pied lumineuse",
-    "type": "maison",
-    "transaction": "location",
+    "type": "house",
+    "transaction": "rent",
     "prix": 2392,
     "ville": "Marseille",
     "adresse": "3 rue du Château",
@@ -422,10 +422,10 @@
       }
     ],
     "equipements": [
-      "grenier",
-      "cheminee",
+      "attic",
+      "fireplace",
       "parking",
-      "terrasse"
+      "terrace"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -434,8 +434,8 @@
   {
     "id": "15",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 446000,
     "ville": "Paris",
     "adresse": "54 impasse du Lac",
@@ -452,10 +452,10 @@
       }
     ],
     "equipements": [
-      "piscine",
-      "climatisation",
-      "grenier",
-      "cuisine_equipee"
+      "pool",
+      "air_conditioning",
+      "attic",
+      "equipped_kitchen"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -464,8 +464,8 @@
   {
     "id": "16",
     "titre": "Maison de plain-pied lumineuse",
-    "type": "maison",
-    "transaction": "location",
+    "type": "house",
+    "transaction": "rent",
     "prix": 1530,
     "ville": "Strasbourg",
     "adresse": "17 rue des Tilleuls",
@@ -483,8 +483,8 @@
     ],
     "equipements": [
       "parking",
-      "terrasse",
-      "chauffage_au_sol"
+      "terrace",
+      "underfloor_heating"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -493,8 +493,8 @@
   {
     "id": "17",
     "titre": "Villa avec vue dégagée",
-    "type": "maison",
-    "transaction": "location",
+    "type": "house",
+    "transaction": "rent",
     "prix": 2986,
     "ville": "Paris",
     "adresse": "43 rue des Écoles",
@@ -511,11 +511,11 @@
       }
     ],
     "equipements": [
-      "terrasse",
+      "terrace",
       "parking",
-      "cheminee",
-      "jardin",
-      "grenier"
+      "fireplace",
+      "garden",
+      "attic"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -524,8 +524,8 @@
   {
     "id": "18",
     "titre": "Maison d'architecte avec jardin",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 1340000,
     "ville": "Paris",
     "adresse": "4 rue Victor Hugo",
@@ -542,9 +542,9 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "piscine",
-      "climatisation"
+      "terrace",
+      "pool",
+      "air_conditioning"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -553,8 +553,8 @@
   {
     "id": "19",
     "titre": "Studio moderne proche transports",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 491,
     "ville": "Nantes",
     "adresse": "12 rue des Écoles",
@@ -571,9 +571,9 @@
       }
     ],
     "equipements": [
-      "cave",
-      "cheminee",
-      "cuisine_equipee"
+      "cellar",
+      "fireplace",
+      "equipped_kitchen"
     ],
     "dpe": "A",
     "etiquettes": [
@@ -584,8 +584,8 @@
   {
     "id": "20",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 834000,
     "ville": "Lyon",
     "adresse": "51 place de la Mairie",
@@ -602,10 +602,10 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "ascenseur",
-      "cave",
-      "grenier"
+      "terrace",
+      "elevator",
+      "cellar",
+      "attic"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -614,8 +614,8 @@
   {
     "id": "21",
     "titre": "Appartement traversant avec vue",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 245000,
     "ville": "Toulouse",
     "adresse": "11 place de la Mairie",
@@ -633,10 +633,10 @@
     ],
     "equipements": [
       "parking",
-      "cave",
-      "ascenseur",
-      "cheminee",
-      "chauffage_au_sol"
+      "cellar",
+      "elevator",
+      "fireplace",
+      "underfloor_heating"
     ],
     "dpe": "A",
     "etiquettes": [],
@@ -645,8 +645,8 @@
   {
     "id": "22",
     "titre": "Appartement charme ancien rénové",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 278000,
     "ville": "Toulouse",
     "adresse": "19 rue Victor Hugo",
@@ -663,8 +663,8 @@
       }
     ],
     "equipements": [
-      "cheminee",
-      "cave"
+      "fireplace",
+      "cellar"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -675,8 +675,8 @@
   {
     "id": "23",
     "titre": "Appartement calme dernier étage",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 191000,
     "ville": "Annecy",
     "adresse": "4 rue Sainte-Catherine",
@@ -693,11 +693,11 @@
       }
     ],
     "equipements": [
-      "climatisation",
-      "cheminee",
+      "air_conditioning",
+      "fireplace",
       "parking",
-      "ascenseur",
-      "cuisine_equipee"
+      "elevator",
+      "equipped_kitchen"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -706,8 +706,8 @@
   {
     "id": "24",
     "titre": "T2 refait à neuf",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 2146,
     "ville": "Annecy",
     "adresse": "59 rue des Tilleuls",
@@ -724,8 +724,8 @@
       }
     ],
     "equipements": [
-      "cheminee",
-      "ascenseur"
+      "fireplace",
+      "elevator"
     ],
     "dpe": "F",
     "etiquettes": [
@@ -736,8 +736,8 @@
   {
     "id": "25",
     "titre": "Longère rénovée avec terrain",
-    "type": "maison",
-    "transaction": "location",
+    "type": "house",
+    "transaction": "rent",
     "prix": 2583,
     "ville": "Bordeaux",
     "adresse": "46 rue des Écoles",
@@ -754,10 +754,10 @@
       }
     ],
     "equipements": [
-      "grenier",
-      "ascenseur",
-      "jardin",
-      "cave"
+      "attic",
+      "elevator",
+      "garden",
+      "cellar"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -766,8 +766,8 @@
   {
     "id": "26",
     "titre": "Pavillon calme et lumineux",
-    "type": "maison",
-    "transaction": "location",
+    "type": "house",
+    "transaction": "rent",
     "prix": 2310,
     "ville": "Marseille",
     "adresse": "26 boulevard des Fleurs",
@@ -784,10 +784,10 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "jardin",
-      "grenier",
-      "chauffage_au_sol"
+      "terrace",
+      "garden",
+      "attic",
+      "underfloor_heating"
     ],
     "dpe": "E",
     "etiquettes": [
@@ -798,8 +798,8 @@
   {
     "id": "27",
     "titre": "T2 refait à neuf",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 771,
     "ville": "Lyon",
     "adresse": "16 rue Victor Hugo",
@@ -816,11 +816,11 @@
       }
     ],
     "equipements": [
-      "cave",
+      "cellar",
       "parking",
-      "cheminee",
-      "ascenseur",
-      "cuisine_equipee"
+      "fireplace",
+      "elevator",
+      "equipped_kitchen"
     ],
     "dpe": "B",
     "etiquettes": [
@@ -831,8 +831,8 @@
   {
     "id": "28",
     "titre": "Appartement rénové centre-ville",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 457000,
     "ville": "Toulouse",
     "adresse": "54 allée des Cerisiers",
@@ -850,9 +850,9 @@
     ],
     "equipements": [
       "parking",
-      "cheminee",
-      "cave",
-      "jardin"
+      "fireplace",
+      "cellar",
+      "garden"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -861,8 +861,8 @@
   {
     "id": "29",
     "titre": "Studio moderne proche transports",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 485000,
     "ville": "Strasbourg",
     "adresse": "21 place de la Mairie",
@@ -879,10 +879,10 @@
       }
     ],
     "equipements": [
-      "cave",
-      "cheminee",
-      "ascenseur",
-      "climatisation"
+      "cellar",
+      "fireplace",
+      "elevator",
+      "air_conditioning"
     ],
     "dpe": "C",
     "etiquettes": [],
@@ -891,8 +891,8 @@
   {
     "id": "30",
     "titre": "Appartement lumineux avec balcon",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 212000,
     "ville": "Paris",
     "adresse": "53 rue Sainte-Catherine",
@@ -909,10 +909,10 @@
       }
     ],
     "equipements": [
-      "cave",
-      "ascenseur",
-      "terrasse",
-      "climatisation"
+      "cellar",
+      "elevator",
+      "terrace",
+      "air_conditioning"
     ],
     "dpe": "E",
     "etiquettes": [],
@@ -921,8 +921,8 @@
   {
     "id": "31",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "maison",
-    "transaction": "location",
+    "type": "house",
+    "transaction": "rent",
     "prix": 3122,
     "ville": "Bordeaux",
     "adresse": "47 rue Sainte-Catherine",
@@ -939,10 +939,10 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "cheminee",
-      "chauffage_au_sol",
-      "cuisine_equipee"
+      "terrace",
+      "fireplace",
+      "underfloor_heating",
+      "equipped_kitchen"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -951,8 +951,8 @@
   {
     "id": "32",
     "titre": "Villa avec vue dégagée",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 629000,
     "ville": "Strasbourg",
     "adresse": "57 rue du Château",
@@ -969,11 +969,11 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "jardin",
+      "terrace",
+      "garden",
       "parking",
-      "ascenseur",
-      "grenier"
+      "elevator",
+      "attic"
     ],
     "dpe": "D",
     "etiquettes": [],
@@ -982,8 +982,8 @@
   {
     "id": "33",
     "titre": "Studio moderne proche transports",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 647,
     "ville": "Marseille",
     "adresse": "35 avenue Jean Jaurès",
@@ -1000,9 +1000,9 @@
       }
     ],
     "equipements": [
-      "cave",
-      "jardin",
-      "ascenseur"
+      "cellar",
+      "garden",
+      "elevator"
     ],
     "dpe": "B",
     "etiquettes": [],
@@ -1011,8 +1011,8 @@
   {
     "id": "34",
     "titre": "Maison de plain-pied lumineuse",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 946000,
     "ville": "Strasbourg",
     "adresse": "13 avenue Jean Jaurès",
@@ -1030,7 +1030,7 @@
     ],
     "equipements": [
       "parking",
-      "terrasse"
+      "terrace"
     ],
     "dpe": "A",
     "etiquettes": [],
@@ -1039,8 +1039,8 @@
   {
     "id": "35",
     "titre": "Maison familiale avec jardin",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 711000,
     "ville": "Annecy",
     "adresse": "26 rue Sainte-Catherine",
@@ -1057,11 +1057,11 @@
       }
     ],
     "equipements": [
-      "climatisation",
-      "cheminee",
-      "jardin",
-      "grenier",
-      "cuisine_equipee"
+      "air_conditioning",
+      "fireplace",
+      "garden",
+      "attic",
+      "equipped_kitchen"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1070,8 +1070,8 @@
   {
     "id": "36",
     "titre": "Appartement avec parking privatif",
-    "type": "appartement",
-    "transaction": "location",
+    "type": "apartment",
+    "transaction": "rent",
     "prix": 2020,
     "ville": "Bordeaux",
     "adresse": "18 rue de la Paix",
@@ -1088,9 +1088,9 @@
       }
     ],
     "equipements": [
-      "cave",
-      "ascenseur",
-      "chauffage_au_sol"
+      "cellar",
+      "elevator",
+      "underfloor_heating"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1099,8 +1099,8 @@
   {
     "id": "37",
     "titre": "Maison mitoyenne proche écoles",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 915000,
     "ville": "Paris",
     "adresse": "6 avenue de la République",
@@ -1117,10 +1117,10 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "grenier",
-      "jardin",
-      "piscine"
+      "terrace",
+      "attic",
+      "garden",
+      "pool"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -1131,8 +1131,8 @@
   {
     "id": "38",
     "titre": "Duplex avec terrasse",
-    "type": "appartement",
-    "transaction": "vente",
+    "type": "apartment",
+    "transaction": "sale",
     "prix": 557000,
     "ville": "Lille",
     "adresse": "43 place de la Mairie",
@@ -1149,10 +1149,10 @@
       }
     ],
     "equipements": [
-      "cave",
-      "climatisation",
-      "cheminee",
-      "ascenseur"
+      "cellar",
+      "air_conditioning",
+      "fireplace",
+      "elevator"
     ],
     "dpe": "F",
     "etiquettes": [],
@@ -1161,8 +1161,8 @@
   {
     "id": "39",
     "titre": "Villa avec vue dégagée",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 627000,
     "ville": "Marseille",
     "adresse": "3 impasse du Lac",
@@ -1179,12 +1179,12 @@
       }
     ],
     "equipements": [
-      "terrasse",
-      "jardin",
-      "cheminee",
-      "cave",
-      "grenier",
-      "cuisine_equipee"
+      "terrace",
+      "garden",
+      "fireplace",
+      "cellar",
+      "attic",
+      "equipped_kitchen"
     ],
     "dpe": "C",
     "etiquettes": [
@@ -1195,8 +1195,8 @@
   {
     "id": "40",
     "titre": "Maison d'architecte avec jardin",
-    "type": "maison",
-    "transaction": "vente",
+    "type": "house",
+    "transaction": "sale",
     "prix": 316000,
     "ville": "Lille",
     "adresse": "54 chemin des Vignes",
@@ -1213,10 +1213,10 @@
       }
     ],
     "equipements": [
-      "ascenseur",
-      "cave",
-      "climatisation",
-      "grenier"
+      "elevator",
+      "cellar",
+      "air_conditioning",
+      "attic"
     ],
     "dpe": "E",
     "etiquettes": [],

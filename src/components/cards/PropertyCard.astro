@@ -1,6 +1,7 @@
 ---
 import type { Property } from '@/schemas/property';
 import { rulerIcon, bedDoubleIcon, bathIcon } from '../../utils/propertyIcons';
+import { propertyTypeLabels } from '@/data/filterOptions';
 
 interface Props {
   property: Property;
@@ -16,7 +17,7 @@ const tagStyles: Record<string, string> = {
 };
 
 const price =
-  property.transaction === 'location' ? `${property.prix.toLocaleString('fr-FR')} € / mois` : `${property.prix.toLocaleString('fr-FR')} €`;
+  property.transaction === 'rent' ? `${property.prix.toLocaleString('fr-FR')} € / mois` : `${property.prix.toLocaleString('fr-FR')} €`;
 ---
 
 <a href={`/biens/${property.id}`} class:list={['group block overflow-hidden rounded-2xl bg-white shadow-md transition hover:shadow-xl', className]}>
@@ -38,7 +39,7 @@ const price =
   <div class="relative flex flex-col gap-2 -mt-10 bg-white rounded-tr-4xl p-8">
     <div class="flex justify-between items-center mb-2">
       <div class="flex flex-col gap-1">
-        <p class="text-xs font-bold uppercase text-accent">{property.type}</p>
+        <p class="text-xs font-bold uppercase text-accent">{propertyTypeLabels[property.type]}</p>
         <p class="text-sm font-semibold text-primary">{property.ville}</p>
       </div>
       <p class="text-lg font-bold text-primary text-right">{price}</p>

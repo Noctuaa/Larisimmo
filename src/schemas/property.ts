@@ -6,10 +6,10 @@ export type Status = z.infer<typeof statusSchema>;
 export const tagSchema = z.enum(['Nouveau', 'Bon plan', 'Coup de cœur']);
 export type Tag = z.infer<typeof tagSchema>;
 
-export const transactionSchema = z.enum(['vente', 'location']);
+export const transactionSchema = z.enum(['sale', 'rent']);
 export type Transaction = z.infer<typeof transactionSchema>;
 
-export const propertyTypeSchema = z.enum(['appartement', 'maison', 'chalet']);
+export const propertyTypeSchema = z.enum(['apartment', 'house', 'chalet']);
 export type PropertyType = z.infer<typeof propertyTypeSchema>;
 
 export const meubleSchema = z.enum(['true', 'false']);
@@ -20,16 +20,16 @@ export type Dpe = z.infer<typeof dpeSchema>;
 
 export const equipementSchema = z.enum([
   'parking',
-  'terrasse',
-  'jardin',
-  'piscine',
-  'ascenseur',
-  'cave',
-  'grenier',
-  'climatisation',
-  'cheminee',
-  'chauffage_au_sol',
-  'cuisine_equipee',
+  'terrace',
+  'garden',
+  'pool',
+  'elevator',
+  'cellar',
+  'attic',
+  'air_conditioning',
+  'fireplace',
+  'underfloor_heating',
+  'equipped_kitchen',
 ]);
 export type Equipement = z.infer<typeof equipementSchema>;
 

@@ -1,3 +1,5 @@
+import type { PropertyType } from '@/schemas/property';
+
 /** `label` : texte affiché à l'utilisateur ; `value` : ce qui circule dans l'adresse et les données */
 export const filterOptions = {
   ville: [
@@ -12,13 +14,13 @@ export const filterOptions = {
     { label: 'Toulouse', value: 'Toulouse' },
   ],
   transaction: [
-    { label: 'Achat', value: 'vente' },
-    { label: 'Location', value: 'location' },
+    { label: 'Achat', value: 'sale' },
+    { label: 'Location', value: 'rent' },
   ],
   type: [
-    { label: 'Maison', value: 'maison' },
+    { label: 'Maison', value: 'house' },
     { label: 'Chalet', value: 'chalet' },
-    { label: 'Appartement', value: 'appartement' },
+    { label: 'Appartement', value: 'apartment' },
   ],
   meuble: [
     // texte et non booléen : l'adresse ne contient que du texte
@@ -36,15 +38,22 @@ export const filterOptions = {
   ],
   equipements: [
     { label: 'Parking', value: 'parking' },
-    { label: 'Terrasse', value: 'terrasse' },
-    { label: 'Jardin', value: 'jardin' },
-    { label: 'Piscine', value: 'piscine' },
-    { label: 'Ascenseur', value: 'ascenseur' },
-    { label: 'Cave', value: 'cave' },
-    { label: 'Grenier', value: 'grenier' },
-    { label: 'Climatisation', value: 'climatisation' },
-    { label: 'Cheminée', value: 'cheminee' },
-    { label: 'Chauffage au sol', value: 'chauffage_au_sol' },
-    { label: 'Cuisine équipée', value: 'cuisine_equipee' },
+    { label: 'Terrasse', value: 'terrace' },
+    { label: 'Jardin', value: 'garden' },
+    { label: 'Piscine', value: 'pool' },
+    { label: 'Ascenseur', value: 'elevator' },
+    { label: 'Cave', value: 'cellar' },
+    { label: 'Grenier', value: 'attic' },
+    { label: 'Climatisation', value: 'air_conditioning' },
+    { label: 'Cheminée', value: 'fireplace' },
+    { label: 'Chauffage au sol', value: 'underfloor_heating' },
+    { label: 'Cuisine équipée', value: 'equipped_kitchen' },
   ],
 }
+
+/** Libellé français d'un type de bien, pour l'afficher sur les cartes (la valeur technique est en anglais) */
+export const propertyTypeLabels: Record<PropertyType, string> = {
+  apartment: 'Appartement',
+  house: 'Maison',
+  chalet: 'Chalet',
+};

@@ -32,8 +32,8 @@ const readRange = (value: string | null): [string, string] => {
   return [min.replace(/\D/g, ''), max.replace(/\D/g, '')];
 };
 
-/** Lit une liste de l'adresse: `maison,chalet` donne `['maison', 'chalet']`.
- * On accepte aussi l'ancienne forme répétée (`type=maison&type=chalet`), tapée à la main ou gardée dans un lien */
+/** Lit une liste de l'adresse: `house,chalet` donne `['house', 'chalet']`.
+ * On accepte aussi l'ancienne forme répétée (`type=house&type=chalet`), tapée à la main ou gardée dans un lien */
 const readList = (params: URLSearchParams, key: string): string[] =>
   params.getAll(key).flatMap((value) => value.split(',')).filter(Boolean);
 
@@ -48,13 +48,13 @@ export const parseFilters = (params: URLSearchParams): Filters => {
 
   const transactionResult = transactionSchema.safeParse(params.get(URL_KEYS.transaction));
 
-  // Types de bien : on garde seulement ceux qui existent (`type=maison,chateau` donne `maison`)
+  // Types de bien : on garde seulement ceux qui existent (`type=house,castle` donne `house`)
   const types = readList(params, URL_KEYS.type)
     .map((value) => propertyTypeSchema.safeParse(value))
     .filter((result) => result.success)
     .map((result) => result.data);
 
-  // Équipements : on garde seulement ceux qui existent (`amenities=jardin,garage` donne `jardin`)
+  // Équipements : on garde seulement ceux qui existent (`amenities=garden,garage` donne `garden`)
   const amenities = readList(params, URL_KEYS.equipements)
     .map((value) => equipementSchema.safeParse(value))
     .filter((result) => result.success)
@@ -67,9 +67,9 @@ export const parseFilters = (params: URLSearchParams): Filters => {
 
   return withOrderedRanges({
     ville: params.get(URL_KEYS.ville) ?? '',
-    // Par défaut, on vend
-    transaction: transactionResult.success ? transactionResult.data : 'vente',
-    // Types de bien : `type=maison,chalet`, le bien doit être de l'un d'eux
+    // Par défaut, on vend (`sale`)
+    transaction: transactionResult.success ? transactionResult.data : 'sale',
+    // Types de bien : `type=house,chalet`, le bien doit être de l'un d'eux
     type: types,
     prixMin,
     prixMax,
@@ -81,7 +81,7 @@ export const parseFilters = (params: URLSearchParams): Filters => {
     surfaceMax,
     dpe: dpeResult.success ? dpeResult.data : '',
     meuble: meubleResult.success ? meubleResult.data : '',
-    // Équipements : `amenities=jardin,piscine`, le bien doit tous les avoir
+    // Équipements : `amenities=garden,pool`, le bien doit tous les avoir
     equipements: amenities,
   });
 };

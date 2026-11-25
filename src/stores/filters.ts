@@ -8,7 +8,7 @@ import { buildSearchUrl } from '@/utils/filtersUrl';
 
 /** État de départ : tous les filtres vides. On le garde à part pour pouvoir remettre le formulaire à zéro */
 const initialFilters: Filters = {
-  transaction: 'vente',
+  transaction: 'sale',
   ville: '',
   type: [],
   prixMin: '',
@@ -46,7 +46,7 @@ export const resetFilters = () => $filters.set({ ...initialFilters, ville: $filt
 /** Nombre de filtres actifs (badge du bouton « Filtres »), recalculé tout seul à chaque changement */
 export const $activeFiltersCount = computed($filters, countActiveFilters);
 
-/** Adresse de la recherche : `/biens?type=maison&prix=15500-20000`, ou `/biens` quand aucun filtre n'est rempli (voir `buildSearchUrl`) */
+/** Adresse de la recherche : `/biens?type=house&price=15500-20000`, ou `/biens` quand aucun filtre n'est rempli (voir `buildSearchUrl`) */
 export const $searchUrl = computed($filters, (filters) => buildSearchUrl(filters, SEARCH_PATH));
 
 /** Dernière recherche mémorisée dans le navigateur (lue par « Continuer ma recherche » sur l'accueil) */
