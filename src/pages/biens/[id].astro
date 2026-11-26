@@ -3,8 +3,9 @@ export const prerender = false;
 
 import properties from '@/data/biens.json';
 import type { Property } from '@/schemas/property';
-import { propertyTypeLabels } from '@/data/filterOptions';
+import { filterOptions, propertyTypeLabels } from '@/data/filterOptions';
 import Layout from '@/layouts/Layout.astro';
+import { dpeColors } from '@/data/dpeColors';
 
 const { id } = Astro.params;
 
@@ -26,6 +27,9 @@ const formatPrice = (p: Property) => {
   const formatted = p.prix.toLocaleString('fr-FR');
   return p.transaction === 'rent' ? `${formatted} € / mois` : `${formatted} €`;
 };
+
+// Libellé français d'un équipement, lu dans les options du filtre (une seule liste pour les deux)
+const equipementLabel = (value: string) => filterOptions.equipements.find((option) => option.value === value)?.label;
 ---
 
 <Layout>
@@ -52,6 +56,50 @@ const formatPrice = (p: Property) => {
               ))}
             </ul>
           </header>
+          <section class="flex flex-col gap-2">
+            <h2 class="text-lg font-semibold text-gray-900">Description</h2>
+            <p class="text-gray-600">{property.description}</p>
+          </section>
+
+          <section class="flex flex-col gap-4">
+            <h2 class="text-lg font-semibold text-gray-900">Caractéristiques</h2>
+            <dl class="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
+              <div class="flex flex-col gap-1">
+                <dt class="text-sm text-gray-500">Surface</dt>
+                <dd class="font-medium text-gray-900">{property.surface} m²</dd>
+              </div>
+              <div class="flex flex-col gap-1">
+                <dt class="text-sm text-gray-500">Pièces</dt>
+                <dd class="font-medium text-gray-900">{property.pieces}</dd>
+              </div>
+              <div class="flex flex-col gap-1">
+                <dt class="text-sm text-gray-500">Chambres</dt>
+                <dd class="font-medium text-gray-900">{property.chambres}</dd>
+              </div>
+              <div class="flex flex-col gap-1">
+                <dt class="text-sm text-gray-500">Salles de bain</dt>
+                <dd class="font-medium text-gray-900">{property.sallesDeBain}</dd>
+              </div>
+              <div class="flex flex-col gap-1">
+                <dt class="text-sm text-gray-500">Meublé</dt>
+                <dd class="font-medium text-gray-900">{property.meuble ? 'Oui' : 'Non'}</dd>
+              </div>
+              <div class="flex flex-col gap-1">
+                <dt class="text-sm text-gray-500">Classe énergie</dt>
+                <dd>
+                  <span class:list={['dpe-tag size-6', dpeColors[property.dpe]]} aria-label={`Classe énergie ${property.dpe}`}>
+                    {property.dpe}
+                  </span>
+                </dd>
+              </div>
+            </dl>{' '}
+            <h3 class="text-base font-semibold text-gray-900">Équipements</h3>
+            <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-gray-600 sm:grid-cols-3">
+              {property.equipements.map((equipement) => (
+                <li>{equipementLabel(equipement)}</li>
+              ))}
+            </ul>
+          </section>
         </article>
 
         <aside class="lg:sticky lg:top-[calc(var(--nav-height)+1rem)] lg:self-start">
