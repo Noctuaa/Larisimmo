@@ -72,6 +72,11 @@ html {
     @apply flex size-7 items-center justify-center rounded-full bg-primary/10 text-primary;
   }
 
+  /* Ouverture animée d'un <details> (accordéon FAQ, « Voir plus » de la description d'un bien) */
+  .details-animated {
+    @apply details-content:h-0 details-content:overflow-hidden details-content:transition-discrete details-content:transition-[height,content-visibility] details-content:duration-300 open:details-content:h-auto;
+  }
+
   .btn {
     @apply rounded-lg px-5 py-2.5 font-semibold;
   }
