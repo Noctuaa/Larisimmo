@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "titre": "Appartement lumineux avec balcon",
+    "titre": "Appartement 3 pièces lumineux avec terrasse",
     "type": "apartment",
     "transaction": "sale",
     "prix": 285000,
@@ -12,7 +12,7 @@
     "chambres": 2,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Bel appartement traversant avec balcon, proche des commerces et transports.",
+    "description": "Nouveau sur le marché, cet appartement de 62 m² est à vendre à Paris. Ce logement se compose de 3 pièces, dont 2 chambres, et d'une salle de bain.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, un ascenseur dessert les étages, une cave apporte un rangement bienvenu et le chauffage au sol garantit un confort homogène.\n\nSitué dans un quartier vivant, proche des transports en commun et des commerces, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe C). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-1.jpg",
@@ -33,7 +33,7 @@
   },
   {
     "id": "2",
-    "titre": "Maison familiale avec jardin",
+    "titre": "Maison 5 pièces agréable avec jardin",
     "type": "house",
     "transaction": "sale",
     "prix": 420000,
@@ -44,7 +44,7 @@
     "chambres": 4,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison familiale spacieuse avec jardin arboré et garage double.",
+    "description": "Nouveau sur le marché, cette maison de 130 m² est à vendre à Lyon. Ce logement se compose de 5 pièces, dont 4 chambres, et de 2 salles de bain.\n\nCôté prestations, un jardin offre un espace calme pour profiter des beaux jours, une place de parking facilite le quotidien, une terrasse prolonge agréablement le séjour et un grenier offre des rangements supplémentaires.\n\nSitué à proximité des commerces et des lignes de transport, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe D). Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-2.jpg",
@@ -66,7 +66,7 @@
   },
   {
     "id": "3",
-    "titre": "Chalet cosy avec vue montagne",
+    "titre": "Chalet fonctionnel avec terrasse",
     "type": "chalet",
     "transaction": "rent",
     "prix": 1450,
@@ -77,7 +77,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Chalet chaleureux avec poêle à bois et vue dégagée sur les montagnes.",
+    "description": "Un bon plan à ne pas laisser passer : ce chalet de 85 m² est à louer à Annecy. Ce logement se compose de 4 pièces, dont 3 chambres, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une cheminée crée une ambiance chaleureuse en hiver, une terrasse prolonge agréablement le séjour, une place de parking facilite le quotidien et la cuisine est équipée et prête à l'usage.\n\nSitué à proximité du lac et des montagnes, pour profiter de la nature toute l'année, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est E : des travaux d'amélioration sont à envisager. Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-3.jpg",
@@ -98,18 +98,18 @@
   },
   {
     "id": "4",
-    "titre": "Studio rénové proche centre-ville",
+    "titre": "Appartement 2 pièces lumineux avec ascenseur",
     "type": "apartment",
     "transaction": "rent",
     "prix": 620,
     "ville": "Lyon",
     "adresse": "22 rue de la Paix",
     "surface": 28,
-    "pieces": 1,
+    "pieces": 2,
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Studio entièrement rénové, idéal étudiant ou jeune actif.",
+    "description": "Nouveau sur le marché, cet appartement de 28 m² est à louer à Lyon. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, un ascenseur dessert les étages.\n\nSitué à proximité des commerces et des lignes de transport, il convient aussi bien à une installation de courte durée qu'à un long séjour. Il affiche une excellente performance énergétique (classe B). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-4.jpg",
@@ -127,7 +127,7 @@
   },
   {
     "id": "5",
-    "titre": "Maison contemporaine avec piscine",
+    "titre": "Maison 6 pièces spacieuse avec piscine",
     "type": "house",
     "transaction": "sale",
     "prix": 590000,
@@ -138,7 +138,7 @@
     "chambres": 4,
     "sallesDeBain": 3,
     "meuble": false,
-    "description": "Maison contemporaine avec piscine chauffée et vue lac.",
+    "description": "Notre coup de cœur du moment : cette maison de 165 m² est à vendre à Annecy. Ce logement se compose de 6 pièces, dont 4 chambres, et de 3 salles de bain.\n\nCôté prestations, une piscine permet de se rafraîchir en été, une place de parking facilite le quotidien, un jardin offre un espace calme pour profiter des beaux jours et un grenier offre des rangements supplémentaires.\n\nSitué à proximité du lac et des montagnes, pour profiter de la nature toute l'année, il convient aussi bien à un premier achat qu'à un projet de vie durable. Il affiche une excellente performance énergétique (classe B). Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-5.jpg",
@@ -159,7 +159,7 @@
   },
   {
     "id": "6",
-    "titre": "Appartement 2 pièces avec parking",
+    "titre": "Appartement 2 pièces fonctionnel avec chauffage au sol",
     "type": "apartment",
     "transaction": "rent",
     "prix": 780,
@@ -170,7 +170,7 @@
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Appartement calme avec place de parking incluse.",
+    "description": "Nouveau sur le marché, cet appartement de 45 m² est à louer à Paris. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une place de parking facilite le quotidien, un ascenseur dessert les étages et le chauffage au sol garantit un confort homogène.\n\nSitué à deux pas des transports et de toutes les commodités, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa performance énergétique est correcte (classe C). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-6.jpg",
@@ -190,7 +190,7 @@
   },
   {
     "id": "7",
-    "titre": "Duplex avec terrasse",
+    "titre": "Appartement 4 pièces lumineux avec jardin",
     "type": "apartment",
     "transaction": "sale",
     "prix": 476000,
@@ -201,7 +201,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Nouveau sur le marché, cet appartement de 85 m² est à vendre à Strasbourg. Ce logement se compose de 4 pièces, dont 3 chambres, et d'une salle de bain.\n\nCôté prestations, une cheminée crée une ambiance chaleureuse en hiver, une place de parking facilite le quotidien, un jardin offre un espace calme pour profiter des beaux jours, un ascenseur dessert les étages et la cuisine est équipée et prête à l'usage.\n\nSitué dans un quartier calme, proche des commerces et des transports, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa classe énergie est F : des travaux d'amélioration sont à envisager. N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-1.jpg",
@@ -223,7 +223,7 @@
   },
   {
     "id": "8",
-    "titre": "Appartement avec parking privatif",
+    "titre": "Appartement 4 pièces agréable avec terrasse",
     "type": "apartment",
     "transaction": "rent",
     "prix": 596,
@@ -234,7 +234,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "description": "Appartement de 47 m² à louer à Bordeaux. Ce logement se compose de 4 pièces, dont 3 chambres, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, une place de parking facilite le quotidien et une cheminée crée une ambiance chaleureuse en hiver.\n\nSitué à proximité des commodités et des transports en commun, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est E : des travaux d'amélioration sont à envisager. Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-2.jpg",
@@ -252,7 +252,7 @@
   },
   {
     "id": "9",
-    "titre": "Maison d'architecte avec jardin",
+    "titre": "Maison 5 pièces spacieuse avec jardin",
     "type": "house",
     "transaction": "sale",
     "prix": 911000,
@@ -263,7 +263,7 @@
     "chambres": 3,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison familiale idéale pour une vie de famille.",
+    "description": "Notre coup de cœur du moment : cette maison de 161 m² est à vendre à Paris. Ce logement se compose de 5 pièces, dont 3 chambres, et de 2 salles de bain.\n\nCôté prestations, un grenier offre des rangements supplémentaires et un jardin offre un espace calme pour profiter des beaux jours.\n\nSitué dans un quartier vivant, proche des transports en commun et des commerces, il convient aussi bien à un premier achat qu'à un projet de vie durable. Il affiche une excellente performance énergétique (classe A). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-3.jpg",
@@ -282,7 +282,7 @@
   },
   {
     "id": "10",
-    "titre": "Appartement calme dernier étage",
+    "titre": "Appartement 2 pièces spacieux avec terrasse",
     "type": "apartment",
     "transaction": "sale",
     "prix": 420000,
@@ -293,7 +293,7 @@
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Belle luminosité, quartier calme et recherché.",
+    "description": "Appartement de 106 m² à vendre à Lyon. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain.\n\nCôté prestations, un ascenseur dessert les étages, une place de parking facilite le quotidien et une terrasse prolonge agréablement le séjour.\n\nSitué à proximité des commerces et des lignes de transport, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa classe énergie est F : des travaux d'amélioration sont à envisager. N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-4.jpg",
@@ -311,7 +311,7 @@
   },
   {
     "id": "11",
-    "titre": "Appartement lumineux avec balcon",
+    "titre": "Appartement 3 pièces agréable avec terrasse",
     "type": "apartment",
     "transaction": "sale",
     "prix": 119000,
@@ -322,7 +322,7 @@
     "chambres": 2,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Appartement de 42 m² à vendre à Lille. Ce logement se compose de 3 pièces, dont 2 chambres, et d'une salle de bain.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, une place de parking facilite le quotidien, une cheminée crée une ambiance chaleureuse en hiver, le chauffage au sol garantit un confort homogène et la cuisine est équipée et prête à l'usage.\n\nSitué dans un quartier vivant, proche des commerces et des transports, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe C). Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-5.jpg",
@@ -342,7 +342,7 @@
   },
   {
     "id": "12",
-    "titre": "Maison mitoyenne proche écoles",
+    "titre": "Maison 4 pièces spacieuse avec cheminée",
     "type": "house",
     "transaction": "rent",
     "prix": 3910,
@@ -353,7 +353,7 @@
     "chambres": 2,
     "sallesDeBain": 2,
     "meuble": true,
-    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "description": "Maison de 196 m² à louer à Marseille. Ce logement se compose de 4 pièces, dont 2 chambres, et de 2 salles de bain. Il est loué meublé.\n\nCôté prestations, une place de parking facilite le quotidien, une cheminée crée une ambiance chaleureuse en hiver et un grenier offre des rangements supplémentaires.\n\nSitué à proximité des commerces, des écoles et des transports, il convient aussi bien à une installation de courte durée qu'à un long séjour. Il affiche une excellente performance énergétique (classe B). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-6.jpg",
@@ -371,18 +371,18 @@
   },
   {
     "id": "13",
-    "titre": "Duplex avec terrasse",
+    "titre": "Appartement 2 pièces lumineux avec cheminée",
     "type": "apartment",
     "transaction": "rent",
     "prix": 644,
     "ville": "Nantes",
     "adresse": "41 avenue Jean Jaurès",
     "surface": 31,
-    "pieces": 5,
-    "chambres": 4,
+    "pieces": 2,
+    "chambres": 1,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Notre coup de cœur du moment : cet appartement de 31 m² est à louer à Nantes. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une cheminée crée une ambiance chaleureuse en hiver, une cave apporte un rangement bienvenu, une place de parking facilite le quotidien et un ascenseur dessert les étages.\n\nSitué dans un quartier apprécié, proche des commerces et des transports, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa performance énergétique est correcte (classe C). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-1.jpg",
@@ -403,7 +403,7 @@
   },
   {
     "id": "14",
-    "titre": "Maison de plain-pied lumineuse",
+    "titre": "Maison 5 pièces spacieuse avec terrasse",
     "type": "house",
     "transaction": "rent",
     "prix": 2392,
@@ -414,7 +414,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Maison contemporaine avec belles prestations.",
+    "description": "Maison de 179 m² à louer à Marseille. Ce logement se compose de 5 pièces, dont 3 chambres, et d'une salle de bain. Il est loué non meublé.\n\nCôté prestations, un grenier offre des rangements supplémentaires, une cheminée crée une ambiance chaleureuse en hiver, une place de parking facilite le quotidien et une terrasse prolonge agréablement le séjour.\n\nSitué à proximité des commerces, des écoles et des transports, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa performance énergétique est correcte (classe D). Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-2.jpg",
@@ -433,7 +433,7 @@
   },
   {
     "id": "15",
-    "titre": "Maison mitoyenne proche écoles",
+    "titre": "Maison 7 pièces fonctionnelle avec piscine",
     "type": "house",
     "transaction": "sale",
     "prix": 446000,
@@ -444,7 +444,7 @@
     "chambres": 5,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison contemporaine avec belles prestations.",
+    "description": "Maison de 126 m² à vendre à Paris. Ce logement se compose de 7 pièces, dont 5 chambres, et de 2 salles de bain.\n\nCôté prestations, une piscine permet de se rafraîchir en été, la climatisation assure le confort pendant les étés chauds, un grenier offre des rangements supplémentaires et la cuisine est équipée et prête à l'usage.\n\nSitué dans un quartier vivant, proche des transports en commun et des commerces, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe D). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-3.jpg",
@@ -463,7 +463,7 @@
   },
   {
     "id": "16",
-    "titre": "Maison de plain-pied lumineuse",
+    "titre": "Maison 3 pièces lumineuse avec terrasse",
     "type": "house",
     "transaction": "rent",
     "prix": 1530,
@@ -474,7 +474,7 @@
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Maison spacieuse avec jardin arboré et garage.",
+    "description": "Maison de 104 m² à louer à Strasbourg. Ce logement se compose de 3 pièces, dont une chambre, et d'une salle de bain. Il est loué non meublé.\n\nCôté prestations, une place de parking facilite le quotidien, une terrasse prolonge agréablement le séjour et le chauffage au sol garantit un confort homogène.\n\nSitué à proximité des commodités et des transports en commun, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est E : des travaux d'amélioration sont à envisager. N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-4.jpg",
@@ -492,7 +492,7 @@
   },
   {
     "id": "17",
-    "titre": "Villa avec vue dégagée",
+    "titre": "Maison 4 pièces spacieuse avec jardin",
     "type": "house",
     "transaction": "rent",
     "prix": 2986,
@@ -503,7 +503,7 @@
     "chambres": 2,
     "sallesDeBain": 3,
     "meuble": false,
-    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "description": "Maison de 178 m² à louer à Paris. Ce logement se compose de 4 pièces, dont 2 chambres, et de 3 salles de bain. Il est loué non meublé.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, une place de parking facilite le quotidien, une cheminée crée une ambiance chaleureuse en hiver, un jardin offre un espace calme pour profiter des beaux jours et un grenier offre des rangements supplémentaires.\n\nSitué dans un quartier vivant, proche des transports en commun et des commerces, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est F : des travaux d'amélioration sont à envisager. Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-5.jpg",
@@ -523,7 +523,7 @@
   },
   {
     "id": "18",
-    "titre": "Maison d'architecte avec jardin",
+    "titre": "Maison 5 pièces spacieuse avec piscine",
     "type": "house",
     "transaction": "sale",
     "prix": 1340000,
@@ -534,7 +534,7 @@
     "chambres": 3,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison familiale idéale pour une vie de famille.",
+    "description": "Maison de 205 m² à vendre à Paris. Ce logement se compose de 5 pièces, dont 3 chambres, et de 2 salles de bain.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, une piscine permet de se rafraîchir en été et la climatisation assure le confort pendant les étés chauds.\n\nSitué à deux pas des transports et de toutes les commodités, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe D). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-6.jpg",
@@ -552,18 +552,18 @@
   },
   {
     "id": "19",
-    "titre": "Studio moderne proche transports",
+    "titre": "Appartement 2 pièces lumineux avec cheminée",
     "type": "apartment",
     "transaction": "rent",
     "prix": 491,
     "ville": "Nantes",
     "adresse": "12 rue des Écoles",
     "surface": 24,
-    "pieces": 4,
-    "chambres": 3,
+    "pieces": 2,
+    "chambres": 1,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Nouveau sur le marché, cet appartement de 24 m² est à louer à Nantes. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une cave apporte un rangement bienvenu, une cheminée crée une ambiance chaleureuse en hiver et la cuisine est équipée et prête à l'usage.\n\nSitué dans un quartier apprécié, proche des commerces et des transports, il convient aussi bien à une installation de courte durée qu'à un long séjour. Il affiche une excellente performance énergétique (classe A). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-1.jpg",
@@ -583,7 +583,7 @@
   },
   {
     "id": "20",
-    "titre": "Maison mitoyenne proche écoles",
+    "titre": "Maison 6 pièces agréable avec jardin",
     "type": "house",
     "transaction": "sale",
     "prix": 834000,
@@ -594,7 +594,7 @@
     "chambres": 4,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison contemporaine avec belles prestations.",
+    "description": "Maison de 198 m² à vendre à Lyon. Ce logement se compose de 6 pièces, dont 4 chambres, et de 2 salles de bain.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, un jardin offre un espace calme pour profiter des beaux jours, une cave apporte un rangement bienvenu et un grenier offre des rangements supplémentaires.\n\nSitué à proximité des commerces et des lignes de transport, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe C). Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-2.jpg",
@@ -603,7 +603,7 @@
     ],
     "equipements": [
       "terrace",
-      "elevator",
+      "garden",
       "cellar",
       "attic"
     ],
@@ -613,7 +613,7 @@
   },
   {
     "id": "21",
-    "titre": "Appartement traversant avec vue",
+    "titre": "Appartement 3 pièces spacieux avec cheminée",
     "type": "apartment",
     "transaction": "sale",
     "prix": 245000,
@@ -624,7 +624,7 @@
     "chambres": 2,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Appartement entièrement rénové, idéal étudiant ou jeune actif.",
+    "description": "Appartement de 84 m² à vendre à Toulouse. Ce logement se compose de 3 pièces, dont 2 chambres, et d'une salle de bain.\n\nCôté prestations, une place de parking facilite le quotidien, une cave apporte un rangement bienvenu, un ascenseur dessert les étages, une cheminée crée une ambiance chaleureuse en hiver et le chauffage au sol garantit un confort homogène.\n\nSitué dans un quartier agréable, proche des commerces et des transports, il convient aussi bien à un premier achat qu'à un projet de vie durable. Il affiche une excellente performance énergétique (classe A). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-3.jpg",
@@ -644,7 +644,7 @@
   },
   {
     "id": "22",
-    "titre": "Appartement charme ancien rénové",
+    "titre": "Appartement 3 pièces lumineux avec cheminée",
     "type": "apartment",
     "transaction": "sale",
     "prix": 278000,
@@ -655,7 +655,7 @@
     "chambres": 2,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Un bon plan à ne pas laisser passer : cet appartement de 49 m² est à vendre à Toulouse. Ce logement se compose de 3 pièces, dont 2 chambres, et d'une salle de bain.\n\nCôté prestations, une cheminée crée une ambiance chaleureuse en hiver et une cave apporte un rangement bienvenu.\n\nSitué à proximité des commodités et des transports en commun, il convient aussi bien à un premier achat qu'à un projet de vie durable. Il affiche une excellente performance énergétique (classe B). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-4.jpg",
@@ -674,7 +674,7 @@
   },
   {
     "id": "23",
-    "titre": "Appartement calme dernier étage",
+    "titre": "Appartement 3 pièces agréable avec cheminée",
     "type": "apartment",
     "transaction": "sale",
     "prix": 191000,
@@ -685,7 +685,7 @@
     "chambres": 2,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Belle luminosité, quartier calme et recherché.",
+    "description": "Appartement de 64 m² à vendre à Annecy. Ce logement se compose de 3 pièces, dont 2 chambres, et d'une salle de bain.\n\nCôté prestations, la climatisation assure le confort pendant les étés chauds, une cheminée crée une ambiance chaleureuse en hiver, une place de parking facilite le quotidien, un ascenseur dessert les étages et la cuisine est équipée et prête à l'usage.\n\nSitué à proximité du lac et des montagnes, pour profiter de la nature toute l'année, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa classe énergie est F : des travaux d'amélioration sont à envisager. Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-5.jpg",
@@ -705,7 +705,7 @@
   },
   {
     "id": "24",
-    "titre": "T2 refait à neuf",
+    "titre": "Appartement 3 pièces fonctionnel avec cheminée",
     "type": "apartment",
     "transaction": "rent",
     "prix": 2146,
@@ -716,7 +716,7 @@
     "chambres": 2,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Belle luminosité, quartier calme et recherché.",
+    "description": "Un bon plan à ne pas laisser passer : cet appartement de 82 m² est à louer à Annecy. Ce logement se compose de 3 pièces, dont 2 chambres, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une cheminée crée une ambiance chaleureuse en hiver et un ascenseur dessert les étages.\n\nSitué dans un cadre agréable, entre lac et montagnes, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est F : des travaux d'amélioration sont à envisager. Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-6.jpg",
@@ -735,7 +735,7 @@
   },
   {
     "id": "25",
-    "titre": "Longère rénovée avec terrain",
+    "titre": "Maison 5 pièces spacieuse avec jardin",
     "type": "house",
     "transaction": "rent",
     "prix": 2583,
@@ -746,7 +746,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "description": "Maison de 174 m² à louer à Bordeaux. Ce logement se compose de 5 pièces, dont 3 chambres, et d'une salle de bain. Il est loué non meublé.\n\nCôté prestations, un grenier offre des rangements supplémentaires, une terrasse prolonge agréablement le séjour, un jardin offre un espace calme pour profiter des beaux jours et une cave apporte un rangement bienvenu.\n\nSitué dans un quartier agréable, proche des commerces et des transports, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est F : des travaux d'amélioration sont à envisager. N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-1.jpg",
@@ -755,7 +755,7 @@
     ],
     "equipements": [
       "attic",
-      "elevator",
+      "terrace",
       "garden",
       "cellar"
     ],
@@ -765,7 +765,7 @@
   },
   {
     "id": "26",
-    "titre": "Pavillon calme et lumineux",
+    "titre": "Maison 3 pièces spacieuse avec jardin",
     "type": "house",
     "transaction": "rent",
     "prix": 2310,
@@ -776,7 +776,7 @@
     "chambres": 1,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison contemporaine avec belles prestations.",
+    "description": "Nouveau sur le marché, cette maison de 115 m² est à louer à Marseille. Ce logement se compose de 3 pièces, dont une chambre, et de 2 salles de bain. Il est loué non meublé.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, un jardin offre un espace calme pour profiter des beaux jours, un grenier offre des rangements supplémentaires et le chauffage au sol garantit un confort homogène.\n\nSitué à proximité des commerces, des écoles et des transports, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est E : des travaux d'amélioration sont à envisager. Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-2.jpg",
@@ -797,7 +797,7 @@
   },
   {
     "id": "27",
-    "titre": "T2 refait à neuf",
+    "titre": "Appartement 2 pièces fonctionnel avec cheminée",
     "type": "apartment",
     "transaction": "rent",
     "prix": 771,
@@ -808,7 +808,7 @@
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Notre coup de cœur du moment : cet appartement de 49 m² est à louer à Lyon. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une cave apporte un rangement bienvenu, une place de parking facilite le quotidien, une cheminée crée une ambiance chaleureuse en hiver, un ascenseur dessert les étages et la cuisine est équipée et prête à l'usage.\n\nSitué dans un quartier bien desservi, entre commerces et transports en commun, il convient aussi bien à une installation de courte durée qu'à un long séjour. Il affiche une excellente performance énergétique (classe B). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-3.jpg",
@@ -830,18 +830,18 @@
   },
   {
     "id": "28",
-    "titre": "Appartement rénové centre-ville",
+    "titre": "Appartement 3 pièces lumineux avec jardin",
     "type": "apartment",
     "transaction": "sale",
     "prix": 457000,
     "ville": "Toulouse",
     "adresse": "54 allée des Cerisiers",
     "surface": 74,
-    "pieces": 1,
+    "pieces": 3,
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Appartement de 74 m² à vendre à Toulouse. Ce logement se compose de 3 pièces, dont une chambre, et d'une salle de bain.\n\nCôté prestations, une place de parking facilite le quotidien, une cheminée crée une ambiance chaleureuse en hiver, une cave apporte un rangement bienvenu et un jardin offre un espace calme pour profiter des beaux jours.\n\nSitué à proximité des commodités et des transports en commun, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe C). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-4.jpg",
@@ -860,18 +860,18 @@
   },
   {
     "id": "29",
-    "titre": "Studio moderne proche transports",
+    "titre": "Appartement 3 pièces spacieux avec cheminée",
     "type": "apartment",
     "transaction": "sale",
     "prix": 485000,
     "ville": "Strasbourg",
     "adresse": "21 place de la Mairie",
     "surface": 95,
-    "pieces": 1,
+    "pieces": 3,
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Bel appartement traversant, proche des commerces et transports.",
+    "description": "Appartement de 95 m² à vendre à Strasbourg. Ce logement se compose de 3 pièces, dont une chambre, et d'une salle de bain.\n\nCôté prestations, une cave apporte un rangement bienvenu, une cheminée crée une ambiance chaleureuse en hiver, un ascenseur dessert les étages et la climatisation assure le confort pendant les étés chauds.\n\nSitué dans un quartier calme, proche des commerces et des transports, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe C). Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-5.jpg",
@@ -890,7 +890,7 @@
   },
   {
     "id": "30",
-    "titre": "Appartement lumineux avec balcon",
+    "titre": "Appartement 2 pièces fonctionnel avec terrasse",
     "type": "apartment",
     "transaction": "sale",
     "prix": 212000,
@@ -901,7 +901,7 @@
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "description": "Appartement de 50 m² à vendre à Paris. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain.\n\nCôté prestations, une cave apporte un rangement bienvenu, un ascenseur dessert les étages, une terrasse prolonge agréablement le séjour et la climatisation assure le confort pendant les étés chauds.\n\nSitué à deux pas des transports et de toutes les commodités, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa classe énergie est E : des travaux d'amélioration sont à envisager. Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-6.jpg",
@@ -920,7 +920,7 @@
   },
   {
     "id": "31",
-    "titre": "Maison mitoyenne proche écoles",
+    "titre": "Maison 5 pièces spacieuse avec terrasse",
     "type": "house",
     "transaction": "rent",
     "prix": 3122,
@@ -931,7 +931,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Maison contemporaine avec belles prestations.",
+    "description": "Maison de 144 m² à louer à Bordeaux. Ce logement se compose de 5 pièces, dont 3 chambres, et d'une salle de bain. Il est loué non meublé.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, une cheminée crée une ambiance chaleureuse en hiver, le chauffage au sol garantit un confort homogène et la cuisine est équipée et prête à l'usage.\n\nSitué dans un quartier agréable, proche des commerces et des transports, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est F : des travaux d'amélioration sont à envisager. N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-1.jpg",
@@ -950,7 +950,7 @@
   },
   {
     "id": "32",
-    "titre": "Villa avec vue dégagée",
+    "titre": "Maison 6 pièces spacieuse avec jardin",
     "type": "house",
     "transaction": "sale",
     "prix": 629000,
@@ -961,7 +961,7 @@
     "chambres": 4,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison contemporaine avec belles prestations.",
+    "description": "Maison de 215 m² à vendre à Strasbourg. Ce logement se compose de 6 pièces, dont 4 chambres, et de 2 salles de bain.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, un jardin offre un espace calme pour profiter des beaux jours, une place de parking facilite le quotidien, une cave apporte un rangement bienvenu et un grenier offre des rangements supplémentaires.\n\nSitué à proximité des commodités et des transports en commun, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe D). Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-2.jpg",
@@ -972,7 +972,7 @@
       "terrace",
       "garden",
       "parking",
-      "elevator",
+      "cellar",
       "attic"
     ],
     "dpe": "D",
@@ -981,18 +981,18 @@
   },
   {
     "id": "33",
-    "titre": "Studio moderne proche transports",
+    "titre": "Appartement 2 pièces fonctionnel avec jardin",
     "type": "apartment",
     "transaction": "rent",
     "prix": 647,
     "ville": "Marseille",
     "adresse": "35 avenue Jean Jaurès",
     "surface": 27,
-    "pieces": 5,
-    "chambres": 4,
+    "pieces": 2,
+    "chambres": 1,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "description": "Appartement de 27 m² à louer à Marseille. Ce logement se compose de 2 pièces, dont une chambre, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une cave apporte un rangement bienvenu, un jardin offre un espace calme pour profiter des beaux jours et un ascenseur dessert les étages.\n\nSitué dans une ville où la Méditerranée n'est jamais loin, avec commerces et écoles à proximité, il convient aussi bien à une installation de courte durée qu'à un long séjour. Il affiche une excellente performance énergétique (classe B). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-3.jpg",
@@ -1010,7 +1010,7 @@
   },
   {
     "id": "34",
-    "titre": "Maison de plain-pied lumineuse",
+    "titre": "Maison 6 pièces spacieuse avec terrasse",
     "type": "house",
     "transaction": "sale",
     "prix": 946000,
@@ -1021,7 +1021,7 @@
     "chambres": 4,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Maison familiale idéale pour une vie de famille.",
+    "description": "Maison de 213 m² à vendre à Strasbourg. Ce logement se compose de 6 pièces, dont 4 chambres, et de 2 salles de bain.\n\nCôté prestations, une place de parking facilite le quotidien et une terrasse prolonge agréablement le séjour.\n\nSitué à proximité des commodités et des transports en commun, il convient aussi bien à un premier achat qu'à un projet de vie durable. Il affiche une excellente performance énergétique (classe A). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-4.jpg",
@@ -1038,7 +1038,7 @@
   },
   {
     "id": "35",
-    "titre": "Maison familiale avec jardin",
+    "titre": "Maison 3 pièces spacieuse avec jardin",
     "type": "house",
     "transaction": "sale",
     "prix": 711000,
@@ -1049,7 +1049,7 @@
     "chambres": 1,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Maison spacieuse avec jardin arboré et garage.",
+    "description": "Maison de 113 m² à vendre à Annecy. Ce logement se compose de 3 pièces, dont une chambre, et d'une salle de bain.\n\nCôté prestations, la climatisation assure le confort pendant les étés chauds, une cheminée crée une ambiance chaleureuse en hiver, un jardin offre un espace calme pour profiter des beaux jours, un grenier offre des rangements supplémentaires et la cuisine est équipée et prête à l'usage.\n\nSitué à proximité du lac et des montagnes, pour profiter de la nature toute l'année, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa classe énergie est F : des travaux d'amélioration sont à envisager. Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-5.jpg",
@@ -1069,7 +1069,7 @@
   },
   {
     "id": "36",
-    "titre": "Appartement avec parking privatif",
+    "titre": "Appartement 3 pièces fonctionnel avec chauffage au sol",
     "type": "apartment",
     "transaction": "rent",
     "prix": 2020,
@@ -1080,7 +1080,7 @@
     "chambres": 2,
     "sallesDeBain": 1,
     "meuble": true,
-    "description": "Proche de toutes commodités, appartement fonctionnel et bien agencé.",
+    "description": "Appartement de 80 m² à louer à Bordeaux. Ce logement se compose de 3 pièces, dont 2 chambres, et d'une salle de bain. Il est loué meublé.\n\nCôté prestations, une cave apporte un rangement bienvenu, un ascenseur dessert les étages et le chauffage au sol garantit un confort homogène.\n\nSitué à proximité des commodités et des transports en commun, il convient aussi bien à une installation de courte durée qu'à un long séjour. Sa classe énergie est F : des travaux d'amélioration sont à envisager. Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-6.jpg",
@@ -1098,7 +1098,7 @@
   },
   {
     "id": "37",
-    "titre": "Maison mitoyenne proche écoles",
+    "titre": "Maison 4 pièces spacieuse avec piscine",
     "type": "house",
     "transaction": "sale",
     "prix": 915000,
@@ -1109,7 +1109,7 @@
     "chambres": 2,
     "sallesDeBain": 2,
     "meuble": false,
-    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "description": "Nouveau sur le marché, cette maison de 145 m² est à vendre à Paris. Ce logement se compose de 4 pièces, dont 2 chambres, et de 2 salles de bain.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, un grenier offre des rangements supplémentaires, un jardin offre un espace calme pour profiter des beaux jours et une piscine permet de se rafraîchir en été.\n\nSitué dans un quartier vivant, proche des transports en commun et des commerces, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe C). N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-1.jpg",
@@ -1130,7 +1130,7 @@
   },
   {
     "id": "38",
-    "titre": "Duplex avec terrasse",
+    "titre": "Appartement 4 pièces agréable avec cheminée",
     "type": "apartment",
     "transaction": "sale",
     "prix": 557000,
@@ -1141,7 +1141,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Appartement entièrement rénové, idéal étudiant ou jeune actif.",
+    "description": "Appartement de 90 m² à vendre à Lille. Ce logement se compose de 4 pièces, dont 3 chambres, et d'une salle de bain.\n\nCôté prestations, une cave apporte un rangement bienvenu, la climatisation assure le confort pendant les étés chauds, une cheminée crée une ambiance chaleureuse en hiver et un ascenseur dessert les étages.\n\nSitué à proximité des transports et des commodités du quotidien, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa classe énergie est F : des travaux d'amélioration sont à envisager. Contactez-nous pour en savoir plus et planifier une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-2.jpg",
@@ -1160,7 +1160,7 @@
   },
   {
     "id": "39",
-    "titre": "Villa avec vue dégagée",
+    "titre": "Maison 5 pièces spacieuse avec jardin",
     "type": "house",
     "transaction": "sale",
     "prix": 627000,
@@ -1171,7 +1171,7 @@
     "chambres": 3,
     "sallesDeBain": 3,
     "meuble": false,
-    "description": "Maison familiale idéale pour une vie de famille.",
+    "description": "Un bon plan à ne pas laisser passer : cette maison de 215 m² est à vendre à Marseille. Ce logement se compose de 5 pièces, dont 3 chambres, et de 3 salles de bain.\n\nCôté prestations, une terrasse prolonge agréablement le séjour, un jardin offre un espace calme pour profiter des beaux jours, une cheminée crée une ambiance chaleureuse en hiver, une cave apporte un rangement bienvenu, un grenier offre des rangements supplémentaires et la cuisine est équipée et prête à l'usage.\n\nSitué dans une ville où la Méditerranée n'est jamais loin, avec commerces et écoles à proximité, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa performance énergétique est correcte (classe C). Une visite vous permettra de vous projeter : écrivez-nous pour convenir d'un rendez-vous.",
     "photos": [
       {
         "compacte": "/images/biens/bien-3.jpg",
@@ -1194,7 +1194,7 @@
   },
   {
     "id": "40",
-    "titre": "Maison d'architecte avec jardin",
+    "titre": "Maison 5 pièces lumineuse avec jardin",
     "type": "house",
     "transaction": "sale",
     "prix": 316000,
@@ -1205,7 +1205,7 @@
     "chambres": 3,
     "sallesDeBain": 1,
     "meuble": false,
-    "description": "Cadre calme et verdoyant, proche des écoles.",
+    "description": "Maison de 100 m² à vendre à Lille. Ce logement se compose de 5 pièces, dont 3 chambres, et d'une salle de bain.\n\nCôté prestations, un jardin offre un espace calme pour profiter des beaux jours, une cave apporte un rangement bienvenu, la climatisation assure le confort pendant les étés chauds et un grenier offre des rangements supplémentaires.\n\nSitué à proximité des transports et des commodités du quotidien, il convient aussi bien à un premier achat qu'à un projet de vie durable. Sa classe énergie est E : des travaux d'amélioration sont à envisager. N'hésitez pas à nous contacter pour organiser une visite.",
     "photos": [
       {
         "compacte": "/images/biens/bien-4.jpg",
@@ -1213,7 +1213,7 @@
       }
     ],
     "equipements": [
-      "elevator",
+      "garden",
       "cellar",
       "air_conditioning",
       "attic"
