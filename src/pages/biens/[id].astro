@@ -4,10 +4,11 @@ export const prerender = false;
 
 import properties from '@/data/biens.json';
 import type { Property } from '@/schemas/property';
-import { filterOptions, propertyTypeLabels } from '@/data/filterOptions';
+import { propertyTypeLabels } from '@/data/filterOptions';
 import Layout from '@/layouts/Layout.astro';
 import { dpeColors } from '@/data/dpeColors';
 import { getCharacteristics } from '@/data/propertyFields';
+import { equipementMeta } from '@/data/fieldMeta';
 
 const { id } = Astro.params;
 
@@ -32,9 +33,6 @@ const formatPrice = (p: Property) => {
   const formatted = p.prix.toLocaleString('fr-FR');
   return p.transaction === 'rent' ? `${formatted} € / mois` : `${formatted} €`;
 };
-
-// Libellé français d'un équipement, lu dans les options du filtre (une seule liste pour les deux)
-const equipementLabel = (value: string) => filterOptions.equipements.find((option) => option.value === value)?.label;
 
 // Les caractéristiques simples (surface, pièces…) : la page les parcourt en boucle
 const characteristics = property ? getCharacteristics(property) : [];
@@ -110,9 +108,15 @@ const characteristics = property ? getCharacteristics(property) : [];
             </dl>{' '}
             <h3 class="text-base font-semibold text-gray-900">Équipements</h3>
             <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-gray-600 sm:grid-cols-3">
-              {property.equipements.map((equipement) => (
-                <li>{equipementLabel(equipement)}</li>
-              ))}
+              {property.equipements.map((equipement) => {
+                const { icon: Icon, label } = equipementMeta[equipement];
+                return (
+                  <li class="flex items-center gap-2">
+                    <Icon class="size-4 text-primary" aria-hidden="true" />
+                    {label}
+                  </li>
+                );
+              })}
             </ul>
           </section>
 
