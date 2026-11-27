@@ -1,4 +1,5 @@
 ---
+// #region Astro frontmatter
 export const prerender = false;
 
 import properties from '@/data/biens.json';
@@ -6,6 +7,7 @@ import type { Property } from '@/schemas/property';
 import { filterOptions, propertyTypeLabels } from '@/data/filterOptions';
 import Layout from '@/layouts/Layout.astro';
 import { dpeColors } from '@/data/dpeColors';
+import { getCharacteristics } from '@/data/propertyFields';
 
 const { id } = Astro.params;
 
@@ -33,6 +35,10 @@ const formatPrice = (p: Property) => {
 
 // Libellé français d'un équipement, lu dans les options du filtre (une seule liste pour les deux)
 const equipementLabel = (value: string) => filterOptions.equipements.find((option) => option.value === value)?.label;
+
+// Les caractéristiques simples (surface, pièces…) : la page les parcourt en boucle
+const characteristics = property ? getCharacteristics(property) : [];
+// #endregion
 ---
 
 <Layout>
@@ -48,25 +54,24 @@ const equipementLabel = (value: string) => filterOptions.equipements.find((optio
           />
 
           <header class="flex flex-col gap-3">
-            <p class="text-xs font-bold uppercase text-accent">
-              {propertyTypeLabels[property.type]} · {property.ville}
+            <p class="font-bold text-accent">
+              {propertyTypeLabels[property.type]} à {property.transaction === 'rent' ? 'louers' : 'vendre'}{' '}
             </p>
-            <h1 class="text-xl font-semibold text-gray-900 md:text-2xl">{property.titre}</h1>
-            <p class="text-2xl font-bold text-primary">{formatPrice(property)}</p>
-            <ul class="flex flex-wrap gap-2">
-              {property.etiquettes.map((tag) => (
-                <li class:list={['rounded-full px-3 py-1 text-xs font-semibold', tagStyles[tag]]}>{tag}</li>
-              ))}
-            </ul>
+            <div class="flex gap-3 flex-wrap">
+              <p class="text-xl font-bold text-primary">{formatPrice(property)}</p>
+              <ul class="flex flex-wrap items-center gap-2">
+                {property.etiquettes.map((tag) => (
+                  <li class:list={['rounded-full px-3 py-1 text-xs font-semibold', tagStyles[tag]]}>{tag}</li>
+                ))}
+              </ul>
+            </div>
           </header>
 
           <section class="flex flex-col gap-2">
-            <h2 class="text-lg font-semibold text-gray-900">Description</h2>
+            <h1 class="text-xl font-bold text-gray-900 md:text-xl">{property.titre}</h1>
             <p class="text-gray-600">{intro}</p>
             {suite.length > 0 && (
-              <details
-                class="group flex flex-col-reverse details-animated"
-              >
+              <details class="group flex flex-col-reverse details-animated">
                 <summary class="cursor-pointer list-none text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden">
                   <span class="group-open:hidden">Voir plus</span>
                   <span class="hidden group-open:inline">Voir moins</span>
@@ -80,37 +85,25 @@ const equipementLabel = (value: string) => filterOptions.equipements.find((optio
             )}
           </section>
 
+          <hr class="border-gray-200" />
+
           <section class="flex flex-col gap-4">
             <h2 class="text-lg font-semibold text-gray-900">Caractéristiques</h2>
             <dl class="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
-              <div class="flex flex-col gap-1">
-                <dt class="text-sm text-gray-500">Surface</dt>
-                <dd class="font-medium text-gray-900">{property.surface} m²</dd>
-              </div>
-              <div class="flex flex-col gap-1">
-                <dt class="text-sm text-gray-500">Pièces</dt>
-                <dd class="font-medium text-gray-900">{property.pieces}</dd>
-              </div>
-              <div class="flex flex-col gap-1">
-                <dt class="text-sm text-gray-500">Chambres</dt>
-                <dd class="font-medium text-gray-900">{property.chambres}</dd>
-              </div>
-              <div class="flex flex-col gap-1">
-                <dt class="text-sm text-gray-500">Salles de bain</dt>
-                <dd class="font-medium text-gray-900">{property.sallesDeBain}</dd>
-              </div>
-              <div class="flex flex-col gap-1">
-                <dt class="text-sm text-gray-500">Meublé</dt>
-                <dd class="font-medium text-gray-900">{property.meuble ? 'Oui' : 'Non'}</dd>
-              </div>
-              <div class="flex flex-col gap-1">
-                <dt class="text-sm text-gray-500">Classe énergie</dt>
-                <dd>
-                  <span class:list={['dpe-tag size-6', dpeColors[property.dpe]]} aria-label={`Classe énergie ${property.dpe}`}>
-                    {property.dpe}
-                  </span>
-                </dd>
-              </div>
+              {characteristics.map((item) => (
+                <div class="flex flex-col gap-1">
+                  <dt class="text-sm text-gray-500">{item.label}</dt>
+                  <dd class="font-medium text-gray-900">
+                    {item.kind === 'dpe' ? (
+                      <span class:list={['dpe-tag size-6', dpeColors[item.value]]} aria-label={`${item.label} ${item.value}`}>
+                        {item.value}
+                      </span>
+                    ) : (
+                      item.value
+                    )}
+                  </dd>
+                </div>
+              ))}
             </dl>{' '}
             <h3 class="text-base font-semibold text-gray-900">Équipements</h3>
             <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-gray-600 sm:grid-cols-3">
@@ -119,6 +112,8 @@ const equipementLabel = (value: string) => filterOptions.equipements.find((optio
               ))}
             </ul>
           </section>
+
+          <hr class="border-gray-200" />
         </article>
 
         <aside class="lg:sticky lg:top-[calc(var(--nav-height)+1rem)] lg:self-start">
