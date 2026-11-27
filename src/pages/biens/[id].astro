@@ -90,9 +90,12 @@ const characteristics = property ? getCharacteristics(property) : [];
           <section class="flex flex-col gap-4">
             <h2 class="text-lg font-semibold text-gray-900">Caractéristiques</h2>
             <dl class="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
-              {characteristics.map((item) => (
+              {characteristics.map(({ icon: Icon, ...item }) => (
                 <div class="flex flex-col gap-1">
-                  <dt class="text-sm text-gray-500">{item.label}</dt>
+                  <dt class="flex items-center gap-2 text-sm text-gray-500">
+                    <Icon class="size-4" aria-hidden="true" />
+                    {item.label}
+                  </dt>
                   <dd class="font-medium text-gray-900">
                     {item.kind === 'dpe' ? (
                       <span class:list={['dpe-tag size-6', dpeColors[item.value]]} aria-label={`${item.label} ${item.value}`}>
