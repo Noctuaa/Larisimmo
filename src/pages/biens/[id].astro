@@ -50,7 +50,6 @@ const characteristics = property ? getCharacteristics(property) : [];
             fetchpriority="high"
             class="aspect-4/3 w-full rounded-2xl object-cover md:aspect-video"
           />
-
           <header class="flex flex-col gap-3">
             <p class="font-bold text-accent">
               {propertyTypeLabels[property.type]} à {property.transaction === 'rent' ? 'louers' : 'vendre'}{' '}
@@ -64,7 +63,6 @@ const characteristics = property ? getCharacteristics(property) : [];
               </ul>
             </div>
           </header>
-
           <section class="flex flex-col gap-2">
             <h1 class="text-xl font-bold text-gray-900 md:text-xl">{property.titre}</h1>
             <p class="text-gray-600">{intro}</p>
@@ -82,9 +80,7 @@ const characteristics = property ? getCharacteristics(property) : [];
               </details>
             )}
           </section>
-
           <hr class="border-gray-200" />
-
           <section class="flex flex-col gap-4">
             <h2 class="text-lg font-semibold text-gray-900">Caractéristiques</h2>
             <dl class="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
@@ -119,9 +115,7 @@ const characteristics = property ? getCharacteristics(property) : [];
               })}
             </ul>
           </section>
-
           <hr class="border-gray-200" />
-
           <section class="flex flex-col gap-4">
             <h2 class="text-lg font-semibold text-gray-900">Performance énergétique</h2>
             <div class="grid gap-6 sm:grid-cols-2">
